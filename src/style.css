@@ -3,23 +3,62 @@
     padding: 0;
     box-sizing: border-box;
 }
+img {
+    width: 100%;
+}
+.text-center {
+    text-align: center;
+}
+body {
+    background-image: url(https://css2.rtve.es/css/rtve.2015.deportes/rio-2016/i/background_apertura_right.png);
+    background-size: 70% auto;
+    background-attachment: fixed;
+}
+/**** HEADER ****/
+/**** Barra de navegación ****/
+.navigation{
+    /* background: rgba(255,255,255,0.9); */
+    display: flex;
+    justify-content:space-around;
+    padding: .5rem 0 .5rem 0;
+}
+.logo{
+    margin-left: 200px;
+    max-width: 70px;
+}
+.nav{
+    width: 500px;
+    display: flex;
+    justify-content:space-between;
+    margin-right: 200px;
+}
+/**** Banner y titulo ****/
+.title {
+    /* background: rgba(255,255,255,0.9); */
+    padding: 0.3rem;
+}
+.banner {
+    border: solid 1px red;
+    margin: 0;
+}
+/**** Slide ****/
 .slidershow{
-    width: 700px;
+    width: 800px;
     height: 400px;
-    overflow: hidden;   
+    overflow: visible;  
 }
 .middle{
     position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    /* top: 70%; */
+    left: 20%;
+    /* transform: translate(-50%,-50%); */
 }
 .label{
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform:translateX(-50%);
-        display: flex;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform:translateX(-50%);
+    display: flex;
 }
 .bar{
     width: 50px;
@@ -45,7 +84,7 @@ input[name="radio"]{
     width: 20%;
     transition: 0.6s;
 }
-    .slide img{
+.slide img{
     width: 100%;
     height: 100%;
 }
@@ -58,23 +97,18 @@ input[name="radio"]{
 #radio3:checked ~ .slide1{
     margin-left: -40%;
 }
-.navigation{
-    display: flex;
-    justify-content:space-around;
+.background {
+    height: 400px;
 }
-.logo{
-    border: 1px solid blue;
-    margin-left: 200px;
 
-}
-.nav{
-    width: 500px;
-    display: flex;
-    justify-content:space-between;
-    margin-right: 200px;
-
-}
+/**** Botones ****/
 .button{
-        width: 100px;
+    width: 100px;
     display:inline-block;
 }
+
+/**** Footer ****/
+.footer {
+    border: solid 1px yellow;
+}
+
