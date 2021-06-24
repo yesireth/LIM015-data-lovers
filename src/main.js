@@ -1,4 +1,6 @@
+// Importamos funciones desde data.js
 import { filterData } from './data.js';
+<<<<<<< HEAD
 // Elementos del HTML
 const navigation = document.getElementsByClassName("button");
 const containerAthletes = document.querySelector('.containerAthletes');
@@ -12,9 +14,21 @@ let category = " ";
 let arrayData = " ";
 
 //Evento para los botones
-for (let i = 0; i < navigation.length; i++) {
+=======
+//import data from './data/athletes/athletes.js';
 
+// Elementos del HTML 
+const navigation = document.getElementsByClassName("button");
+const containerAthletes = document.querySelector('.athletes');
+
+// Variables Globales 
+let category;
+
+// Eventos a los botones 
+>>>>>>> d29e1c13103f83ca0b498a8d7ccf731ca45ef332
+for (let i = 0; i < navigation.length; i++) {
   navigation[i].addEventListener("click", () => {
+<<<<<<< HEAD
 
     category = navigation[i].value;
     arrayData = filterData(category);
@@ -42,7 +56,19 @@ function showAthletes(arrayData) {
   //  `
   containerAthletes.appendChild(divAthlete);
   } );
+=======
+    category = navigation[i].value;
+    showAthletes();
+  })
+}
+>>>>>>> d29e1c13103f83ca0b498a8d7ccf731ca45ef332
 
+// Funcion para mostrar en pantalla los resultados
+function showAthletes(){
+  console.log
+  const athletes = document.createElement('div');
+  athletes.innerHTML = `${filterData(category)}`
+  containerAthletes.appendChild(athletes)
 }
 function showSport(arrayData){ 
 arrayData.forEach(element => {
