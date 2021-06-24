@@ -45,7 +45,7 @@ body {
 .slidershow{
     width: 800px;
     height: 400px;
-    overflow: visible;  
+    overflow: visible;
 }
 .middle{
     position: absolute;
@@ -99,6 +99,51 @@ input[name="radio"]{
 }
 .background {
     height: 400px;
+}
+/**** Sección de intro ****/
+.intro {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    padding: 1rem;
+}
+.intro img {
+    max-width: 50%;
+}
+.text-intro {
+    flex-basis: 48%;  
+}
+
+/**** Sección de Atletas destacados ****/
+
+
+
+/**** Sección de participación de mujeres ****/
+.women {
+    background: white;
+}
+
+.women img {
+    max-width: 80%;
+    padding-left: 10rem;
+}
+/**** Barra de navegación desplegable ****/
+li {
+ list-style: none;
+}
+.container-nav-category  {
+    width: 200px;
+    padding: 0.1rem
+}
+.nav-category {
+    background: gray;
+}
+.nav-subcategory {
+    background: white;
+    padding-left: 20px;
+}
+.nav-category a {
+    text-decoration: none;
 }
 
 /**** Botones ****/
