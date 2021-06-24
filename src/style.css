@@ -109,6 +109,17 @@ input[name="radio"]{
 
 /**** Footer ****/
 .footer {
-    border: solid 1px yellow;
+ border: solid 1px yellow;
 }
-
+/**** Ventana de athletes****/
+.containerAthletes{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.athlete{
+  width: 150px;
+  height: 200px;
+  background: white;
+  border:solid 1px red;
+}

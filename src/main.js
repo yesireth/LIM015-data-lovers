@@ -1,51 +1,67 @@
 import { filterData } from './data.js';
+// Elementos del HTML
+const navigation = document.getElementsByClassName("button");
+const containerAthletes = document.querySelector('.containerAthletes');
+const containerWomen = document.querySelector('.women');
+const containerFeatured = document.querySelector('.featured');
+const containerIntro = document.querySelector('.intro');
+const containerSlide = document.querySelector('.containerSlide');
 
-//import data from './data/athletes/athletes.js';
+// Variables globales
+let category = " ";
+let arrayData = " ";
 
-//let btnSport= document.getElementById("sport");
-// let btnAthletes= document.getElementById("athletes");
-//let btnCountries= document.getElementById("countries");
-
-
-let navigation = document.getElementsByClassName("button");
-
+//Evento para los botones
 for (let i = 0; i < navigation.length; i++) {
 
   navigation[i].addEventListener("click", () => {
 
-    let category = navigation[i].value;
-    console.log(category);
-
-    filterData(category);
-    showAthletes(arraylist);
+    category = navigation[i].value;
+    arrayData = filterData(category);
+  
+    showAthletes(arrayData);
+    showSport(arrayData);
   })
 }
-function showAthletes(arraylist){
-console.log(arraylist);
-  // const athletes= document.querySelector('.athletes');
-  // const resultathletes= document.createElement('div');
-  // resultathletes.innerHTML= ´ 
-  
 
-  
-  // ´
-  // athletes.appendChild(resultathletes);
+function showAthletes(arrayData) {
+  // Oculta informacion previa
+  containerWomen.style.display = 'none';
+  containerFeatured.style.display =  'none';
+  containerIntro.style.display = 'none';
+  containerSlide.style.display = 'none';
 
+  // Recorre el array y agrega un div por cada atleta
+  arrayData.forEach(element =>{ 
+    console.log(element.name);
+   const divAthlete= document.createElement('div');
+   divAthlete.classList.add("athlete")
+  divAthlete.innerHTML= `
+  <p>Nombre: ${element.name} </p>
+  <p>Deporte: ${element.sport} </p>
+  //  `
+  containerAthletes.appendChild(divAthlete);
+  } );
 
 }
+function showSport(arrayData){ 
+arrayData.forEach(element => {
+console.log(element.sport)
 
-// const athletes= document.querySelector('.athletes');
-//  const resultathletes= document.createElement('div');
-//  resultathletes.innerHTML= ´ 
+});
+}
+console.log(showSport);
+
+// }
+    
+// // const athletes= document.querySelector('.athletes');
+// //  const resultathletes= document.createElement('div');
  
- 
- 
-//  ´
 
-//  athletes.appendChild(resultathletes);
-// console.log(resultathletes);
+// //  athletes.appendChild(resultathletes);
+// // console.log(resultathletes);
 
 
-// btnSport.addEventListener("click", filterData);
-// btnAthletes.addEventListener("click", filterData);
+// // btnSport.addEventListener("click", filterData);
+// // btnAthletes.addEventListener("click", filterData);
 // btnCountries.addEventListener("click", filterData);
