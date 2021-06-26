@@ -1,90 +1,76 @@
 // Importamos funciones desde data.js
-import { filterData } from './data.js';
+//import { filterData } from './data.js';
+import { filterData } from "./data.js";
+import athletes from "./data/athletes/athletes.js";
 
-// Elementos del HTML
-const navigation = document.getElementsByClassName("button");
+//***Elementos del HTML***
+const containerSectionAthletes = document.querySelector('.containerSectionAthletes');
 const containerAthletes = document.querySelector('.containerAthletes');
 const containerWomen = document.querySelector('.women');
 const containerFeatured = document.querySelector('.featured');
 const containerIntro = document.querySelector('.intro');
 const containerSlide = document.querySelector('.containerSlide');
 const containerSport = document.querySelector('.containerSport');
-  
-// Elementos del HTML 
-//const navigation = document.getElementsByClassName("button");
-//const containerAthletes = document.querySelector('.athletes');
-// Variables globales
-let category = " ";
-let arrayData = " ";
+const btnAthletes = document.getElementById("athletes");
+const btnSport = document.getElementById("sport");
+containerSectionAthletes.style.display = 'none';
 
-//Evento para los botones
-
-//import data from './data/athletes/athletes.js';
-
-
-// Eventos a los botones 
-
-for (let i = 0; i < navigation.length; i++) {
-  navigation[i].addEventListener("click", () => {
-
-
-    category = navigation[i].value;
-    arrayData = filterData(category);
-  
-    showAthletes(arrayData);
-    showSport(arrayData);
-    // Oculta informacion previa
-containerWomen.style.display = 'none';
-containerFeatured.style.display = 'none';
-containerIntro.style.display = 'none';
-containerSlide.style.display = 'none';
-
-  })
-
+// ***Oculta informacion previa del HOMEPAGE***
+function hideHomePage() {
+  containerWomen.style.display = 'none';
+  containerFeatured.style.display = 'none';
+  containerIntro.style.display = 'none';
+  containerSlide.style.display = 'none';
 }
+//***Funcion para mostrar los atletas***
+function showAthletes() {
+  containerSport.style.display = 'none';
+  containerSectionAthletes.style.display = 'block'
+  hideHomePage();
+  athletes.innerHTML = '';
 
-function showAthletes(arrayData) {
-
-  // Recorre el array y agrega un div por cada atleta
-  arrayData.forEach(element => {
-   // console.log(element.name);
+  athletes.athletes.forEach(element => {
     const divAthlete = document.createElement('div');
     divAthlete.classList.add("athlete")
     divAthlete.innerHTML = `
-  <p>Nombre: ${element.name} </p>
-  <p>Deporte: ${element.sport} </p>
+    <p>Nombre: ${element.name} </p>
+    <p>Deporte: ${element.sport} </p>
    `
     containerAthletes.appendChild(divAthlete);
-
   });
 }
-function showSport(arrayData) {
-  //containerAthletes.style.display = 'none';
-
-  console.log(arrayData);
-  arrayData.forEach(element => {
+//***Funcion para mostrar los deportes***
+function showSport() {
+  containerSectionAthletes.style.display = 'none';
+  containerSport.style.display = 'block';
+  hideHomePage();
+  containerSport.innerHTML = "";
+  const allSport = athletes.athletes.map(athlete => athlete.sport)
+  let uniqueSport = [...new Set(allSport)];
+  uniqueSport.forEach(element => {
     const divSport = document.createElement('div');
     divSport.classList.add("sport");
     divSport.innerHTML = `
-
-<p>Deporte: ${element}</p>
-
-`
+    <p>Deporte: ${element}</p>
+     `
     containerSport.appendChild(divSport);
-    //console.log(element);
   })
 }
 
+// Eventos de la HomePage
+btnAthletes.addEventListener("click", showAthletes);
+btnSport.addEventListener("click", showSport);
+//btnCountries.addEventListener("click", filterData);
 
-// }
+// Eventos a Pagina de Atletas
+//const navCategory = document.querySelectorAll('.nav-subcategory');
+const navCategory = document.getElementsByClassName('subcategory');
 
-// // const athletes= document.querySelector('.athletes');
-// //  const resultathletes= document.createElement('div');
- 
+for (let i = 0; i < navCategory.length; i++) {
 
-// //  athletes.appendChild(resultathletes);
-// // console.log(resultathletes);
+  navCategory[i].addEventListener("click", () => {
+    let category = navCategory[i].id;
+  filterData (category);
 
-// // btnSport.addEventListener("click", filterData);
-// // btnAthletes.addEventListener("click", filterData);
-// btnCountries.addEventListener("click", filterData);
+} )
+}
