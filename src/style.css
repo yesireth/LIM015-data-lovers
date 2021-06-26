@@ -45,7 +45,7 @@ body {
 .slidershow{
     width: 800px;
     height: 400px;
-    overflow: visible;
+    overflow: hidden;
 }
 .middle{
     position: absolute;
@@ -146,6 +146,28 @@ li {
     text-decoration: none;
 }
 
+
+/**** Ventana de athletes****/
+.container-section {
+    border: solid 1px green;
+    display: flex; 
+    /* justify-content: space-between; */
+}
+.containerSectionAthletes .container-athletess {
+    border: solid 1px yellow;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.athlete{
+    width: 250px;
+    height: 150px;
+    background: white;
+    border:solid 1px red;
+}
+
 /**** Botones ****/
 .button{
     width: 100px;
@@ -155,16 +177,4 @@ li {
 /**** Footer ****/
 .footer {
  border: solid 1px yellow;
-}
-/**** Ventana de athletes****/
-.containerAthletes{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-.athlete{
-  width: 150px;
-  height: 200px;
-  background: white;
-  border:solid 1px red;
 }
