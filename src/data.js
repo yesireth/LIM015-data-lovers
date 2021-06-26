@@ -1,40 +1,22 @@
 import athletes from "./data/athletes/athletes.js";
-//console.log(athletes.athletes)
 
 export const filterData = (category) => {
-  let filteredDate;
-  let arrayList = [];
+ 
+  const lqs = athletes.athletes.filter(a => a.gender == category);
+  const lq = athletes.athletes.filter(a => a.medal == category);
+  const lqss = athletes.athletes.filter(a => a.age > 60
+    //{
+    // if ( a.age === 15 ){
+    //   console.log();
+    // } 
+  );
   
-  for (let index = 0; index < athletes.athletes.length; index++) {
-
-    if (category === 'Atletas') {
-      filteredDate = athletes.athletes[index];
-      //console.log(filteredDate )
-      arrayList.push(filteredDate);
-    } else if (category === 'Paises') {
-      filteredDate = athletes.athletes[index].team;
-      arrayList.push(filteredDate);
-    } else if (category === 'Deportes') {
-      filteredDate = athletes.athletes[index].sport;
-      arrayList.push(filteredDate);
-    }
-
-    const athlete = { 
-      name: athletes.athletes[index].name,
-      country:athletes.athletes[index].team,
-      gender:athletes.athletes[index].gender,
-      sport:athletes.athletes[index].sport,
-      medal:athletes.athletes[index].medal,
-      age:athletes.athletes[index].age,
-      height:athletes.athletes[index].height,
-      weight: athletes.athletes[index].weight,
-    } 
-
-    console.log(athlete)
-  }
-
-return arrayList;
-
+  // console.log(lqs);
+  // console.log(lq);
+  console.log(lqss)
 }
+
+
+
 
   //console.log(Objathletas)}
