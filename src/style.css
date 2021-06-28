@@ -127,45 +127,36 @@ input[name="radio"]{
     max-width: 80%;
     padding-left: 10rem;
 }
-/**** Barra de navegación desplegable ****/
-li {
- list-style: none;
-}
-.container-nav-category  {
-    width: 200px;
-    padding: 0.1rem
-}
-.nav-category {
-    background: gray;
-}
-.nav-subcategory {
-    background: white;
-    padding-left: 20px;
-}
-.nav-category a {
-    text-decoration: none;
-}
-
 
 /**** Ventana de athletes****/
-.container-section {
-    border: solid 1px green;
-    display: flex; 
-    /* justify-content: space-between; */
+.containerSectionAthletes {
+    display: flex !important;
+    flex-direction: column;
+    gap: 15px;
 }
-.containerSectionAthletes .container-athletess {
-    border: solid 1px yellow;
+.first-element {
+    display: flex;
+    justify-content: flex-end;
+}
+.second-element {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    border: solid 1px blue;
 }
 
+.containerAthletes {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-basis: 90%;
+}
 
 .athlete{
     width: 250px;
     height: 150px;
     background: white;
     border:solid 1px red;
+    
 }
 
 /**** Botones ****/
@@ -174,6 +165,36 @@ li {
     display:inline-block;
 }
 
+/**** Barra de navegación desplegable ****/
+li {
+    list-style: none;
+   }
+.container-nav-category  {
+    width: 300px;
+    height: 400px;
+    padding: 0.1rem;
+    background: gray;
+    line-height: 1.45rem;
+}
+/* .nav-category {
+    background: gray;
+
+} */
+.nav-subcategory {
+    background: white;
+    padding-left: 20px;
+    border: solid 1px green;
+}
+.nav-category a {
+    text-decoration: none;
+}
+
+
+/**** Ventana de mostrar todos los deportes****/
+.imagenes-sport {
+    width: 60px;
+}
+   
 /**** Footer ****/
 .footer {
  border: solid 1px yellow;
