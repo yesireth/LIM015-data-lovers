@@ -4,7 +4,7 @@ export const filterData = (category) => {
  
   const lqs = athletes.athletes.filter(a => a.gender == category);
   const lq = athletes.athletes.filter(a => a.medal == category);
-  const lqss = athletes.athletes.filter(a => a.age > 60
+  const lqss = athletes.athletes.filter(a => a.age > 50
     //{
     // if ( a.age === 15 ){
     //   console.log();
@@ -19,4 +19,4 @@ export const filterData = (category) => {
 
 
 
-  //console.log(Objathletas)}npm
+  //console.log(Objathletas)}

@@ -48,12 +48,13 @@ function showSport() {
   const allSport = athletes.athletes.map(athlete => athlete.sport)
   let uniqueSport = [...new Set(allSport)];
   uniqueSport.forEach(element => {
+    console.log(element);
     const divSport = document.createElement('div');
     divSport.classList.add("sport");
     divSport.innerHTML = `
-    <p>Deporte: ${element}</p>
+    <p>Deporte:<a href=#>${element} </a></p>
    
-   <img src='../images/images-sport/${element}.svg' alt='${element}' width='60px'>
+   <img class="imagenes-sport" src='../images/images-sport/${element}.svg' alt='${element}' width='40px'>
 
      `
     containerSport.appendChild(divSport);
