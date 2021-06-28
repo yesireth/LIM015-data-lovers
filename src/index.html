@@ -32,9 +32,6 @@
       <h1 class="text-center"><b>Juegos Olímpicos Río 2016</b></h1>
     </section>
 
-
-    <!-- </section> Cierre Sección filtrar, ordenar y ver estadísticas -->
-
     <!-- Sección de slide -->
     <section class="containerSlide">
       <section class=" slidershow middle">
@@ -113,90 +110,87 @@
       </section>
     </section>
 
+    <!-- Página para mostrar todos los Atletas y lista de categorías -->
     <section class="containerSectionAthletes">
-
-      <section class="container-section">
-
-      <section>
-      <section class="container-list-order">
-        <select name="" id="">
-          <option value=""> ORDENAR POR : Alfabético: A-Z</option>
-          <option value=""> Alfabético: Z - A</option>
-          <option value=""> Edad: menos edad </option>
-          <option value=""> Edad: más edad </option>
-        </select>
+      <!-- Sección que contiene la lista para ordenar  -->
+      <section class="first-element">
+        <section class="container-list-order">
+          <select name="" id="">
+            <option value="" disabled selected> Ordenar por...</option>
+            <option value="A-Z"> Alfabético: A-Z</option>
+            <option value="Z-A"> Alfabético: Z-A</option>
+            <option value="menos-edad"> Edad: menos edad </option>
+            <option value="mas-edad"> Edad: más edad </option>
+          </select>
+        </section>
       </section>
-      </section>
+      <section class="second-element">
+        <!-- Sección que contiene la lista de categorías  -->
+        <section class="container-nav-category">
+          <nav>
+            <ul class="nav-category">
+              <li class="category"><a href="#">Categorías <i class="fas fa-angle-down"></i> </li>
+              <li class="category"><a href="#">Género <i class="fas fa-angle-down"></i></a>
+                <ul class="nav-subcategory">
+                  <li class="subcategory" id="F"><a href="#">Femenino</a></li>
+                  <li class="subcategory" id="M"><a href="#">Masculino</a></li>
+                </ul>
+              </li>
 
-      <section>
-      <section class="container-nav-category">
-        <nav>
-          <ul class="nav-category">
-            <li class="category"><a href="#">Categorías <i class="fas fa-angle-down"></i> </li>
-            <li class="category"><a href="#">Género <i class="fas fa-angle-down"></i></a>
-              <ul class="nav-subcategory">
-                <li class="subcategory" id="F"><a href="#">Femenino</a></li>
-                <li class="subcategory" id="M"><a href="#">Masculino</a></li>
-              </ul>
-            </li>
+              <li><a href="#">Medallas <i class="fas fa-angle-down"></i></a>
+                <ul class="nav-subcategory">
+                  <li class="subcategory" id="Gold"><a href="#">Oro</a></li>
+                  <li class="subcategory" id="Silver"><a href="#">Plata</a></li>
+                  <li class="subcategory" id="Bronze"><a href="#">Bronce</a></li>
+                </ul>
+              </li>
 
-            <li><a href="#">Medallas <i class="fas fa-angle-down"></i></a>
-              <ul class="nav-subcategory">
-                <li class="subcategory" id="Gold"><a href="#">Oro</a></li>
-                <li class="subcategory" id="Silver"><a href="#">Plata</a></li>
-                <li class="subcategory" id="Bronze"><a href="#">Bronce</a></li>
-              </ul>
-            </li>
+              <!-- <li><a href="">Deporte <i class="fas fa-angle-down"></i></a>
+                <ul class="nav-subcategory">
+                  <li><a href="">Atletismo</a></li>
+                  <li><a href="">Badminton</a></li>
+                  <li><a href="">Baloncesto</a></li>
+                  <li><a href="">Balonmano</a></li>
+                  <li><a href="">Béisbol</a></li>
+                  <li><a href="">Canotaje</a></li>
+                  <li><a href="">Ciclismo</a></li>
+                  <li><a href="">Judo</a></li>
+                  <li><a href="">Karate</a></li>
+                  <li><a href="">Natación</a></li>
+                  <li><a href="">Patinaje Artístico</a></li>
+                  <li><a href="">Rugby</a></li>
+                  <li><a href="">Saltos</a></li>
+                  <li><a href="">Skeleton</a></li>
+                  <li><a href="">Snowboard</a></li>
+                  <li><a href="">Surf</a></li>
+                  <li><a href="">Taekwondo</a></li>
+                  <li><a href="">Tenis</a></li>
+                  <li><a href="">Tiro</a></li>
+                  <li><a href="">Triatlón</a></li>
+                  <li><a href="">Voleibol</a></li>
+                  <li><a href="">Waterpolo</a></li>
+                </ul>
+              </li> -->
 
-            <!-- <li><a href="">Deporte <i class="fas fa-angle-down"></i></a>
-              <ul class="nav-subcategory">
-                <li><a href="">Atletismo</a></li>
-                <li><a href="">Badminton</a></li>
-                <li><a href="">Baloncesto</a></li>
-                <li><a href="">Balonmano</a></li>
-                <li><a href="">Béisbol</a></li>
-                <li><a href="">Canotaje</a></li>
-                <li><a href="">Ciclismo</a></li>
-                <li><a href="">Judo</a></li>
-                <li><a href="">Karate</a></li>
-                <li><a href="">Natación</a></li>
-                <li><a href="">Patinaje Artístico</a></li>
-                <li><a href="">Rugby</a></li>
-                <li><a href="">Saltos</a></li>
-                <li><a href="">Skeleton</a></li>
-                <li><a href="">Snowboard</a></li>
-                <li><a href="">Surf</a></li>
-                <li><a href="">Taekwondo</a></li>
-                <li><a href="">Tenis</a></li>
-                <li><a href="">Tiro</a></li>
-                <li><a href="">Triatlón</a></li>
-                <li><a href="">Voleibol</a></li>
-                <li><a href="">Waterpolo</a></li>
-              </ul>
-            </li> -->
+              <li><a href="#"> Edades <i class="fas fa-angle-down"></i></a>
+                <ul class="nav-subcategory">
+                  <li class="subcategory" id='-18'><a href="#"> Menor de 18 </a></li>
+                  <li class="subcategory" id='18-25'><a href="#"> 18 - 25 </a></li>
+                  <li class="subcategory" id='25-30'><a href="#"> 25 - 30 </a></li>
+                  <li class="subcategory" id='30-35'><a href="#"> 30 - 35 </a></li>
+                  <li class="subcategory" id='35-40'><a href="#"> 35 - 40 </a></li>
+                  <li class="subcategory" id='40-45'><a href="#"> 40 - 45 </a></li>
+                  <li class="subcategory" id='45-50'><a href="#"> 45 - 50 </a></li>
+                  <li class="subcategory" id='+50'><a href="#"> Mayor de 50 </a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </section>  <!-- Cierre de Sección de container del nav  -->
+        <!-- Sección que contiene todos los atletas  -->
+        <section class="containerAthletes"></section>
+      </section>    
 
-            <li><a href="#"> Edades <i class="fas fa-angle-down"></i></a>
-              <ul class="nav-subcategory">
-                <li class="subcategory" id='-18'><a href="#"> Menor de 18 </a></li>
-                <li class="subcategory" id='18-25'><a href="#"> 18 - 25 </a></li>
-                <li class="subcategory" id='25-30'><a href="#"> 25 - 30 </a></li>
-                <li class="subcategory" id='30-35'><a href="#"> 30 - 35 </a></li>
-                <li class="subcategory" id='35-40'><a href="#"> 35 - 40 </a></li>
-                <li class="subcategory" id='40-45'><a href="#"> 40 - 45 </a></li>
-                <li class="subcategory" id='45-50'><a href="#"> 45 - 50 </a></li>
-                <li class="subcategory" id='+50'><a href="#"> Mayor de 50 </a></li>
-
-              </ul>
-            </li>
-
-          </ul>
-        </nav>
-
-        <section class="container-athletes"><section class="containerAthletes"> </section></section>
-      </section>
-
-      </section>  <!-- Cierre de Sección de container del nav  -->
-    </section>
     </section> <!-- Cierre de Sección de container atletas   -->
 
     <!-- Sección de Iconos de todos los  deportes  -->

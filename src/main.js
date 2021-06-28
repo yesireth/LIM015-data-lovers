@@ -54,7 +54,7 @@ function showSport() {
     divSport.innerHTML = `
     <p>Deporte:<a href=#>${element} </a></p>
    
-   <img class="imagenes-sport" src='../images/images-sport/${element}.svg' alt='${element}' width='40px'>
+   <img  src='../images/images-sport/${element}.svg' alt='${element}' width='40px'>
 
      `
     containerSport.appendChild(divSport);
