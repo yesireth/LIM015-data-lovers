@@ -19,4 +19,4 @@ export const filterData = (category) => {
 
 
 
-  //console.log(Objathletas)}
+  //console.log(Objathletas)}npm
