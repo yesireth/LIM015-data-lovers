@@ -52,6 +52,9 @@ function showSport() {
     divSport.classList.add("sport");
     divSport.innerHTML = `
     <p>Deporte: ${element}</p>
+   
+   <img src='../images/images-sport/${element}.svg' alt='${element}' width='60px'>
+
      `
     containerSport.appendChild(divSport);
   })
@@ -70,7 +73,7 @@ for (let i = 0; i < navCategory.length; i++) {
 
   navCategory[i].addEventListener("click", () => {
     let category = navCategory[i].id;
-  filterData (category);
+    filterData(category);
 
 } )
 }
