@@ -1,22 +1,17 @@
 import athletes from "./data/athletes/athletes.js";
 
-export const filterData = (category) => {
- 
-  const lqs = athletes.athletes.filter(a => a.gender == category);
-  const lq = athletes.athletes.filter(a => a.medal == category);
-  const lqss = athletes.athletes.filter(a => a.age > 50
-    //{
-    // if ( a.age === 15 ){
-    //   console.log();
-    // } 
-  );
-  
-  // console.log(lqs);
-  // console.log(lq);
-  console.log(lqss)
+export const filterData = (category, minedad, maxedad) => {
+
+  const gender = athletes.athletes.filter(a => a.gender == category);
+  const medal = athletes.athletes.filter(a => a.medal == category);
+  const age = athletes.athletes.filter(a => a.age >= minedad && a.age <= maxedad);
+
+  if (category === "F" || category === "M") {
+
+    return gender;
+  } else if (category === "Gold" || category === "Silver" || category === "Bronze") {
+    return medal;
+  } else {
+    return age;
+  }
 }
-
-
-
-
-  //console.log(Objathletas)}

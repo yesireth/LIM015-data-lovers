@@ -191,8 +191,21 @@ li {
 
 
 /**** Ventana de mostrar todos los deportes****/
+.containerSport{
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-basis: 90%;
+}
+.sport{ 
+    width: 250px;
+    height: 150px;
+    background: white;
+    border:solid 1px red;
+}
 .imagenes-sport {
     width: 60px;
+    
 }
    
 /**** Footer ****/

@@ -27,7 +27,7 @@ function showAthletes() {
   containerSport.style.display = 'none';
   containerSectionAthletes.style.display = 'block'
   hideHomePage();
-  athletes.innerHTML = '';
+  containerAthletes.innerHTML = '';
 
   athletes.athletes.forEach(element => {
     const divAthlete = document.createElement('div');
@@ -46,15 +46,16 @@ function showSport() {
   hideHomePage();
   containerSport.innerHTML = "";
   const allSport = athletes.athletes.map(athlete => athlete.sport)
-  let uniqueSport = [...new Set(allSport)];
+  let uniqueSport = allSport.filter((item,index)=>{
+    return allSport.indexOf(item) === index;
+  })
+  //let uniqueSport = [...new Set(allSport)];
   uniqueSport.forEach(element => {
-    console.log(element);
     const divSport = document.createElement('div');
     divSport.classList.add("sport");
     divSport.innerHTML = `
-    <p>Deporte:<a href=#>${element} </a></p>
-   
-   <img  src='../images/images-sport/${element}.svg' alt='${element}' width='40px'>
+      <p>Deporte:<a href=#>${element} </a></p>
+      <img class='imagenes-sport' src='../images/images-sport/${element}.svg' alt='${element}' width='40px'>
 
      `
     containerSport.appendChild(divSport);
@@ -74,7 +75,22 @@ for (let i = 0; i < navCategory.length; i++) {
 
   navCategory[i].addEventListener("click", () => {
     let category = navCategory[i].id;
-    filterData(category);
-
+    let edadminima=navCategory[i].getAttribute("data-min");
+    let edadmaxima=navCategory[i].getAttribute("data-max");
+    let getData= filterData(category,edadminima,edadmaxima);
+    filterAthletes (getData);
 } )
 }
+function filterAthletes(getData) {
+  containerAthletes.innerHTML = '';
+  getData.forEach(element => {
+    const divAthlete = document.createElement('div');
+    divAthlete.classList.add("athlete")
+    divAthlete.innerHTML = `
+  <p>Nombre: ${element.name} </p>
+  <p>Deporte: ${element.sport} </p>
+ `
+    containerAthletes.appendChild(divAthlete);
+  });
+}
+
