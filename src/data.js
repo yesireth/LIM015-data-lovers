@@ -15,3 +15,6 @@ export const filterData = (category, minedad, maxedad) => {
     return age;
   }
 }
+export const filterDataSport = () => {
+  
+}

@@ -28,7 +28,9 @@ function showAthletes() {
   containerSectionAthletes.style.display = 'block'
   hideHomePage();
   containerAthletes.innerHTML = '';
-
+  let objAthletes = {};
+  athletes.athletes = athletes.athletes.filter(athlete => objAthletes[athlete.name] ? false : objAthletes[athlete.name] = true);
+  console.log(athletes.athletes)
   athletes.athletes.forEach(element => {
     const divAthlete = document.createElement('div');
     divAthlete.classList.add("athlete")
