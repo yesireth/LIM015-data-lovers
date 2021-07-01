@@ -38,7 +38,6 @@ body {
     padding: 0.3rem;
 }
 .banner {
-    border: solid 1px red;
     margin: 0;
 }
 /**** Slide ****/
@@ -141,7 +140,6 @@ input[name="radio"]{
 .second-element {
     display: flex;
     justify-content: space-between;
-    border: solid 1px blue;
 }
 
 .containerAthletes {
@@ -156,7 +154,6 @@ input[name="radio"]{
     height: 150px;
     background: white;
     border:solid 1px red;
-    
 }
 
 /**** Botones ****/
@@ -183,7 +180,6 @@ li {
 .nav-subcategory {
     background: white;
     padding-left: 20px;
-    border: solid 1px green;
 }
 .nav-category a {
     text-decoration: none;
@@ -205,7 +201,6 @@ li {
 }
 .imagenes-sport {
     width: 60px;
-    
 }
    
 /**** Footer ****/
