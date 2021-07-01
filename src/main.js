@@ -1,5 +1,4 @@
 // Importamos funciones desde data.js
-//import { filterData } from './data.js';
 import { filterData } from "./data.js";
 import athletes from "./data/athletes/athletes.js";
 
@@ -15,14 +14,14 @@ const btnAthletes = document.getElementById("athletes");
 const btnSport = document.getElementById("sport");
 containerSectionAthletes.style.display = 'none';
 
-// ***Oculta informacion previa del HOMEPAGE***
+//Función que oculta información previa del HOMEPAGE
 function hideHomePage() {
   containerWomen.style.display = 'none';
   containerFeatured.style.display = 'none';
   containerIntro.style.display = 'none';
   containerSlide.style.display = 'none';
 }
-//***Funcion para mostrar los atletas***
+// Funcion para mostrar todos los atletas
 function showAthletes() {
   containerSport.style.display = 'none';
   containerSectionAthletes.style.display = 'block'
@@ -32,16 +31,40 @@ function showAthletes() {
   athletes.athletes = athletes.athletes.filter(athlete => objAthletes[athlete.name] ? false : objAthletes[athlete.name] = true);
   console.log(athletes.athletes)
   athletes.athletes.forEach(element => {
+    // Crea una card para cada atleta y los inserta al HTML
     const divAthlete = document.createElement('div');
     divAthlete.classList.add("athlete")
     divAthlete.innerHTML = `
-    <p>Nombre: ${element.name} </p>
+    <p data-name='${element.name}'>Nombre: ${element.name} </p>
     <p>Deporte: ${element.sport} </p>
    `
     containerAthletes.appendChild(divAthlete);
   });
+  // Agrega evento a cada card de Atletas 
+  const cardAthlete = document.getElementsByClassName('athlete');
+  for (let i=0; i < cardAthlete.length; i++) {
+    cardAthlete[i].addEventListener('click', () => {
+      let nameAthlete = cardAthlete[i].querySelector('.athlete p').dataset.name;
+      let infoAthlete = athletes.athletes.filter(athlete => athlete.name == nameAthlete);
+      const divAthlete = document.createElement('div');
+      divAthlete.classList.add("athlete-detail")
+      divAthlete.innerHTML = `
+      <p> Nombre: ${infoAthlete[0].name} </p>
+      <p> País: ${infoAthlete[0].team} </p>
+      <p> Edad: ${infoAthlete[0].age} </p>
+      <p> Talla: ${infoAthlete[0].height} </p>
+      <p> Peso: ${infoAthlete[0].weight} </p>
+      <p> Disciplina deportiva: ${infoAthlete[0].sport} </p>
+      <p> Medallas ganadas: ${infoAthlete[0].medal} </p>
+      <p> Evento en que participó: ${infoAthlete[0].event} </p>
+      <input type="button" value="Volver" class="button" id="goBack" onclick="goBack()"></input>
+     `
+      document.querySelector('.one-athlethe').appendChild(divAthlete);
+    })
+  }
 }
-//***Funcion para mostrar los deportes***
+
+// Funcion para mostrar todos los deportes
 function showSport() {
   containerSectionAthletes.style.display = 'none';
   containerSport.style.display = 'block';
@@ -58,10 +81,23 @@ function showSport() {
     divSport.innerHTML = `
       <p>Deporte:<a href=#>${element} </a></p>
       <img class='imagenes-sport' src='../images/images-sport/${element}.svg' alt='${element}' width='40px'>
-
      `
     containerSport.appendChild(divSport);
   })
+}
+
+// Función que filtra de acuerdo a cada categoría
+function filterAthletes(getData) {
+  containerAthletes.innerHTML = '';
+  getData.forEach(element => {
+    const divAthlete = document.createElement('div');
+    divAthlete.classList.add("athlete")
+    divAthlete.innerHTML = `
+    <p>Nombre: ${element.name} </p>
+    <p>Deporte: ${element.sport} </p>
+    `
+    containerAthletes.appendChild(divAthlete);
+  });
 }
 
 // Eventos de la HomePage
@@ -69,7 +105,7 @@ btnAthletes.addEventListener("click", showAthletes);
 btnSport.addEventListener("click", showSport);
 //btnCountries.addEventListener("click", filterData);
 
-// Eventos a Pagina de Atletas
+// Eventos a Página de Atletas
 //const navCategory = document.querySelectorAll('.nav-subcategory');
 const navCategory = document.getElementsByClassName('subcategory');
 
@@ -83,16 +119,3 @@ for (let i = 0; i < navCategory.length; i++) {
     filterAthletes (getData);
 } )
 }
-function filterAthletes(getData) {
-  containerAthletes.innerHTML = '';
-  getData.forEach(element => {
-    const divAthlete = document.createElement('div');
-    divAthlete.classList.add("athlete")
-    divAthlete.innerHTML = `
-  <p>Nombre: ${element.name} </p>
-  <p>Deporte: ${element.sport} </p>
- `
-    containerAthletes.appendChild(divAthlete);
-  });
-}
-
