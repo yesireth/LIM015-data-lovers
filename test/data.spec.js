@@ -2,7 +2,7 @@ import { filterData , anotherExample } from '../src/data.js';
 
 
 describe('filterData ', () => {
-  it('is a function', () => {
+  it('is a function', () => { 
     expect(typeof filterData ).toBe('function');
   });
 
