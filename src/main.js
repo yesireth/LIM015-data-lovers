@@ -25,7 +25,7 @@ function hideHomePage() {
 // Funcion para mostrar todos los atletas
 function showAthletes() {
   containerSport.style.display = 'none';
-  containerSectionAthletes.style.display = 'block'
+  containerSectionAthletes.style.display = 'flex';
   hideHomePage();
   containerAthletes.innerHTML = '';
   let objAthletes = {};
@@ -36,6 +36,7 @@ function showAthletes() {
     const divAthlete = document.createElement('div');
     divAthlete.classList.add("athlete")
     divAthlete.innerHTML = `
+    <img class='pic-athlete' src='./images/${element.gender}.png'>
     <p data-name='${element.name}'>Nombre: ${element.name} </p>
     <p>Deporte: ${element.sport} </p>
    `
@@ -47,6 +48,7 @@ function showAthletes() {
     cardAthlete[i].addEventListener('click', () => {
       let nameAthlete = cardAthlete[i].querySelector('.athlete p').dataset.name;
       let infoAthlete = athletes.athletes.filter(athlete => athlete.name == nameAthlete);
+      containerSectionAthletes.style.display =  'none';
       const divAthlete = document.createElement('div');
       divAthlete.classList.add("athlete-detail")
       divAthlete.innerHTML = `
@@ -80,9 +82,10 @@ function showSport() {
     const divSport = document.createElement('div');
     divSport.classList.add("sport");
     divSport.innerHTML = `
-      <p class='subSport' data-sport=${element} >Deporte:${element} </p>
-      <img class='imagenes-sport' src='../images/images-sport/${element}.svg' alt='${element}' width='40px'>
-     `
+
+      <p>Deporte:<a href=#>${element} </a></p>
+      <img class='imagenes-sport' src='./images/images-sport/${element}.svg' alt='${element}' width='40px'>
+
     containerSport.appendChild(divSport);
   })
 // Agrega evento a cada card de Deportes
