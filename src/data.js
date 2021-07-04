@@ -1,22 +1,74 @@
 import athletes from "./data/athletes/athletes.js";
 
-export const filterData = (category, minedad, maxedad) => {
+export const filterData =
+{
+  filterMultipleData: (category, minedad, maxedad) => {
+    const gender = athletes.athletes.filter(a => a.gender == category);
+    const medal = athletes.athletes.filter(a => a.medal == category);
+    const age = athletes.athletes.filter(a => a.age >= minedad && a.age <= maxedad);
 
-  const gender = athletes.athletes.filter(a => a.gender == category);
-  const medal = athletes.athletes.filter(a => a.medal == category);
-  const age = athletes.athletes.filter(a => a.age >= minedad && a.age <= maxedad);
+    if (category === "F" || category === "M") {
 
-  if (category === "F" || category === "M") {
+      return gender;
+    } else if (category === "Gold" || category === "Silver" || category === "Bronze") {
+      return medal;
+    } else {
+      return age;
+    }
+  },
+  orderedSelect: (sortItem, athletes) => {
+    let orderedarray
+    if (sortItem == "A-Z") {
+      orderedarray = athletes.sort(function (a, b) {
+        if (a.name.toUpperCase() > b.name.toUpperCase()) {
+          return 1;
+        }
+        else if (a.name.toUpperCase() < b.name.toUpperCase()) {
+          return -1;
+        }
+        return 0;
+      }
+      )
+    }
+    else if (sortItem == "Z-A") {
+      orderedarray = athletes.sort(function (a, b) {
+        if (a.name.toUpperCase() < b.name.toUpperCase()) {
+          return 1;
+        }
+        else if (a.name.toUpperCase() > b.name.toUpperCase()) {
+          return -1;
+        }
+        return 0;
+      }
+      )
+    }
+    else if (sortItem == "menos-edad") {
+      orderedarray = athletes.sort(function (a, b) {
+        if (a.age > b.age) {
+          return 1;
+        }
+        else if (a.age < b.age) {
+          return -1;
+        }
+        return 0;
+      }
+      )
+    }
+    else if (sortItem == "mas-edad") {
+      orderedarray = athletes.sort(function (a, b) {
+        if (a.age < b.age) {
+          return 1;
+        }
+        else if (a.age > b.age) {
+          return -1;
+        }
+        return 0;
+      }
+      )
 
-    return gender;
-  } else if (category === "Gold" || category === "Silver" || category === "Bronze") {
-    return medal;
-  } else {
-    return age;
+    }
+return orderedarray; 
   }
-}
-export const filterDataSport = () => {
-  
 }
 
 export const statisticsData = {
@@ -39,3 +91,4 @@ export const statisticsData = {
     },0)
   }
 }
+
