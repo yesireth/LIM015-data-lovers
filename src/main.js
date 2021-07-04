@@ -14,7 +14,9 @@ const btnAthletes = document.getElementById("athletes");
 const btnSport = document.getElementById("sport");
 const informaSport= document.querySelector('.inforSport');
 containerSectionAthletes.style.display = 'none';
-console.log(informaSport)
+const sortItem= document.getElementById("producto");
+
+
 //Función que oculta información previa del HOMEPAGE
 function hideHomePage() {
   containerWomen.style.display = 'none';
@@ -30,7 +32,6 @@ function showAthletes() {
   containerAthletes.innerHTML = '';
   let objAthletes = {};
   athletes.athletes = athletes.athletes.filter(athlete => objAthletes[athlete.name] ? false : objAthletes[athlete.name] = true);
-  console.log(athletes.athletes)
   athletes.athletes.forEach(element => {
     // Crea una card para cada atleta y los inserta al HTML
     const divAthlete = document.createElement('div');
@@ -83,9 +84,9 @@ function showSport() {
     divSport.classList.add("sport");
     divSport.innerHTML = `
 
-      <p>Deporte:<a href=#>${element} </a></p>
+      <p data-sport=${element} >Deporte${element}</p>
       <img class='imagenes-sport' src='./images/images-sport/${element}.svg' alt='${element}' width='40px'>
-
+      `
     containerSport.appendChild(divSport);
   })
 // Agrega evento a cada card de Deportes
@@ -108,7 +109,7 @@ function showSport() {
        <p> Evento:  ${element.event} </p>
        <p> Medalla: ${element.medal}</p> 
        `
-       console.table(element);
+    console.log(divInformationSport);
        informaSport.appendChild(divInformationSport);
       })
 
@@ -146,7 +147,64 @@ for (let i = 0; i < navCategory.length; i++) {
     let category = navCategory[i].id;
     let edadminima=navCategory[i].getAttribute("data-min");
     let edadmaxima=navCategory[i].getAttribute("data-max");
-    let getData= filterData(category,edadminima,edadmaxima);
+    let getData= filterData.filterMultipleData(category,edadminima,edadmaxima); 
     filterAthletes (getData);
-} )
+    })
 }
+//***Funcion para selecionar tipo de orden***
+function ShowSelected(){
+
+  let objAthletes = {};
+  athletes.athletes = athletes.athletes.filter(athlete => objAthletes[athlete.name] ? false : objAthletes[athlete.name] = true);
+ 
+  let newordered=filterData.orderedSelect(sortItem.value,athletes.athletes);
+
+  ShowOrderedAthletes(newordered);
+  ///Volver a mostrar atletas ordenados (A-Z,Z-A,menor edad y mayor edad)
+}
+
+function ShowOrderedAthletes(newordered) {
+  
+  containerSport.style.display = 'none';
+  containerSectionAthletes.style.display = 'flex';
+  hideHomePage();
+  containerAthletes.innerHTML = '';
+  newordered.forEach(element => {
+    // Crea una card para cada atleta y los inserta al HTML
+    const divAthlete = document.createElement('div');
+    divAthlete.classList.add("athlete")
+    divAthlete.innerHTML = `
+    <img class='pic-athlete' src='./images/${element.gender}.png'>
+    <p data-name='${element.name}'>Nombre: ${element.name} </p>
+    <p>Deporte: ${element.sport} </p>
+   `
+    containerAthletes.appendChild(divAthlete);
+  });
+  // Agrega evento a cada card de Atletas 
+  const cardAthlete = document.getElementsByClassName('athlete');
+  for (let i=0; i < cardAthlete.length; i++) {
+    cardAthlete[i].addEventListener('click', () => {
+      let nameAthlete = cardAthlete[i].querySelector('.athlete p').dataset.name;
+      let infoAthlete = athletes.athletes.filter(athlete => athlete.name == nameAthlete);
+      containerSectionAthletes.style.display =  'none';
+      const divAthlete = document.createElement('div');
+      divAthlete.classList.add("athlete-detail")
+      divAthlete.innerHTML = `
+      <p> Nombre: ${infoAthlete[0].name} </p>
+      <p> País: ${infoAthlete[0].team} </p>
+      <p> Edad: ${infoAthlete[0].age} </p>
+      <p> Talla: ${infoAthlete[0].height} </p>
+      <p> Peso: ${infoAthlete[0].weight} </p>
+      <p> Disciplina deportiva: ${infoAthlete[0].sport} </p>
+      <p> Medallas ganadas: ${infoAthlete[0].medal} </p>
+      <p> Evento en que participó: ${infoAthlete[0].event} </p>
+      <input type="button" value="Volver" class="button" id="goBack" onclick="goBack()"></input>
+     `
+      document.querySelector('.one-athlethe').appendChild(divAthlete);
+    })
+  }
+}
+
+
+// ++++++ Evento para ordenar 
+  sortItem.addEventListener("change", ShowSelected);
