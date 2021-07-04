@@ -70,3 +70,25 @@ export const filterData =
 return orderedarray; 
   }
 }
+
+export const statisticsData = {
+  sumGold: () => {
+    athletes.athletes.reduce((total, athlete) => {
+      total + athlete.medal;
+      console.log(total, athlete.medal)
+    },0)
+  }, 
+  sumSilver: () => {
+    athletes.athletes.reduce((total, athlete) => {
+      total + athlete.medal;
+      console.log(total, athlete.medal)
+    },0)
+  }, 
+  sumBronze: () => {
+    athletes.athletes.reduce((total, athlete) => {
+      total + athlete.medal;
+      console.log(total, athlete.medal)
+    },0)
+  }
+}
+

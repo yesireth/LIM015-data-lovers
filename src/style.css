@@ -222,7 +222,36 @@ li {
 .imagenes-sport {
     width: 60px;
 }
-   
+
+
+/**** Ventana para mostrar las estadísticas****/
+.title-country {
+    text-align: start;
+    padding-left: 30px;
+}
+.cell-flag {
+    width: 37px;
+}
+.flag {
+    width: auto;
+    max-width: 30px;
+}
+.country {
+    border-collapse: collapse;
+    width: 95%;
+    margin: 0 auto;
+    /* background-color: white; */
+}
+.icon-medal {
+    width: 30px;
+    margin: 0 auto;
+}
+tbody tr {
+    border-bottom: 1px solid #ccc;
+    height: 4rem;
+    /* border-bottom: solid 1px black; */
+    /* background-color: black; */
+}
 /**** Footer ****/
 .footer {
  border: solid 1px yellow;
