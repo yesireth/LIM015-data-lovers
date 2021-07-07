@@ -158,13 +158,6 @@ function showStatistics() {
     let trTable = document.createElement('tr');
     trTable.innerHTML = `
       <td class='cell-flag'> <img class='flag' src='./images/flags/${country}.png' alt='flag-${country}'> </td>
-<<<<<<< HEAD
-      <td> ${country } </td>
-      <td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> 1</td>
-      <td class='text-center'> <img class='icon-medal' src='./images/Silver.png' alt='silver-medal'> 5 </td>
-      <td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'> 3 </td>
-      <td class='text-center'> 9 </td
-=======
       <td> ${country} </td>
       <td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> 
       ${totalMedalGold[country]} </td>
@@ -173,15 +166,12 @@ function showStatistics() {
       <td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'> 
       ${totalMedalBronze[country]} </td>
       <td class='text-center'> ${totalMedalGold[country] + totalMedalSilver[country] + totalMedalBronze[country]} </td
->>>>>>> eda3dc3efd5b59756c2dce7d8f9c433b353ca720
     `
     tbodyTable.appendChild(trTable);
   })
   tableStatistics.appendChild(tbodyTable)
   containerStatistics.appendChild(tableStatistics);
-<<<<<<< HEAD
-  //console.log(statisticsData.sumGold())
-=======
+
   // console.log(statisticsData.totalMedals(dataAthletes));
   // console.log(statisticsData.sumMedalsByGender('F', dataAthletes));
   // console.log(statisticsData.sumMedalsByGender('M', dataAthletes));
@@ -201,8 +191,7 @@ function showOrderedAthletes(newordered) {
   hideHomePage();
   containerAthletes.innerHTML = '';
   displayCards(newordered, containerAthletes);
->>>>>>> eda3dc3efd5b59756c2dce7d8f9c433b353ca720
-}
+
 
 // Eventos de la HomePage
 btnAthletes.addEventListener("click", showAthletes);
@@ -227,14 +216,9 @@ for (let i = 0; i < navCategory.length; i++) {
   //***Funcion para estadisticas***
 function showStatistics1(){
 
-<<<<<<< HEAD
  let countryStatistics = filterData.dataCountryStatistics(athletes.medal,athletes.country); 
 console.log(countryStatistics);
 }
 
   // EVENTO PARA ESTADISTICAS 
   statistics.addEventListener('click',showStatistics1)
-=======
-// Evento para ordenar 
-  sortItem.addEventListener("change", showSelected);
->>>>>>> eda3dc3efd5b59756c2dce7d8f9c433b353ca720
