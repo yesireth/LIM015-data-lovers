@@ -88,7 +88,7 @@ export const orderData = {
       }
       )
     }
-    return orderedarray; 
+  return orderedarray; 
   }
 }
 
@@ -124,4 +124,3 @@ export const statisticsData = {
   //   .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
   //   return medalsByGender;
   // }
-}
