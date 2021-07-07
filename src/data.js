@@ -1,23 +1,43 @@
 import athletes from "./data/athletes/athletes.js";
 
-export const filterData =
-{
+export const filterData = {
+  removeDuplicateNames: (athletes) => {
+    let objAthletes = {};
+    const filterDuplicateAthletes = athletes
+    .filter(athlete => objAthletes[athlete.name] ? false : objAthletes[athlete.name] = true);
+    return filterDuplicateAthletes;
+  },
+  
+  selectedAthleteInformation: (selectedAthleteName, athletes)  => {
+    return athletes.filter(athlete => athlete.name == selectedAthleteName);
+  },
+  removeDuplicateDataArray: (category, athletes)  => {
+    const allData = athletes.map(athlete => athlete[category]);
+    // let uniqueSport = [...new Set(allSport)];
+    const uniqueData = allData.filter((item, index) => {
+      return allData.indexOf(item) === index;
+    })
+    return uniqueData;
+  },
+
   filterMultipleData: (category, minedad, maxedad) => {
     const gender = athletes.athletes.filter(a => a.gender == category);
     const medal = athletes.athletes.filter(a => a.medal == category);
     const age = athletes.athletes.filter(a => a.age >= minedad && a.age <= maxedad);
 
     if (category === "F" || category === "M") {
-
       return gender;
     } else if (category === "Gold" || category === "Silver" || category === "Bronze") {
       return medal;
     } else {
       return age;
     }
-  },
+  }
+}
+
+export const orderData = {
   orderedSelect: (sortItem, athletes) => {
-    let orderedarray
+    let orderedarray;
     if (sortItem == "A-Z") {
       orderedarray = athletes.sort(function (a, b) {
         if (a.name.toUpperCase() > b.name.toUpperCase()) {
@@ -44,106 +64,63 @@ export const filterData =
     }
     else if (sortItem == "menos-edad") {
       orderedarray = athletes.sort(function (a, b) {
-        if (a.age > b.age) {
-          return 1;
-        }
-        else if (a.age < b.age) {
-          return -1;
-        }
-        return 0;
+        // if (a.age > b.age) {
+        //   return 1;
+        // }
+        // else if (a.age < b.age) {
+        //   return -1;
+        // }
+        // return 0;
+        return a.age - b.age;
       }
       )
     }
     else if (sortItem == "mas-edad") {
       orderedarray = athletes.sort(function (a, b) {
-        if (a.age < b.age) {
-          return 1;
-        }
-        else if (a.age > b.age) {
-          return -1;
-        }
-        return 0;
+        // if (a.age < b.age) {
+        //   return 1;
+        // }
+        // else if (a.age > b.age) {
+        //   return -1;
+        // }
+        // return 0;
+        return b.age - a.age;
       }
       )
-
     }
-    return orderedarray;
-  },
-  dataCountryStatistics: (athlete, paises) => {
-    let medal
-    athlete = athletes.athletes.map(a => a.medal);
-    medal = athlete.reduce((obj, medal) => {
-      if (obj[medal]) {
-        obj[medal] = obj[medal] + 1;
-      } else {
-        obj[medal] = 1;
-      }
-      return obj;
-    }, {});
-    console.log(medal);
-    let athlete1 = athletes.athletes.filter(a => a.medal);
-  
-    const GoldSumados = athlete1.reduce((obj, { gender }) => {
-      if (obj[gender]) {
-        obj[gender] = obj[gender] + 1;
-      } else {
-        obj[gender] = 1;
-      }
-      return obj;
-    }, {})
-    console.log(GoldSumados);
-
-    
-    // let athlete2 = athletes.athletes.filter(a => a.name );
-    // console.log(athlete2);
-    const GoldSumados1 = athletes.athletes.reduce((obj, {name, medal}) => {
-      if (obj[medal]) {
-        obj[medal] += 1;
-      } else {
-        obj[medal] = 1 ;
-      }
-      return obj;
-    }, {})
-
-
-    console.log(GoldSumados1);
-
+  return orderedarray; 
   }
-  //   const gruposSumados = athletes.athletes.reduce((c, {team, medal}) => {
-
-  //     if (c.hasOwnProperty(team)) {
-  //         c[team] += medal
-
-  //     } else {
-  //       c[team] = medal
-  //     }
-  //    return c 
-  //  }, {})
-
-  //  console.log(gruposSumados)
-
-
-  //  return medal; 
-  // }
-
 }
-// export const statisticsData = {
-//   sumGold: () => {
-//     athletes.athletes.reduce((total, athlete) => {
-//       total + athlete.medal;
-//       console.log(total, athlete.medal)
-//     },0)
-//   }, 
-//   sumSilver: () => {
-//     athletes.athletes.reduce((total, athlete) => {
-//       total + athlete.medal;
-//       console.log(total, athlete.medal)
-//     },0)
-//   }, 
-//   sumBronze: () => {
-//     athletes.athletes.reduce((total, athlete) => {
-//       total + athlete.medal;
-//       console.log(total, athlete.medal)
-//     },0)
-//   }
-// }
+
+export const statisticsData = {
+  sumMedalsCountries: (medal, athletes) => {
+    const medalsByCountry = athletes
+    .filter(athlete => athlete.medal === medal)
+    // .reduce((count, athlete) => (count[athlete.team] ? count[athlete.team] += 1 : count[athlete.team] = 1, count), [])
+    .reduce((count, athlete) => {
+      if (count[athlete.noc]){
+        count[athlete.noc] += 1
+      } else {
+        count[athlete.noc] = 1
+      }
+      return count;
+    }, [])
+    return medalsByCountry;
+  },
+  sumMedalsOfAthlethe: (nameAthlete, athletes) => {
+    const medalsByAthlete = athletes
+    .filter(athlete => athlete.name === nameAthlete)
+    .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
+    return medalsByAthlete;
+  }, 
+  // totalMedals: (athletes) => {
+  //   const totalMedals = athletes
+  //   .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
+  //   return totalMedals;
+  // },
+  // sumMedalsByGender: (gender, athletes) => {
+  //   const medalsByGender= athletes
+  //   .filter(athlete => athlete.gender === gender)
+  //   .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
+  //   return medalsByGender;
+  // }

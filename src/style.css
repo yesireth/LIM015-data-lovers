@@ -211,13 +211,16 @@ li {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    flex-basis: 90%;
+    /* flex-basis: 90%; */
+    margin: 0 auto;
+    width: 95%;
 }
 .sport{ 
-    width: 250px;
-    height: 150px;
+    width: 170px;
+    height: 110px;
     background: white;
     border:solid 1px red;
+    text-align: center;
 }
 .imagenes-sport {
     width: 60px;

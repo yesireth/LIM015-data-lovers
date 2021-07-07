@@ -1,8 +1,8 @@
 // Importamos funciones desde data.js
-import { filterData, statisticsData } from "./data.js";
+import { filterData, statisticsData, orderData } from "./data.js";
 import athletes from "./data/athletes/athletes.js";
 
-//***Elementos del HTML***
+// Elementos del HTML 
 const containerSectionAthletes = document.querySelector('.containerSectionAthletes');
 const containerAthletes = document.querySelector('.containerAthletes');
 const containerWomen = document.querySelector('.women');
@@ -15,49 +15,64 @@ const btnAthletes = document.getElementById("athletes");
 const btnSport = document.getElementById("sport");
 const btnStatistics = document.getElementById("statistics");
 const informaSport= document.querySelector('.inforSport');
-containerSectionAthletes.style.display = 'none';
-
 const sortItem= document.getElementById("producto");
+const dataAthletes = athletes.athletes;
 
-
-//Función que oculta información previa del HOMEPAGE
+// Función que oculta información previa del Home Page
 function hideHomePage() {
   containerWomen.style.display = 'none';
   containerFeatured.style.display = 'none';
   containerIntro.style.display = 'none';
   containerSlide.style.display = 'none';
 }
-// Funcion para mostrar todos los atletas
-function showAthletes() {
-  containerSport.style.display = 'none';
-  containerSectionAthletes.style.display = 'flex';
-  document.querySelector('.one-athlethe').style.display = 'none';
-  containerStatistics.style.display = 'none';
-  hideHomePage();
-  containerAthletes.innerHTML = '';
-  let objAthletes = {};
-  athletes.athletes = athletes.athletes.filter(athlete => objAthletes[athlete.name] ? false : objAthletes[athlete.name] = true);
-  athletes.athletes.forEach(element => {
-    // Crea una card para cada atleta y los inserta al HTML
+// Ocultamos la sección de atletas de la Home Page 
+containerSectionAthletes.style.display = 'none';
+
+// Función que muestra los cards con la información previa de los ateltas de acuerdo a un array dado.
+function displayCards(array, parent) {
+  parent.innerHTML = '';
+  // Crea una card para cada atleta y los inserta al HTML
+  array.forEach(element => {
     const divAthlete = document.createElement('div');
     divAthlete.classList.add("athlete")
     divAthlete.innerHTML = `
     <img class='pic-athlete' src='./images/${element.gender}.png'>
-    <p data-name='${element.name}'>Nombre: ${element.name} </p>
-    <p>Deporte: ${element.sport} </p>
+    <p data-name = '${element.name}'> Nombre: ${element.name} </p>
+    <p data-sport = '${element.sport}'> Deporte: ${element.sport} </p>
+    <p>Edad: ${element.age} </p>
    `
-    containerAthletes.appendChild(divAthlete);
+    parent.appendChild(divAthlete);
   });
-  // Agrega evento a cada card de Atletas 
+  completeAthleteInformation();
+}
+
+// Función para mostrar todos los atletas
+function showAthletes() {
+  // Ocultamos secciones previas y mostramos la actual
+  hideHomePage();
+  containerSport.style.display = 'none';
+  containerStatistics.style.display = 'none';
+  document.querySelector('.one-athlethe').style.display = 'none';
+  containerSectionAthletes.style.display = 'flex';
+  containerAthletes.innerHTML = '';   // Limpiamos el contenido previo
+  const athletesWithoutDuplicates = filterData.removeDuplicateNames(dataAthletes);
+  displayCards(athletesWithoutDuplicates, containerAthletes);
+}
+
+// Función que agrega evento a cada card de Atletas para mostrar información completa
+function completeAthleteInformation() {
   const cardAthlete = document.getElementsByClassName('athlete');
-  for (let i=0; i < cardAthlete.length; i++) {
-    document.querySelector('.one-athlethe').innerHTML = '';
+  for (let i = 0; i < cardAthlete.length; i++) {
     cardAthlete[i].addEventListener('click', () => {
-      let nameAthlete = cardAthlete[i].querySelector('.athlete p').dataset.name;
-      let infoAthlete = athletes.athletes.filter(athlete => athlete.name == nameAthlete);
+      document.querySelector('.one-athlethe').innerHTML = '';  // Elimina el contenido previo en el container
       containerSectionAthletes.style.display =  'none';
+      document.querySelector('.one-athlethe').style.display =  'block';
+      const selectedAthleteName = cardAthlete[i].querySelector('.athlete p').dataset.name;
+      const infoAthlete = filterData.selectedAthleteInformation(selectedAthleteName, dataAthletes);
+      const medalsAthlete = statisticsData.sumMedalsOfAthlethe(selectedAthleteName, dataAthletes);
+      console.log(medalsAthlete);
       const divAthlete = document.createElement('div');
-      divAthlete.classList.add("athlete-detail")
+      divAthlete.classList.add("athlete-detail");
       divAthlete.innerHTML = `
       <p> Nombre: ${infoAthlete[0].name} </p>
       <p> País: ${infoAthlete[0].team} </p>
@@ -65,94 +80,61 @@ function showAthletes() {
       <p> Talla: ${infoAthlete[0].height} </p>
       <p> Peso: ${infoAthlete[0].weight} </p>
       <p> Disciplina deportiva: ${infoAthlete[0].sport} </p>
-      <p> Medallas ganadas: ${infoAthlete[0].medal} </p>
+      <p> Medallas ganadas: </p>
       <p> Evento en que participó: ${infoAthlete[0].event} </p>
-      <input type="button" value="Volver" class="button" id="goBack" onclick="goBack()"></input>
+      <input type="button" value="Volver" class="button" id="goBack"></input>
      `
       document.querySelector('.one-athlethe').appendChild(divAthlete);
-      document.querySelector('.one-athlethe').style.display =  'block';
+
+      // Evento al botón de volver 
+      const btnGoBack = document.getElementById('goBack')
+      btnGoBack.addEventListener('click', goBack);
+      function goBack() {
+        containerSectionAthletes.style.display =  'flex';
+        document.querySelector('.one-athlethe').style.display =  'none';
+      }
     })
   }
 }
 
 // Funcion para mostrar todos los deportes
 function showSport() {
+  hideHomePage();
   containerSectionAthletes.style.display = 'none';
-  containerSport.style.display = 'flex';
   document.querySelector('.one-athlethe').style.display = 'none';
   containerStatistics.style.display = 'none';
-  hideHomePage();
+  containerSport.style.display = 'flex';
   containerSport.innerHTML = "";
-  const allSport = athletes.athletes.map(athlete => athlete.sport)
-  let uniqueSport = allSport.filter((item, index) => {
-    return allSport.indexOf(item) === index;
-  })
-  //let uniqueSport = [...new Set(allSport)];
+  const uniqueSport = filterData.removeDuplicateDataArray('sport', dataAthletes);
   uniqueSport.forEach(element => {
     const divSport = document.createElement('div');
     divSport.classList.add("sport");
     divSport.innerHTML = `
-
-      <p data-sport=${element} >Deporte${element}</p>
-      <img class='imagenes-sport' src='./images/images-sport/${element}.svg' alt='${element}' width='40px'>
+      <p data-sport=${element} >Deporte: ${element}</p>
+      <img class='imagenes-sport' src='./images/images-sport/${element}.svg' alt='${element}'>
       `
     containerSport.appendChild(divSport);
   })
-// Agrega evento a cada card de Deportes
+  // Agrega evento a cada card de Deportes
   const cardSport = document.getElementsByClassName('sport');
   for (let i = 0; i < cardSport.length; i++) {
     cardSport[i].addEventListener('click', () => {
-      let dataSport = cardSport[i].querySelector(".sport p").dataset.sport;
-      const inforSport = athletes.athletes.filter(athlete => athlete.sport == dataSport);
-      inforSport.forEach(element => {
-        const divInformationSport = document.createElement('div');
-        divInformationSport.classList.add("informationSport");
-        divInformationSport.innerHTML = `
-       <p> Nombre: ${element.name} </p>  
-       <p> Genero: ${element.gender} </p>
-       <p> Altura: ${element.height} </p>
-       <p> Peso: ${element.weight} </p>
-       <p> Deporte: ${element.sport} </p>
-       <p> Equipo: ${element.team}</p>
-       <p> Edad: ${element.age}</p>
-       <p> Evento:  ${element.event} </p>
-       <p> Medalla: ${element.medal}</p> 
-       `
-    console.log(divInformationSport);
-       informaSport.appendChild(divInformationSport);
-      })
-
+      const selectedSport = cardSport[i].querySelector(".sport p").dataset.sport;
+      const inforSport = athletes.athletes.filter(athlete => athlete.sport == selectedSport);
+      displayCards(inforSport, informaSport)
     })
-  }
-
-    
-}
-// Función que filtra de acuerdo a cada categoría
-function filterAthletes(getData) {
-  containerAthletes.innerHTML = '';
-  getData.forEach(element => {
-    const divAthlete = document.createElement('div');
-    divAthlete.classList.add("athlete")
-    divAthlete.innerHTML = `
-    <p>Nombre: ${element.name} </p>
-    <p>Deporte: ${element.sport} </p>
-    `
-    containerAthletes.appendChild(divAthlete);
-  });
+  }    
 }
 
 // Función para mostrar los paises con las estadísticas 
 function showStatistics() {
+  document.querySelector('.one-athlethe').style.display = 'none';
   containerSectionAthletes.style.display = 'none';
   containerSport.style.display = 'none';
   containerStatistics.style.display = 'block';
-  document.querySelector('.one-athlethe').style.display = 'none';
   hideHomePage();
   containerStatistics.innerHTML = "";
-  const allCountries = athletes.athletes.map(athlete => athlete.team)
-  let uniqueCountry = allCountries.filter((item, index) => {
-    return allCountries.indexOf(item) === index;
-  })
+  const uniqueCountry = filterData.removeDuplicateDataArray('noc', dataAthletes);
   let tableStatistics = document.createElement('table');
   let tbodyTable = document.createElement('tbody');
   tableStatistics.classList.add("country");
@@ -167,21 +149,45 @@ function showStatistics() {
     </tr>
   </thead>
   `
+  const totalMedalGold = statisticsData.sumMedalsCountries('Gold', dataAthletes);
+  const totalMedalSilver = statisticsData.sumMedalsCountries('Silver', dataAthletes);
+  const totalMedalBronze = statisticsData.sumMedalsCountries('Bronze', dataAthletes);
   uniqueCountry.forEach(country => {
     let trTable = document.createElement('tr');
     trTable.innerHTML = `
       <td class='cell-flag'> <img class='flag' src='./images/flags/${country}.png' alt='flag-${country}'> </td>
-      <td> ${country } </td>
-      <td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> 1 </td>
-      <td class='text-center'> <img class='icon-medal' src='./images/Silver.png' alt='silver-medal'> 5 </td>
-      <td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'> 3 </td>
-      <td class='text-center'> 9 </td
+      <td> ${country} </td>
+      <td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> 
+      ${totalMedalGold[country]} </td>
+      <td class='text-center'> <img class='icon-medal' src='./images/Silver.png' alt='silver-medal'> 
+      ${totalMedalSilver[country]} </td>
+      <td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'> 
+      ${totalMedalBronze[country]} </td>
+      <td class='text-center'> ${totalMedalGold[country] + totalMedalSilver[country] + totalMedalBronze[country]} </td
     `
     tbodyTable.appendChild(trTable);
   })
   tableStatistics.appendChild(tbodyTable)
   containerStatistics.appendChild(tableStatistics);
-  console.log(statisticsData.sumGold())
+  // console.log(statisticsData.totalMedals(dataAthletes));
+  // console.log(statisticsData.sumMedalsByGender('F', dataAthletes));
+  // console.log(statisticsData.sumMedalsByGender('M', dataAthletes));
+}
+
+// Función para selecionar tipo de orden
+function showSelected(){
+  filterData.removeDuplicateNames(dataAthletes, dataAthletes);
+  const newordered = orderData.orderedSelect(sortItem.value, dataAthletes);
+  showOrderedAthletes(newordered); ///Volver a mostrar atletas ordenados (A-Z,Z-A,menor edad y mayor edad)
+}
+
+// Función que muestra los atletas con el orden seleccionado
+function showOrderedAthletes(newordered) {
+  containerSport.style.display = 'none';
+  containerSectionAthletes.style.display = 'flex';
+  hideHomePage();
+  containerAthletes.innerHTML = '';
+  displayCards(newordered, containerAthletes);
 }
 
 // Eventos de la HomePage
@@ -192,71 +198,16 @@ btnStatistics.addEventListener("click", showStatistics);
 // Eventos a Página de Atletas
 //const navCategory = document.querySelectorAll('.nav-subcategory');
 const navCategory = document.getElementsByClassName('subcategory');
-
 for (let i = 0; i < navCategory.length; i++) {
-
   navCategory[i].addEventListener("click", () => {
-    let category = navCategory[i].id;
-    let edadminima=navCategory[i].getAttribute("data-min");
-    let edadmaxima=navCategory[i].getAttribute("data-max");
-    let getData= filterData.filterMultipleData(category,edadminima,edadmaxima); 
-    filterAthletes (getData);
-    })
-}
-//***Funcion para selecionar tipo de orden***
-function ShowSelected(){
-
-  let objAthletes = {};
-  athletes.athletes = athletes.athletes.filter(athlete => objAthletes[athlete.name] ? false : objAthletes[athlete.name] = true);
- 
-  let newordered=filterData.orderedSelect(sortItem.value,athletes.athletes);
-
-  ShowOrderedAthletes(newordered);
-  ///Volver a mostrar atletas ordenados (A-Z,Z-A,menor edad y mayor edad)
+    const category = navCategory[i].id;
+    const edadminima = navCategory[i].getAttribute("data-min");
+    const edadmaxima = navCategory[i].getAttribute("data-max");
+    const getData = filterData.filterMultipleData(category,edadminima,edadmaxima); 
+    // filterAthletes (getData);
+    displayCards(getData, containerAthletes)
+  })
 }
 
-function ShowOrderedAthletes(newordered) {
-  
-  containerSport.style.display = 'none';
-  containerSectionAthletes.style.display = 'flex';
-  hideHomePage();
-  containerAthletes.innerHTML = '';
-  newordered.forEach(element => {
-    // Crea una card para cada atleta y los inserta al HTML
-    const divAthlete = document.createElement('div');
-    divAthlete.classList.add("athlete")
-    divAthlete.innerHTML = `
-    <img class='pic-athlete' src='./images/${element.gender}.png'>
-    <p data-name='${element.name}'>Nombre: ${element.name} </p>
-    <p>Deporte: ${element.sport} </p>
-   `
-    containerAthletes.appendChild(divAthlete);
-  });
-  // Agrega evento a cada card de Atletas 
-  const cardAthlete = document.getElementsByClassName('athlete');
-  for (let i=0; i < cardAthlete.length; i++) {
-    cardAthlete[i].addEventListener('click', () => {
-      let nameAthlete = cardAthlete[i].querySelector('.athlete p').dataset.name;
-      let infoAthlete = athletes.athletes.filter(athlete => athlete.name == nameAthlete);
-      containerSectionAthletes.style.display =  'none';
-      const divAthlete = document.createElement('div');
-      divAthlete.classList.add("athlete-detail")
-      divAthlete.innerHTML = `
-      <p> Nombre: ${infoAthlete[0].name} </p>
-      <p> País: ${infoAthlete[0].team} </p>
-      <p> Edad: ${infoAthlete[0].age} </p>
-      <p> Talla: ${infoAthlete[0].height} </p>
-      <p> Peso: ${infoAthlete[0].weight} </p>
-      <p> Disciplina deportiva: ${infoAthlete[0].sport} </p>
-      <p> Medallas ganadas: ${infoAthlete[0].medal} </p>
-      <p> Evento en que participó: ${infoAthlete[0].event} </p>
-      <input type="button" value="Volver" class="button" id="goBack" onclick="goBack()"></input>
-     `
-      document.querySelector('.one-athlethe').appendChild(divAthlete);
-    })
-  }
-}
-
-
-// ++++++ Evento para ordenar 
-  sortItem.addEventListener("change", ShowSelected);
+// Evento para ordenar 
+  sortItem.addEventListener("change", showSelected);
