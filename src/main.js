@@ -1,5 +1,6 @@
 // Importamos funciones desde data.js
-import { filterData, statisticsData } from "./data.js";
+import { filterData  } from "./data.js";
+
 import athletes from "./data/athletes/athletes.js";
 
 //***Elementos del HTML***
@@ -16,9 +17,8 @@ const btnSport = document.getElementById("sport");
 const btnStatistics = document.getElementById("statistics");
 const informaSport= document.querySelector('.inforSport');
 containerSectionAthletes.style.display = 'none';
-
 const sortItem= document.getElementById("producto");
-
+const statistics= document.getElementById('statistics'); 
 
 //Función que oculta información previa del HOMEPAGE
 function hideHomePage() {
@@ -172,7 +172,7 @@ function showStatistics() {
     trTable.innerHTML = `
       <td class='cell-flag'> <img class='flag' src='./images/flags/${country}.png' alt='flag-${country}'> </td>
       <td> ${country } </td>
-      <td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> 1 </td>
+      <td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> 1</td>
       <td class='text-center'> <img class='icon-medal' src='./images/Silver.png' alt='silver-medal'> 5 </td>
       <td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'> 3 </td>
       <td class='text-center'> 9 </td
@@ -181,7 +181,7 @@ function showStatistics() {
   })
   tableStatistics.appendChild(tbodyTable)
   containerStatistics.appendChild(tableStatistics);
-  console.log(statisticsData.sumGold())
+  //console.log(statisticsData.sumGold())
 }
 
 // Eventos de la HomePage
@@ -256,7 +256,14 @@ function ShowOrderedAthletes(newordered) {
     })
   }
 }
-
-
 // ++++++ Evento para ordenar 
   sortItem.addEventListener("change", ShowSelected);
+  //***Funcion para estadisticas***
+function showStatistics1(){
+
+ let countryStatistics = filterData.dataCountryStatistics(athletes.medal,athletes.country); 
+console.log(countryStatistics);
+}
+
+  // EVENTO PARA ESTADISTICAS 
+  statistics.addEventListener('click',showStatistics1)
