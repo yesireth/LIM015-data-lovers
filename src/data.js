@@ -67,28 +67,83 @@ export const filterData =
       )
 
     }
-return orderedarray; 
-  }
-}
+    return orderedarray;
+  },
+  dataCountryStatistics: (athlete, paises) => {
+    let medal
+    athlete = athletes.athletes.map(a => a.medal);
+    medal = athlete.reduce((obj, medal) => {
+      if (obj[medal]) {
+        obj[medal] = obj[medal] + 1;
+      } else {
+        obj[medal] = 1;
+      }
+      return obj;
+    }, {});
+    console.log(medal);
+    let athlete1 = athletes.athletes.filter(a => a.medal);
+  
+    const GoldSumados = athlete1.reduce((obj, { gender }) => {
+      if (obj[gender]) {
+        obj[gender] = obj[gender] + 1;
+      } else {
+        obj[gender] = 1;
+      }
+      return obj;
+    }, {})
+    console.log(GoldSumados);
 
-export const statisticsData = {
-  sumGold: () => {
-    athletes.athletes.reduce((total, athlete) => {
-      total + athlete.medal;
-      console.log(total, athlete.medal)
-    },0)
-  }, 
-  sumSilver: () => {
-    athletes.athletes.reduce((total, athlete) => {
-      total + athlete.medal;
-      console.log(total, athlete.medal)
-    },0)
-  }, 
-  sumBronze: () => {
-    athletes.athletes.reduce((total, athlete) => {
-      total + athlete.medal;
-      console.log(total, athlete.medal)
-    },0)
-  }
-}
+    
+    // let athlete2 = athletes.athletes.filter(a => a.name );
+    // console.log(athlete2);
+    const GoldSumados1 = athletes.athletes.reduce((obj, {name, medal}) => {
+      if (obj[medal]) {
+        obj[medal] += 1;
+      } else {
+        obj[medal] = 1 ;
+      }
+      return obj;
+    }, {})
 
+
+    console.log(GoldSumados1);
+
+  }
+  //   const gruposSumados = athletes.athletes.reduce((c, {team, medal}) => {
+
+  //     if (c.hasOwnProperty(team)) {
+  //         c[team] += medal
+
+  //     } else {
+  //       c[team] = medal
+  //     }
+  //    return c 
+  //  }, {})
+
+  //  console.log(gruposSumados)
+
+
+  //  return medal; 
+  // }
+
+}
+// export const statisticsData = {
+//   sumGold: () => {
+//     athletes.athletes.reduce((total, athlete) => {
+//       total + athlete.medal;
+//       console.log(total, athlete.medal)
+//     },0)
+//   }, 
+//   sumSilver: () => {
+//     athletes.athletes.reduce((total, athlete) => {
+//       total + athlete.medal;
+//       console.log(total, athlete.medal)
+//     },0)
+//   }, 
+//   sumBronze: () => {
+//     athletes.athletes.reduce((total, athlete) => {
+//       total + athlete.medal;
+//       console.log(total, athlete.medal)
+//     },0)
+//   }
+// }
