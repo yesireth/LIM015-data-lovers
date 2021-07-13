@@ -3,19 +3,21 @@ import { filterData, statisticsData, orderData } from "./data.js";
 import athletes from "./data/athletes/athletes.js";
 
 // Elementos del HTML 
- const containerSectionAthletes = document.querySelector('.containerSectionAthletes');
- const containerAthletes = document.querySelector('.containerAthletes');
- const containerWomen = document.querySelector('.women');
- const containerFeatured = document.querySelector('.featured');
- const containerIntro = document.querySelector('.intro');
- const containerSlide = document.querySelector('.containerSlide');
- const containerSport = document.querySelector('.containerSport');
- const containerStatistics = document.querySelector('.containerStatistics');
- const btnAthletes = document.getElementById("athletes");
- const btnSport = document.getElementById("sport");
- const btnStatistics = document.getElementById("statistics");
- const informaSport = document.querySelector('.inforSport');
- const sortItem = document.getElementById("producto");
+
+const containerSectionAthletes = document.querySelector('.containerSectionAthletes');
+const containerAthletes = document.querySelector('.containerAthletes');
+const containerWomen = document.querySelector('.women');
+const containerFeatured = document.querySelector('.featured');
+const containerIntro = document.querySelector('.intro');
+const containerSlide = document.querySelector('.container-slider');
+const containerSport = document.querySelector('.containerSport');
+const containerStatistics = document.querySelector('.containerStatistics');
+const btnAthletes = document.getElementById("athletes");
+const btnSport = document.getElementById("sport");
+const btnStatistics = document.getElementById("statistics");
+const informaSport= document.querySelector('.inforSport');
+const sortItem= document.getElementById("order");
+
 const dataAthletes = athletes.athletes;
 
 // Función que oculta información previa del Home Page
@@ -28,7 +30,30 @@ function hideHomePage() {
 // Ocultamos la sección de atletas de la Home Page 
 containerSectionAthletes.style.display = 'none';
 
-// // Función que muestra los cards con la información previa de los ateltas de acuerdo a un array dado.
+// Funcion para selecionar slides
+const slides = document.querySelectorAll('.slide');
+const btnSlides = document.querySelectorAll('.btn-slide');
+let currentSlide = 1;
+
+function slideCheck(slide){
+  slides.forEach(slide =>  {
+    slide.classList.remove('active')
+  });
+
+  slides[slide].classList.add('active');
+  btnSlides[slide].classList.add('active');
+}
+
+btnSlides.forEach((btn, index) => {
+  btn.addEventListener(('click'), () => {
+    slideCheck(index);
+    currentSlide = index;
+    console.log(currentSlide)
+  });
+});
+
+
+// Función que muestra los cards con la información previa de los ateltas de acuerdo a un array dado.
 function displayCards(array, parent) {
   parent.innerHTML = '';
   // Crea una card para cada atleta y los inserta al HTML
@@ -36,8 +61,10 @@ function displayCards(array, parent) {
     const divAthlete = document.createElement('div');
     divAthlete.classList.add("athlete")
     divAthlete.innerHTML = `
+    <img class='country-athlete' src='./images/flags/${element.noc}.png'>
     <img class='pic-athlete' src='./images/${element.gender}.png'>
-    <p data-name = '${element.name}'> Nombre: ${element.name} </p>
+    <div class='name-athlete'> <img class='sport-athlete'src='./images/images-sport/${element.sport}.svg' 
+    alt='${element.sport}'> <p data-name = '${element.name}'>${element.name}</p> </div>
     <p data-sport = '${element.sport}'> Deporte: ${element.sport} </p>
     <p>Edad: ${element.age} </p>
    `
@@ -76,14 +103,18 @@ function completeAthleteInformation() {
       const divAthlete = document.createElement('div');
       divAthlete.classList.add("athlete-detail");
       divAthlete.innerHTML = `
-      <p> Nombre: ${infoAthlete[0].name} </p>
-      <p> País: ${infoAthlete[0].team} </p>
-      <p> Edad: ${infoAthlete[0].age} </p>
-      <p> Talla: ${infoAthlete[0].height} </p>
-      <p> Peso: ${infoAthlete[0].weight} </p>
-      <p> Disciplina deportiva: ${infoAthlete[0].sport} </p>
-      <p> Medallas ganadas: </p>
-      <p> Evento en que participó: ${infoAthlete[0].event} </p>
+      <img class='country-athlete' src='./images/flags/${infoAthlete[0].noc}.png'>
+      <img class='pic-athlete' src='./images/${infoAthlete[0].gender}.png'>
+      <div class='name-athlete'> <img class='sport-athlete'src='./images/images-sport/${infoAthlete[0].sport}.svg' 
+      alt='${infoAthlete[0].sport}'> <p data-name = '${infoAthlete[0].name}'>${infoAthlete[0].name}</p> </div>
+      <div class='file-athlete'>
+      <span> País: </span> <p> ${infoAthlete[0].team} </p>
+      <span> Edad: </span> <p>  ${infoAthlete[0].age} años </p>
+      <span> Altura: </span> <p>  ${infoAthlete[0].height / 100} m. </p>
+      <span> Peso: </span> <p>  ${infoAthlete[0].weight} kg. </p>
+      <span> Deporte: </span> <p>  ${infoAthlete[0].sport} </p>
+      <span> Medallas ganadas: </span> <p>  </p>
+      </div>
       <input type="button" value="Volver" class="button" id="goBack"></input>
      `
       document.querySelector('.one-athlethe').appendChild(divAthlete);

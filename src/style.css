@@ -11,29 +11,37 @@ img {
     text-align: center;
 }
 body {
+
+    background-image: url(images/bkgd4.png);
+    /* transform: matrix(0, -1, 1, 0, 0, 0); */
+    /* background-repeat: no-repeat; */
+    background-size: 100% auto;
     font-family: 'Roboto', sans-serif;
-    background-image: url(https://css2.rtve.es/css/rtve.2015.deportes/rio-2016/i/background_apertura_right.png);
-    background-size: 70% auto;
     background-attachment: fixed;
 }
 /**** HEADER ****/
+
 /**** Barra de navegación ****/
 .navigation{
-    /* background: rgba(255,255,255,0.9); */
     display: flex;
-    justify-content:space-around;
     padding: .5rem 0 .5rem 0;
+    gap: 750px;
 }
 .logo{
-    margin-left: 200px;
+    margin-left: 30px;
     max-width: 70px;
 }
 .nav{
     width: 500px;
     display: flex;
     justify-content:space-between;
-    margin-right: 200px;
+    margin-right: 30px;
 }
+
+.nav input {
+    color: black;
+}
+
 /**** Banner y titulo ****/
 .title {
     /* background: rgba(255,255,255,0.9); */
@@ -42,94 +50,133 @@ body {
 .banner {
     margin: 0;
 }
+
 /**** Slide ****/
-.slidershow{
+.container-slider {
+    height: 450px;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    background-color: transparent;
+}
+
+.slider {
+    position: relative;
+    top: 0;
     width: 800px;
     height: 400px;
-    overflow: hidden;
+    background-color: transparent;
 }
-.middle{
+
+.slider .slide {
+    z-index: 1;
     position: absolute;
-    /* top: 70%; */
-    left: 20%;
-    /* transform: translate(-50%,-50%); */
+    width: 100%;
+    clip-path: circle(0% at 0 50%);
+    height: 450px;
 }
-.label{
+.slider .slide.active {
+    clip-path: circle(150% at 0 50%);
+    transition: 2s;
+    transition-property: clip-path;
+}
+
+.slider .slide img {
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 400px;
+    border-radius: 5px;
+}
+
+.slider .slide p {
+    color: rgb(71, 71, 71);
+    font-size: 12px;
+    text-align: center;
+}
+
+.slider .buttons-slides {
+    z-index: 2;
+    width: 100%;
     position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform:translateX(-50%);
     display: flex;
+    justify-content: space-between;
+    bottom: -60px;
 }
-.bar{
+
+.slider .buttons-slides .btn-slide {
     width: 50px;
-    height: 10px;
-    border: 2px solid white;
+    height: 5px;
+    border-radius: 3px;
+    background: rgb(150, 149, 149);
     margin: 6px;
     cursor: pointer;
-    transition: 0.4s;
 }
-.bar:hover{
-    background: white;
+
+@media (min-width: 800px) {
+    .container-slider {
+        justify-content: center;
+    }
+
+    .slider .buttons-slides {
+        bottom: -32px;
+    }
+    /* .slider {
+        width: 600px;
+        height: 350px;
+        background-color: #1D212B;
+        position: relative;
+    }
+    .slider .buttons-slides {
+        z-index: 2;
+        width: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        bottom: -140px;
+    } */
 }
-input[name="radio"]{
-    position: absolute;
-    visibility: hidden;
-}
-.slides{
-    width: 500%;
-    height: 100%;
-    display: flex;
-}
-.slide{
-    width: 20%;
-    transition: 0.6s;
-}
-.slide img{
-    width: 100%;
-    height: 100%;
-}
-#radio1:checked ~ .slide1{
-    margin-left: 0%;
-}
-#radio2:checked ~ .slide1{
-    margin-left: -20%;
-}
-#radio3:checked ~ .slide1{
-    margin-left: -40%;
-}
-.background {
-    height: 400px;
-}
-/**** Sección de intro ****/
+
+/**** Sección de INTRO ****/
 .intro {
     display: flex;
     justify-content: space-between;
-    background: white;
     padding: 1rem;
 }
-.intro img {
-    max-width: 50%;
+.image-intro {
+    max-width: 55%;
+    height: 400px;
+    border-radius: 5px;
 }
 .text-intro {
-    flex-basis: 48%;  
+    flex-basis: 44%;  
+    line-height: 2;
 }
 
 /**** Sección de Atletas destacados ****/
 
 
 
-/**** Sección de participación de mujeres ****/
+/**** Sección de participación de MUJERES ****/
 .women {
-    background: white;
+    background: transparent;
+    line-height: 2;
+    width: 80%;
+    margin: 0 auto;
 }
 
-.women img {
-    max-width: 80%;
-    padding-left: 10rem;
+.images-women {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-/**** Ventana de athletes****/
+.images-women img {
+    width: 300px;
+    height: 350px;
+}
+
+/**** Ventana de ATLETAS****/
 .containerSectionAthletes {
     display: flex;
     flex-direction: column;
@@ -152,63 +199,115 @@ input[name="radio"]{
     flex-basis: 90%;
 }
 
+/****Card de atletas ****/
 .athlete{
-    width: 250px;
-    height: 150px;
-    background: white;
-    border:solid 1px red;
+    height: 250px;
+    width: 203px;
+    border-radius: 8px; 
+    background: linear-gradient(180deg, #C5E67A 0%, rgba(197, 230, 122, 0) 100%);
+    box-shadow: 0px 10px 20px 0px #29292A12;
     display: flex;
     flex-direction: column;
     align-items: center;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    backdrop-filter: blur(8px);
+    /*mix-blend-mode: screen;*/
 }
 .athlete-detail {
-    background: white;
-    width: 450px;
-    height: 350px;
+    background: linear-gradient(180deg, #C5E67A 0%, rgba(197, 230, 122, 0) 100%);
+    box-shadow: 0px 10px 20px 0px #29292A12;
+    height: 400px;
+    width: 280px;
     margin: 0 auto;
     text-align: center;
+    border-radius: 10px;
 }
 .pic-athlete {
     width: 80px;
     height: 90px;
 }
-
-/**** Botones ****/
-.button{
-    width: 100px;
-    display:inline-block;
+.name-athlete {
+    background: radial-gradient(54.25% 1197.23% at 58.21% 53.55%, #DC9409 45%, rgba(220, 148, 9, 0) 100%);
+    transform: matrix(1, -0.08, 0.07, 1, 0, 0);
+    width: 196px; 
+    height: 35px;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+    display: flex;
+    margin: -5px auto 0 auto;
 }
+.country-athlete {
+    height: 32px;
+    width: 33px;
+    margin-left: 165px;
+    opacity: 0.7;
+}
+
+.sport-athlete {
+    text-align: center;
+    display: block;
+}
+.name-athlete img {
+    height: 43xpx;
+    width: 40px;
+    margin-top: -5px;
+}
+.file-athlete p {
+    padding: .2rem;
+    border-radius: 10px;
+}
+
+.file-athlete span {
+    display: inline-block;
+    padding: .2rem;
+    font-weight: 900;
+    width: 150px;
+}
+.file-athlete {
+    margin: 1rem 0 .5rem 1rem;
+    width: 150px;
+    display: grid;
+    grid-template-areas: 'span p';
+    gap: 2px;
+}
+
 
 /**** Barra de navegación desplegable ****/
 li {
     list-style: none;
-   }
+}
 .container-nav-category  {
     width: 300px;
     height: 640px;
     padding: 0.1rem;
-    background: gray;
     line-height: 1.45rem;
     margin-right: 10px;
+    border: 1px solid #DFD9D9;
+    box-sizing: border-box;
+    filter: drop-shadow(8px 4px 4px rgba(0, 0, 0, 0.25));
 }
-/* .nav-category {
-    background: gray;
 
-} */
 .nav-subcategory {
-    background: white;
     padding-left: 20px;
 }
 .nav-category a {
     text-decoration: none;
+    color: black;
 }
 .list-sport {
     overflow: scroll;
     height: 200px;
 }
 
+/**** Select para ordenar ****/
+#order {
+    font-size: 14px;
+    font-weight: 400;
+    color: #444;
+}
 
-/**** Ventana de mostrar todos los deportes****/
+/**** Ventana de mostrar todos los DEPORTES****/
 .containerSport{
     display: flex;
     flex-wrap: wrap;
@@ -253,7 +352,7 @@ li {
     text-align: center;
 }
 
-/**** Ventana para mostrar las estadísticas****/
+/**** Ventana para mostrar las ESTADÍSTICAS****/
 .title-country {
     text-align: start;
     padding-left: 30px;
@@ -281,9 +380,54 @@ tbody tr {
     /* border-bottom: solid 1px black; */
     /* background-color: black; */
 }
+
 /**** Footer ****/
 .footer {
- border: solid 1px yellow;
+    background-color: rgb(37, 37, 37);
+    text-align: center;
+    color: rgb(223, 219, 219);
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.nav-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-footer {
+    width: 100%;
+    max-width: 30px;
+    margin-bottom: -9px;
+}
+
+/**** Botones ****/
+.button {
+    width: 100px;
+    display:inline-block;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgb(223, 219, 219);
+    font-size: .95rem;
+    font-weight: 900;
+    padding: .5rem;
+}
+.button:hover {
+    text-decoration: underline;
+}
+
+#goBack {
+    margin-top: .5rem;
+    background-color: #048a6f;
+    padding: .5rem;
+    border-radius: 20px;
+}
+
+#goBack:hover {
+    background-color: #DC9409;
+    text-decoration: none;
 }
 @media (max-width: 600px){
     .button{
