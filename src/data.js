@@ -95,16 +95,18 @@ export const orderData = {
 export const statisticsData = {
   sumMedalsCountries: (medal, athletes) => {
     const medalsByCountry = athletes
-    .filter(athlete => athlete.medal === medal)
+    .filter(athlete => athlete.medal === medal )
     // .reduce((count, athlete) => (count[athlete.team] ? count[athlete.team] += 1 : count[athlete.team] = 1, count), [])
     .reduce((count, athlete) => {
       if (count[athlete.noc]){
-        count[athlete.noc] += 1
-      } else {
+        count[athlete.noc] += 1;
+      } 
+       else {
         count[athlete.noc] = 1
       }
       return count;
     }, [])
+    console.log(medalsByCountry);
     return medalsByCountry;
   },
   sumMedalsOfAthlethe: (nameAthlete, athletes) => {
@@ -124,3 +126,4 @@ export const statisticsData = {
   //   .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
   //   return medalsByGender;
   // }
+}
