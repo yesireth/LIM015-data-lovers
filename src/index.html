@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data Lovers</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -25,87 +26,75 @@
     </section> <!-- Cierre barra de navegación -->
 
     <!-- Banner de la página -->
-    <img id="banner" src="./images/banner.png"
-      alt="banner">
-
-    <section class="title">
-      <h1 class="text-center"><b>Juegos Olímpicos Río 2016</b></h1>
-    </section>
+    <img id="banner" src="./images/banner.png" alt="banner">
 
     <!-- Sección de slide -->
-    <section class="containerSlide">
-      <section class=" slidershow middle">
-        <section class="slides">
-          <input type="radio" name="radio" id="radio1" checked>
-          <input type="radio" name="radio" id="radio2">
-          <input type="radio" name="radio" id="radio3">
-
-          <div class="slide slide1">
-            <img src="./images/slide2.jpg" alt="">
-          </div>
-          <div class="slide">
-            <img src="./images/slide3.JPG" alt="">
-          <div class="slide">
-            <img src="./images/slide5.jpg" alt="">
-          </div>
+    <section class="container-slider">
+      <section class="slider">
+        <section class="slide active">
+          <img src="images/slide1.jpg" alt="mascotas-rio2016">
+          <p>Las mascotas oficiales de las Olimpiadas de Río 2016 son Vinicius y Tom, en homenaje a los ídolos de la música brasileña Vinicius de Moraes y Tom Jobim.</p>
         </section>
-
-        <section class="label">
-          <label class="bar" for="radio1"></label>
-          <label class="bar" for="radio2"></label>
-          <label class="bar" for="radio3"></label>
+        <section class="slide">
+          <img src="images/slide2.jpg" alt="Ayuda femenina">
+          <p>La estadounidense Abbey D'Agostino ayuda a la atleta neozelandesa Nikki Hamblin luego de su caída demostrando la nobleza de su espíritu olímpico.</p>
+        </section>
+        <section class="slide">
+          <img src="images/slide3.jpg" alt="refugiados-rio2016">
+          <p>Se conformó por primera vez un Equipo Olímpico de Atletas Refugiados que fue representado por 10 atletas.</p>
+        </section>
+        <section class="slide">
+          <img src="images/4.jpg" alt="Protestas mujeres iranies"> 
+           <p>Una Iraní alzó la voz para protestar en los Juegos Olímpicos de Río 2016 clamando que se permita a las mujeres iraníes entrar en los estadios.</p> 
+         </section>
+        <section class="buttons-slides">
+          <section class="btn-slide active"> </section >
+          <section class="btn-slide"> </section >
+          <section class="btn-slide"> </section >
+          <section class="btn-slide"> </section >
         </section>
       </section>
-      <img class="background"
-        src="./images/background_apertura_right.png"
-        alt="Mural Juegos Olímpicos">
-    </section> <!-- Cierre de Sección de Slide -->
+    </section>   <!-- Cierre de Sección de Slide --> 
   </header>
 
   <main>
     <!-- Sección de información relevante sobre los Juegos Olimpicos 2016 -->
     <section class="intro">
-      <img class="" src="./images/intro.jpg"
+      <img class="image-intro" src="./images/intro.jpg"
         alt="Inauguración Juegos Olímpicos">
       <section class="text-intro">
-        <h2>Juegos Olímpicos de Río de Janeiro 2016</h2>
+        <h2 class="text-center">Juegos Olímpicos de Río de Janeiro 2016</h2>
         <p> Los XXXI Juegos Olímpicos de Verano se celebraron en la ciudad de Río de Janeiro, Brasil, entre el 5 y el 21
-          de agosto de 2016. Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis non corporis excepturi
-          at
-          quas? Exercitationem odit cumque, aperiam quasi quis quidem. Perferendis nisi aperiam quod itaque, quaerat
-          adipisci ipsum nobis.</p>
-        <p>En esta edición de los Juegos Olímpicos participaron 11 551 atletas de 207 comités olímpicos nacionales
-          —Kosovo
-          y Sudán del Sur participaron por primera vez—, que compitieron en 306 eventos de 28 deportes,4​ incluyendo el
+          de agosto de 2016. La elección de Río marcó la primera vez en que Brasil ha sido designado como sede de los Juegos Olímpicos. Además, es la primera vez que se realiza en un país sudamericano.</p>
+        <p>En esta edición de los Juegos Olímpicos participaron 11.551 atletas de 207 comités olímpicos nacionales — <i> Kosovo
+          y Sudán del Sur participaron por primera vez </i>—, que compitieron en 306 eventos de 28 deportes,4​ incluyendo el
           rugby 7 y el golf, agregados al programa olímpico en 2009. Las competiciones se llevaron a cabo en 33 recintos
           deportivos de cuatro barrios de Río de Janeiro —Maracaná, Barra da Tijuca, Deodoro y Copacabana— y en cinco
           estadios ubicados en las ciudades de São Paulo, Belo Horizonte, Salvador de Bahía, Brasilia y Manaus.5​ </p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus eaque unde qui amet numquam praesentium
-          sit quisquam. Porro id error qui quas esse, consectetur tempora deserunt delectus ea maiores alias!</p>
       </section>
     </section> <!-- Cierre de sección de información relevante sobre los Juegos Olimpicos 2016 -->
 
     <!-- Sección de Atletas destacados en los Juegos Olimpicos 2016 -->
     <section class="featured">
-      <h2 class="text-center">Atletas Destacados</h2>
+      <!-- <h2 class="text-center">Atletas Destacados</h2> -->
     </section>
 
     <!-- Sección de Mujeres Atletas en los Juegos Olimpicos 2016 -->
     <section class="women">
-      <h2 class="text-center">Participación Femenina</h2>
-      <img src="./images/mujeresintro.png"
-        alt="Mujeres atletas en Río 2016">
+      <h2 class="text-center">Participación Femenina</h2> 
+      <section class="images-women">
+        <img src="./images/mujer1.jpg" alt="Simone Manuel en Río 2016">
+        <img src="./images/mujer2.jpg" alt="Katie Ledecky en Río 2016">
+        <img src="./images/mujer3.jpg" alt="Oskana en Río 2016">
+        <img src="./images/mujer4.jpg" alt="Simone Biles en Río 2016">
+      </section>
+
       <section>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos vel minima, sit suscipit voluptatem illum rem
-          obcaecati atque ut unde accusantium velit ullam magni hic adipisci praesentium possimus illo distinctio. Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Aut, deserunt tempora. Aspernatur non, sequi accusamus
-          alias
-          nisi neque ea enim! Modi est voluptatibus voluptatum porro similique nulla deleniti, exercitationem itaque.
+        <p>
+          La primera participación en Juegos de una mujer fue en 1900 en las disciplinas de tenis y golf. En más de un siglo han llegado a representar casi la mitad del total de participantes. Londres 2012 fue la primera cita olímpica donde todos los países tuvieron una mujer entre sus atletas. Las mujeres suponen más del 50% de los atletas participantes en triatlón, tenis de mesa y bádminton. Gimnasia rítmica, natación sicronizada y sófbol son deportes donde sólo han participado mujeres.
+         </p>
+        <p>En la edición de Río de Janeiro 2016 se marcó un hito en la participación femenina en Juegos Olímpicos. Por primera vez alcanzó el 45% de los 12000 deportistas, es decir,  5600 damas llegaron a la ‘Cidade Maravilhosa’.
         </p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id possimus harum tempora dolores. Culpa esse iusto
-          expedita, illum quibusdam nihil magnam exercitationem fuga, delectus saepe facere, possimus aperiam
-          consequuntur
-          laboriosam.</p>
       </section>
     </section>
 
@@ -113,9 +102,9 @@
     <section class="containerSectionAthletes">
       <!-- Sección que contiene la lista para ordenar  -->
       <section class="first-element">
+        <span>ORDENAR POR...  </span>
         <section  class="container-list-order">
-          <select name="" id="producto">
-            <option value="" disabled selected> Ordenar por...</option>}
+          <select name="" id="order">
             <option value="A-Z"> Alfabético: A-Z</option>
             <option value="Z-A"> Alfabético: Z-A</option>
             <option value="menos-edad"> Edad: menor a mayor</option>
@@ -128,7 +117,7 @@
         <section class="container-nav-category">
           <nav>
             <ul class="nav-category">
-              <li class="category"><a href="#">Categorías <i class="fas fa-angle-down"></i></a></li>
+              <li class="category"><a href="#">CATEGORÍAS<i class="fas fa-angle-down"></i></a></li>
               <li class="category"><a href="#">Género <i class="fas fa-angle-down"></i></a>
                 <ul class="nav-subcategory">
                   <li class="subcategory" id="F"><a href="#">Femenino</a></li>
@@ -213,7 +202,15 @@
     <section class="containerStatistics"></section>
   </main>
   <!-- Sección de footer -->
-  <footer class="footer">Derechos Reservados 🔒 </footer>
+  <footer class="footer"> 
+    <nav class="nav-footer">
+      <input type="button" value="Deportes" class="button" id="sport">
+      <input type="button" value="Atletas" class="button" id="athletes">
+      <input type="button" value="Estadísticas" class="button" id="statistics">
+    </nav>
+    <p> Hecho con ❤  por <img class="logo-footer" src="./images/github.png" alt="logo-github">@yesireth <img class="logo-footer" src="./images/github.png" alt="logo-github">@margazm</p>
+    <p> © Derechos Reservados 2021 </p>
+  </footer>
 
   <script src="main.js" type="module"></script>
 </body>
