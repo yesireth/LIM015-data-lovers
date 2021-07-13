@@ -314,8 +314,10 @@ li {
     gap: 10px;
     /* flex-basis: 90%; */
     margin: 0 auto;
-    width: 95%;
+    width: 85%;
     align-items: flex-start;
+    text-align: center;
+    padding-left: 80px;
 }
 .sport{ 
     width: 186px;
