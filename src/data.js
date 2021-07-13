@@ -123,4 +123,4 @@ export const statisticsData = {
   //   .filter(athlete => athlete.gender === gender)
   //   .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
   //   return medalsByGender;
-  // }
+}
