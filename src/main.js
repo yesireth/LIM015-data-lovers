@@ -1,26 +1,24 @@
 // Importamos funciones desde data.js
-
 import { filterData, statisticsData, orderData } from "./data.js";
 import athletes from "./data/athletes/athletes.js";
 
 // Elementos del HTML 
-const containerSectionAthletes = document.querySelector('.containerSectionAthletes');
-const containerAthletes = document.querySelector('.containerAthletes');
-const containerWomen = document.querySelector('.women');
-const containerFeatured = document.querySelector('.featured');
-const containerIntro = document.querySelector('.intro');
-const containerSlide = document.querySelector('.containerSlide');
-const containerSport = document.querySelector('.containerSport');
-const containerStatistics = document.querySelector('.containerStatistics');
-const btnAthletes = document.getElementById("athletes");
-const btnSport = document.getElementById("sport");
-const btnStatistics = document.getElementById("statistics");
-const informaSport= document.querySelector('.inforSport');
-const sortItem= document.getElementById("producto");
+ const containerSectionAthletes = document.querySelector('.containerSectionAthletes');
+ const containerAthletes = document.querySelector('.containerAthletes');
+ const containerWomen = document.querySelector('.women');
+ const containerFeatured = document.querySelector('.featured');
+ const containerIntro = document.querySelector('.intro');
+ const containerSlide = document.querySelector('.containerSlide');
+ const containerSport = document.querySelector('.containerSport');
+ const containerStatistics = document.querySelector('.containerStatistics');
+ const btnAthletes = document.getElementById("athletes");
+ const btnSport = document.getElementById("sport");
+ const btnStatistics = document.getElementById("statistics");
+ const informaSport = document.querySelector('.inforSport');
+ const sortItem = document.getElementById("producto");
 const dataAthletes = athletes.athletes;
 
 // Función que oculta información previa del Home Page
-
 function hideHomePage() {
   containerWomen.style.display = 'none';
   containerFeatured.style.display = 'none';
@@ -30,7 +28,7 @@ function hideHomePage() {
 // Ocultamos la sección de atletas de la Home Page 
 containerSectionAthletes.style.display = 'none';
 
-// Función que muestra los cards con la información previa de los ateltas de acuerdo a un array dado.
+// // Función que muestra los cards con la información previa de los ateltas de acuerdo a un array dado.
 function displayCards(array, parent) {
   parent.innerHTML = '';
   // Crea una card para cada atleta y los inserta al HTML
@@ -58,17 +56,19 @@ function showAthletes() {
   containerSectionAthletes.style.display = 'flex';
   containerAthletes.innerHTML = '';   // Limpiamos el contenido previo
   const athletesWithoutDuplicates = filterData.removeDuplicateNames(dataAthletes);
+  
   displayCards(athletesWithoutDuplicates, containerAthletes);
+  
 }
 
-// Función que agrega evento a cada card de Atletas para mostrar información completa
+// // Función que agrega evento a cada card de Atletas para mostrar información completa
 function completeAthleteInformation() {
   const cardAthlete = document.getElementsByClassName('athlete');
   for (let i = 0; i < cardAthlete.length; i++) {
     cardAthlete[i].addEventListener('click', () => {
       document.querySelector('.one-athlethe').innerHTML = '';  // Elimina el contenido previo en el container
-      containerSectionAthletes.style.display =  'none';
-      document.querySelector('.one-athlethe').style.display =  'block';
+      containerSectionAthletes.style.display = 'none';
+      document.querySelector('.one-athlethe').style.display = 'block';
       const selectedAthleteName = cardAthlete[i].querySelector('.athlete p').dataset.name;
       const infoAthlete = filterData.selectedAthleteInformation(selectedAthleteName, dataAthletes);
       const medalsAthlete = statisticsData.sumMedalsOfAthlethe(selectedAthleteName, dataAthletes);
@@ -92,14 +92,14 @@ function completeAthleteInformation() {
       const btnGoBack = document.getElementById('goBack')
       btnGoBack.addEventListener('click', goBack);
       function goBack() {
-        containerSectionAthletes.style.display =  'flex';
-        document.querySelector('.one-athlethe').style.display =  'none';
+        containerSectionAthletes.style.display = 'flex';
+        document.querySelector('.one-athlethe').style.display = 'none';
       }
     })
   }
 }
 
-// Funcion para mostrar todos los deportes
+// // Funcion para mostrar todos los deportes
 function showSport() {
   hideHomePage();
   containerSectionAthletes.style.display = 'none';
@@ -112,20 +112,23 @@ function showSport() {
     const divSport = document.createElement('div');
     divSport.classList.add("sport");
     divSport.innerHTML = `
-      <p data-sport=${element} >Deporte: ${element}</p>
-      <img class='imagenes-sport' src='./images/images-sport/${element}.svg' alt='${element}'>
+      <p data-sport='${element}' > ${element}</p>
+      <div class='circle'><img class='imagenes-sport' src='./images/emojiSport/${element}.png' alt='${element}'></div>
       `
     containerSport.appendChild(divSport);
   })
   // Agrega evento a cada card de Deportes
   const cardSport = document.getElementsByClassName('sport');
+ informaSport.innerHTML='';
   for (let i = 0; i < cardSport.length; i++) {
     cardSport[i].addEventListener('click', () => {
+      containerSport.style.display = 'none';
+      
       const selectedSport = cardSport[i].querySelector(".sport p").dataset.sport;
       const inforSport = athletes.athletes.filter(athlete => athlete.sport == selectedSport);
       displayCards(inforSport, informaSport)
     })
-  }    
+  }
 }
 
 // Función para mostrar los paises con las estadísticas 
@@ -156,17 +159,46 @@ function showStatistics() {
   const totalMedalBronze = statisticsData.sumMedalsCountries('Bronze', dataAthletes);
   uniqueCountry.forEach(country => {
     let trTable = document.createElement('tr');
-    trTable.innerHTML = `
-      <td class='cell-flag'> <img class='flag' src='./images/flags/${country}.png' alt='flag-${country}'> </td>
-      <td> ${country} </td>
-      <td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> 
-      ${totalMedalGold[country]} </td>
-      <td class='text-center'> <img class='icon-medal' src='./images/Silver.png' alt='silver-medal'> 
-      ${totalMedalSilver[country]} </td>
-      <td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'> 
-      ${totalMedalBronze[country]} </td>
-      <td class='text-center'> ${totalMedalGold[country] + totalMedalSilver[country] + totalMedalBronze[country]} </td
-    `
+
+
+    let trDinamico,totalMedalBronze_temp,totalMedalGold_temp,totalMedalSilver_temp;
+
+    trDinamico=`<td class='cell-flag'> <img class='flag' src='./images/flags/${country}.png' alt='flag-${country}'> </td>
+    <td> ${country} </td>`
+
+    if(totalMedalGold[country] ===undefined){
+      totalMedalGold_temp = 0
+      trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'>0</td>` 
+    }
+    else{
+      totalMedalGold_temp = totalMedalGold[country]
+      trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> ${totalMedalGold[country]} </td>` 
+    }
+
+    if(totalMedalSilver[country] ===undefined){
+      totalMedalSilver_temp= 0
+      trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Silver.png' alt='silver-medal'>0</td>` 
+    }
+    else{
+      totalMedalSilver_temp= totalMedalSilver[country]
+      trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Silver.png' alt='silver-medal'> ${totalMedalSilver[country]} </td>` 
+    }
+
+    if(totalMedalBronze[country] ===undefined){
+      totalMedalBronze_temp = 0;
+      trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'>0</td>` 
+    }
+    else{
+      totalMedalBronze_temp = totalMedalBronze[country]
+      trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'>${totalMedalBronze[country]}</td>` 
+    }
+
+
+
+    trDinamico+=`<td class='text-center'> ${totalMedalGold_temp +  totalMedalSilver_temp + totalMedalBronze_temp} </td>`
+    
+    trTable.innerHTML = trDinamico
+    
     tbodyTable.appendChild(trTable);
   })
   tableStatistics.appendChild(tbodyTable)
@@ -178,7 +210,7 @@ function showStatistics() {
 }
 
 // Función para selecionar tipo de orden
-function showSelected(){
+function showSelected() {
   filterData.removeDuplicateNames(dataAthletes, dataAthletes);
   const newordered = orderData.orderedSelect(sortItem.value, dataAthletes);
   showOrderedAthletes(newordered); ///Volver a mostrar atletas ordenados (A-Z,Z-A,menor edad y mayor edad)
@@ -191,7 +223,7 @@ function showOrderedAthletes(newordered) {
   hideHomePage();
   containerAthletes.innerHTML = '';
   displayCards(newordered, containerAthletes);
-
+}
 
 // Eventos de la HomePage
 btnAthletes.addEventListener("click", showAthletes);
@@ -206,19 +238,19 @@ for (let i = 0; i < navCategory.length; i++) {
     const category = navCategory[i].id;
     const edadminima = navCategory[i].getAttribute("data-min");
     const edadmaxima = navCategory[i].getAttribute("data-max");
-    const getData = filterData.filterMultipleData(category,edadminima,edadmaxima); 
-    // filterAthletes (getData);
+    const getData = filterData.filterMultipleData(category, edadminima, edadmaxima);
     displayCards(getData, containerAthletes)
   })
 }
-// ++++++ Evento para ordenar 
-  sortItem.addEventListener("change", ShowSelected);
-  //***Funcion para estadisticas***
-function showStatistics1(){
+// ++++++ Evento para ordenar
+sortItem.addEventListener("change", showSelected);
+//   //***Funcion para estadisticas***
+// // function showStatistics1(){
 
- let countryStatistics = filterData.dataCountryStatistics(athletes.medal,athletes.country); 
-console.log(countryStatistics);
-}
+// //  let countryStatistics = filterData.dataCountryStatistics(athletes.medal,athletes.country); 
+// // console.log(countryStatistics);
+// // }
 
-  // EVENTO PARA ESTADISTICAS 
-  statistics.addEventListener('click',showStatistics1)
+//   // EVENTO PARA ESTADISTICAS 
+//  // statistics.addEventListener('click',showStatistics1)
+// }
