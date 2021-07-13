@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;900&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -10,6 +11,7 @@ img {
     text-align: center;
 }
 body {
+    font-family: 'Roboto', sans-serif;
     background-image: url(https://css2.rtve.es/css/rtve.2015.deportes/rio-2016/i/background_apertura_right.png);
     background-size: 70% auto;
     background-attachment: fixed;
@@ -214,18 +216,42 @@ li {
     /* flex-basis: 90%; */
     margin: 0 auto;
     width: 95%;
+    align-items: flex-start;
 }
 .sport{ 
-    width: 170px;
-    height: 110px;
-    background: white;
-    border:solid 1px red;
+    width: 186px;
+    height: 215,28px;
     text-align: center;
+    left:53px;
+    top:288px;
+    background: linear-gradient(180deg, #C5E67A 0%, rgba(197, 230, 122, 0) 100%);
 }
-.imagenes-sport {
-    width: 60px;
+.sport p{
+    font-weight: 500;
+}
+.circle{
+    text-align: center;
+    margin: 0 auto;
+    height: 100px;
+    width: 100px;
+    left: 78px;
+    top: 312px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #44F718 87.5%);
+
 }
 
+.imagenes-sport {
+    width: 60px;
+    margin-top: 10px ;
+}
+.inforSport{
+    display: flex ;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 auto;
+    text-align: center;
+}
 
 /**** Ventana para mostrar las estadísticas****/
 .title-country {
@@ -259,3 +285,7 @@ tbody tr {
 .footer {
  border: solid 1px yellow;
 }
+@media (max-width: 600px){
+    .button{
+     background: #1e1f1f;
+    }}
