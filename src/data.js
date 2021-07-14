@@ -1,4 +1,4 @@
-import athletes from "./data/athletes/athletes.js";
+//gitimport athletes from "./data/athletes/athletes.js";
 
 export const filterData = {
   removeDuplicateNames: (athletes) => {
@@ -20,10 +20,10 @@ export const filterData = {
     return uniqueData;
   },
 
-  filterMultipleData: (category, minedad, maxedad) => {
-    const gender = athletes.athletes.filter(a => a.gender == category);
-    const medal = athletes.athletes.filter(a => a.medal == category);
-    const age = athletes.athletes.filter(a => a.age >= minedad && a.age <= maxedad);
+  filterMultipleData: (category, minedad, maxedad,athletes) => {
+    const gender = athletes.filter(a => a.gender == category);
+    const medal =athletes.filter(a => a.medal == category);
+    const age = athletes.filter(a => a.age >= minedad && a.age <= maxedad);
 
     if (category === "F" || category === "M") {
       return gender;
@@ -113,12 +113,24 @@ export const statisticsData = {
     const medalsByAthlete = athletes
     .filter(athlete => athlete.name === nameAthlete)
     .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
-    return medalsByAthlete;
+    let counter= 0
+    if('Bronze' in medalsByAthlete){
+      counter += medalsByAthlete.Bronze;
+    } 
+    if ('Gold' in medalsByAthlete){
+      counter += medalsByAthlete.Gold;
+    }
+    if ('Silver' in medalsByAthlete){
+      counter += medalsByAthlete.Silver;
+    }
+      return counter;
+
   }, 
   // totalMedals: (athletes) => {
   //   const totalMedals = athletes
   //   .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
-  //   return totalMedals;
+  //   //return totalMedals;
+  //   console.log(totalMedals);
   // },
   // sumMedalsByGender: (gender, athletes) => {
   //   const medalsByGender= athletes

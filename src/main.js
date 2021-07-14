@@ -93,13 +93,13 @@ function completeAthleteInformation() {
   const cardAthlete = document.getElementsByClassName('athlete');
   for (let i = 0; i < cardAthlete.length; i++) {
     cardAthlete[i].addEventListener('click', () => {
+      informaSport.style.display = 'none';//ocultar todos los atletas
       document.querySelector('.one-athlethe').innerHTML = '';  // Elimina el contenido previo en el container
       containerSectionAthletes.style.display = 'none';
       document.querySelector('.one-athlethe').style.display = 'block';
       const selectedAthleteName = cardAthlete[i].querySelector('.athlete p').dataset.name;
       const infoAthlete = filterData.selectedAthleteInformation(selectedAthleteName, dataAthletes);
       const medalsAthlete = statisticsData.sumMedalsOfAthlethe(selectedAthleteName, dataAthletes);
-      console.log(medalsAthlete);
       const divAthlete = document.createElement('div');
       divAthlete.classList.add("athlete-detail");
       divAthlete.innerHTML = `
@@ -113,7 +113,7 @@ function completeAthleteInformation() {
       <span> Altura: </span> <p>  ${infoAthlete[0].height / 100} m. </p>
       <span> Peso: </span> <p>  ${infoAthlete[0].weight} kg. </p>
       <span> Deporte: </span> <p>  ${infoAthlete[0].sport} </p>
-      <span> Medallas ganadas: </span> <p>  </p>
+      <span> Medallas ganadas: </span> ${medalsAthlete}<p>  </p>
       </div>
       <input type="button" value="Volver" class="button" id="goBack"></input>
      `
@@ -150,11 +150,10 @@ function showSport() {
   })
   // Agrega evento a cada card de Deportes
   const cardSport = document.getElementsByClassName('sport');
- informaSport.innerHTML='';
+ //informaSport.innerHTML='';
   for (let i = 0; i < cardSport.length; i++) {
     cardSport[i].addEventListener('click', () => {
       containerSport.style.display = 'none';
-      
       const selectedSport = cardSport[i].querySelector(".sport p").dataset.sport;
       const inforSport = athletes.athletes.filter(athlete => athlete.sport == selectedSport);
       displayCards(inforSport, informaSport)
@@ -242,9 +241,10 @@ function showStatistics() {
 
 // Función para selecionar tipo de orden
 function showSelected() {
-  filterData.removeDuplicateNames(dataAthletes, dataAthletes);
-  const newordered = orderData.orderedSelect(sortItem.value, dataAthletes);
-  showOrderedAthletes(newordered); ///Volver a mostrar atletas ordenados (A-Z,Z-A,menor edad y mayor edad)
+  const athletesWithoutDuplicates = filterData.removeDuplicateNames(dataAthletes);
+  const newordered = orderData.orderedSelect(sortItem.value, athletesWithoutDuplicates);
+  showOrderedAthletes(newordered); ///Volver a mostrar atletas ordenados (A-Z,Z-A,menor edad y mayor edad);
+  
 }
 
 // Función que muestra los atletas con el orden seleccionado
@@ -269,7 +269,9 @@ for (let i = 0; i < navCategory.length; i++) {
     const category = navCategory[i].id;
     const edadminima = navCategory[i].getAttribute("data-min");
     const edadmaxima = navCategory[i].getAttribute("data-max");
-    const getData = filterData.filterMultipleData(category, edadminima, edadmaxima);
+    const athletesWithoutDuplicates = filterData.removeDuplicateNames(dataAthletes);
+    const getData = filterData.filterMultipleData(category, edadminima, edadmaxima,athletesWithoutDuplicates);
+    
     displayCards(getData, containerAthletes)
   })
 }
