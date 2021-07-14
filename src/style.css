@@ -3,6 +3,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+
 }
 img {
     width: 100%;
@@ -519,7 +521,5 @@ tbody tr {
     background-color: #DC9409;
     text-decoration: none;
 }
-/* @media (max-width: 600px){
-    .button{
-     background: #1e1f1f;
-    }} */
+
+
