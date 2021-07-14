@@ -64,26 +64,12 @@ export const orderData = {
     }
     else if (sortItem == "menos-edad") {
       orderedarray = athletes.sort(function (a, b) {
-        // if (a.age > b.age) {
-        //   return 1;
-        // }
-        // else if (a.age < b.age) {
-        //   return -1;
-        // }
-        // return 0;
         return a.age - b.age;
       }
       )
     }
     else if (sortItem == "mas-edad") {
       orderedarray = athletes.sort(function (a, b) {
-        // if (a.age < b.age) {
-        //   return 1;
-        // }
-        // else if (a.age > b.age) {
-        //   return -1;
-        // }
-        // return 0;
         return b.age - a.age;
       }
       )

@@ -3,7 +3,6 @@ import { filterData, statisticsData, orderData } from "./data.js";
 import athletes from "./data/athletes/athletes.js";
 
 // Elementos del HTML 
-
 const containerSectionAthletes = document.querySelector('.containerSectionAthletes');
 const containerAthletes = document.querySelector('.containerAthletes');
 const containerWomen = document.querySelector('.women');
@@ -113,7 +112,9 @@ function completeAthleteInformation() {
       <span> Altura: </span> <p>  ${infoAthlete[0].height / 100} m. </p>
       <span> Peso: </span> <p>  ${infoAthlete[0].weight} kg. </p>
       <span> Deporte: </span> <p>  ${infoAthlete[0].sport} </p>
+
       <span> Medallas ganadas: </span> ${medalsAthlete}<p>  </p>
+
       </div>
       <input type="button" value="Volver" class="button" id="goBack"></input>
      `
@@ -222,9 +223,6 @@ function showStatistics() {
       totalMedalBronze_temp = totalMedalBronze[country]
       trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'>${totalMedalBronze[country]}</td>` 
     }
-
-
-
     trDinamico+=`<td class='text-center'> ${totalMedalGold_temp +  totalMedalSilver_temp + totalMedalBronze_temp} </td>`
     
     trTable.innerHTML = trDinamico
@@ -243,8 +241,8 @@ function showStatistics() {
 function showSelected() {
   const athletesWithoutDuplicates = filterData.removeDuplicateNames(dataAthletes);
   const newordered = orderData.orderedSelect(sortItem.value, athletesWithoutDuplicates);
+
   showOrderedAthletes(newordered); ///Volver a mostrar atletas ordenados (A-Z,Z-A,menor edad y mayor edad);
-  
 }
 
 // Función que muestra los atletas con el orden seleccionado
@@ -275,7 +273,7 @@ for (let i = 0; i < navCategory.length; i++) {
     displayCards(getData, containerAthletes)
   })
 }
-// ++++++ Evento para ordenar
+// Evento para ordenar
 sortItem.addEventListener("change", showSelected);
 //   //***Funcion para estadisticas***
 // // function showStatistics1(){
