@@ -7,35 +7,112 @@
 img {
     width: 100%;
 }
-.text-center {
-    text-align: center;
-}
-body {
 
-    background-image: url(images/bkgd4.png);
+p {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+body {
+    background-image: url(images/bkgd-mobile.png);
     /* transform: matrix(0, -1, 1, 0, 0, 0); */
-    /* background-repeat: no-repeat; */
+    background-repeat: no-repeat;
     background-size: 100% auto;
     font-family: 'Roboto', sans-serif;
     background-attachment: fixed;
 }
+
+@media (min-width: 800px) {
+    body {
+        background-image: url(images/bkgd4.png);
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+
 /**** HEADER ****/
 
 /**** Barra de navegación ****/
 .navigation{
     display: flex;
-    padding: .5rem 0 .5rem 0;
-    gap: 750px;
-}
-.logo{
-    margin-left: 30px;
-    max-width: 70px;
+    border: solid 1px green;
+    /* gap: 100px; */
 }
 .nav{
-    width: 500px;
+    display: none;
+}
+
+.menu-bar {
+    max-width: 25px;
+    margin: 5px 5px 0 5px;
+}
+
+.logo{
+    margin: 4px 5px 0 5px;
+    max-width: 50px;
+}
+.input-icono {
+    margin: 3px 2px 2px 108px;
+    background-image: url('images/search-gray.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 20px;
     display: flex;
-    justify-content:space-between;
-    margin-right: 30px;
+    align-items: center;
+    width: 200px;
+    padding-right: 28px;
+    height: 30px;
+    border: 1px solid #BEBCBC;
+    border-radius: 3px; 
+    background-color: white;
+    fill: gray;
+}
+.input-icono input {
+    width: 100%;
+    font-size: 0.7em;
+    border: none;
+}
+
+.input-icono input:focus {
+    outline: none;
+}
+
+@media (min-width: 800px) {
+    .nav{
+        width: 500px;
+        display: flex;
+        justify-content:space-between;
+        /* margin-right: ; */
+    }
+    .navigation{
+        padding: .5rem 0 .5rem 0;
+        /* gap: 710px; */
+        border: solid 1px red;
+    }
+    .logo{
+        margin-left: 30px;
+        max-width: 70px;
+    }
+    .input-icono {
+        margin: 10px 2px 2px 108px;
+        width: 300px;
+    }
+    .input-icono input {
+        font-size: 0.9em;
+    }
+    .menu-bar {
+        display: none;
+    }
+}
+@media (min-width: 1000px) {
+    .navigation{
+        padding: .5rem 0 .5rem 0;
+        gap: 120px;
+        border: solid 1px red;
+    }
 }
 
 .nav input {
@@ -43,10 +120,6 @@ body {
 }
 
 /**** Banner y titulo ****/
-.title {
-    /* background: rgba(255,255,255,0.9); */
-    padding: 0.3rem;
-}
 .banner {
     margin: 0;
 }
@@ -138,19 +211,34 @@ body {
 }
 
 /**** Sección de INTRO ****/
-.intro {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-}
 .image-intro {
-    max-width: 55%;
-    height: 400px;
-    border-radius: 5px;
+    display: none;
 }
-.text-intro {
-    flex-basis: 44%;  
-    line-height: 2;
+
+@media (min-width: 800px) {
+    .intro {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+    .image-intro {
+        max-width: 55%;
+        height: 400px;
+        border-radius: 5px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .image-intro {
+        display: block;
+    }
+    .text-intro {
+        flex-basis: 44%;  
+        line-height: 2;
+    }
+    p {
+        font-size: 17px;
+    }
 }
 
 /**** Sección de Atletas destacados ****/
@@ -378,7 +466,7 @@ li {
 }
 tbody tr {
     border-bottom: 1px solid #ccc;
-    height: 4rem;
+    height: 3rem;
     /* border-bottom: solid 1px black; */
     /* background-color: black; */
 }
@@ -431,7 +519,7 @@ tbody tr {
     background-color: #DC9409;
     text-decoration: none;
 }
-@media (max-width: 600px){
+/* @media (max-width: 600px){
     .button{
      background: #1e1f1f;
-    }}
+    }} */
