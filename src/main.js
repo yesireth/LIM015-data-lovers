@@ -17,7 +17,11 @@ const btnStatistics = document.getElementById("statistics");
 const informaSport= document.querySelector('.inforSport');
 const sortItem= document.getElementById("order");
 
+// Data completa
 const dataAthletes = athletes.athletes;
+//Data filtrada
+const athletesWithoutDuplicates = filterData.removeDuplicateNames(dataAthletes);
+
 
 // Función que oculta información previa del Home Page
 function hideHomePage() {
@@ -51,7 +55,6 @@ btnSlides.forEach((btn, index) => {
   });
 });
 
-
 // Función que muestra los cards con la información previa de los ateltas de acuerdo a un array dado.
 function displayCards(array, parent) {
   parent.innerHTML = '';
@@ -81,10 +84,7 @@ function showAthletes() {
   document.querySelector('.one-athlethe').style.display = 'none';
   containerSectionAthletes.style.display = 'flex';
   containerAthletes.innerHTML = '';   // Limpiamos el contenido previo
-  const athletesWithoutDuplicates = filterData.removeDuplicateNames(dataAthletes);
-  
   displayCards(athletesWithoutDuplicates, containerAthletes);
-  
 }
 
 // // Función que agrega evento a cada card de Atletas para mostrar información completa
@@ -112,9 +112,7 @@ function completeAthleteInformation() {
       <span> Altura: </span> <p>  ${infoAthlete[0].height / 100} m. </p>
       <span> Peso: </span> <p>  ${infoAthlete[0].weight} kg. </p>
       <span> Deporte: </span> <p>  ${infoAthlete[0].sport} </p>
-
       <span> Medallas ganadas: </span> ${medalsAthlete}<p>  </p>
-
       </div>
       <input type="button" value="Volver" class="button" id="goBack"></input>
      `
@@ -239,9 +237,7 @@ function showStatistics() {
 
 // Función para selecionar tipo de orden
 function showSelected() {
-  const athletesWithoutDuplicates = filterData.removeDuplicateNames(dataAthletes);
   const newordered = orderData.orderedSelect(sortItem.value, athletesWithoutDuplicates);
-
   showOrderedAthletes(newordered); ///Volver a mostrar atletas ordenados (A-Z,Z-A,menor edad y mayor edad);
 }
 
@@ -267,7 +263,6 @@ for (let i = 0; i < navCategory.length; i++) {
     const category = navCategory[i].id;
     const edadminima = navCategory[i].getAttribute("data-min");
     const edadmaxima = navCategory[i].getAttribute("data-max");
-    const athletesWithoutDuplicates = filterData.removeDuplicateNames(dataAthletes);
     const getData = filterData.filterMultipleData(category, edadminima, edadmaxima,athletesWithoutDuplicates);
     
     displayCards(getData, containerAthletes)
@@ -275,13 +270,15 @@ for (let i = 0; i < navCategory.length; i++) {
 }
 // Evento para ordenar
 sortItem.addEventListener("change", showSelected);
-//   //***Funcion para estadisticas***
-// // function showStatistics1(){
 
-// //  let countryStatistics = filterData.dataCountryStatistics(athletes.medal,athletes.country); 
-// // console.log(countryStatistics);
-// // }
+// Evento al input de búsqueda 
+const inputSearch = document.querySelector('#search');
+inputSearch.addEventListener('keyup', displayResultSearch)
 
-//   // EVENTO PARA ESTADISTICAS 
-//  // statistics.addEventListener('click',showStatistics1)
-// }
+function displayResultSearch() {
+  const search = inputSearch.value.toLowerCase();
+  const resultadobusqueda = filterData.searchResult(athletesWithoutDuplicates, search);
+  hideHomePage()
+  displayCards(resultadobusqueda, containerAthletes)
+}
+
