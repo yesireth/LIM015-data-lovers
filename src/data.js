@@ -32,6 +32,16 @@ export const filterData = {
     } else {
       return age;
     }
+  }, 
+  searchResult: (atheletes, search) => {
+    return atheletes.filter((athlete) => {
+      if (athlete.name.toLowerCase().indexOf(search.toLowerCase()) > -1){
+        return athlete.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
+      } else if (athlete.sport.toLowerCase().indexOf(search.toLowerCase()) > -1) {
+        return athlete.sport.toLowerCase().indexOf(search.toLowerCase()) > -1;
+      }
+      return athlete.team.toLowerCase().indexOf(search.toLowerCase()) > -1;
+    })
   }
 }
 
@@ -92,7 +102,6 @@ export const statisticsData = {
       }
       return count;
     }, [])
-    console.log(medalsByCountry);
     return medalsByCountry;
   },
   sumMedalsOfAthlethe: (nameAthlete, athletes) => {
