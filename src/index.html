@@ -29,6 +29,7 @@
       </div>
       
       <nav class="nav">
+        <input type="button" value="Inicio" class="button" id="home">
         <input type="button" value="Deportes" class="button" id="sport">
         <input type="button" value="Atletas" class="button" id="athletes">
         <input type="button" value="Estadísticas" class="button" id="statistics">
@@ -112,8 +113,14 @@
     <section class="containerSectionAthletes">
       <!-- Sección que contiene la lista para ordenar  -->
       <section class="first-element">
-        <span>ORDENAR POR...  </span>
+        <section class="container-icon-filter">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+        <span>FILTRAR</span>
+        </section>
+        
+
         <section  class="container-list-order">
+          <span>ORDENAR POR...  </span>
           <select name="" id="order">
             <option value="A-Z"> Alfabético: A-Z</option>
             <option value="Z-A"> Alfabético: Z-A</option>
@@ -135,14 +142,14 @@
                 </ul>
               </li>
 
-              <li><a href="#">Medallas <i class="fas fa-angle-down"></i></a>
+              <li class="category"><a href="#">Medallas <i class="fas fa-angle-down"></i></a>
                 <ul class="nav-subcategory">
                   <li class="subcategory" id="Gold"><a href="#">Oro</a></li>
                   <li class="subcategory" id="Silver"><a href="#">Plata</a></li>
                   <li class="subcategory" id="Bronze"><a href="#">Bronce</a></li>
                 </ul>
               </li>
-              <li><a href="#"> Edades <i class="fas fa-angle-down"></i></a>
+              <li class="category"><a href="#"> Edades <i class="fas fa-angle-down"></i></a>
                 <ul class="nav-subcategory">
                   <li class="subcategory" data-min="0" data-max="17" id="-18"><a href="#"> Menor de 18 </a></li>
                   <li class="subcategory" data-min="18"  data-max="25" id="18-25"><a href="#"> 18 - 25 </a></li>
