@@ -11,6 +11,7 @@ const containerIntro = document.querySelector('.intro');
 const containerSlide = document.querySelector('.container-slider');
 const containerSport = document.querySelector('.containerSport');
 const containerStatistics = document.querySelector('.containerStatistics');
+const btnHome = document.getElementById("home");
 const btnAthletes = document.getElementById("athletes");
 const btnSport = document.getElementById("sport");
 const btnStatistics = document.getElementById("statistics");
@@ -36,24 +37,42 @@ containerSectionAthletes.style.display = 'none';
 // Funcion para selecionar slides
 const slides = document.querySelectorAll('.slide');
 const btnSlides = document.querySelectorAll('.btn-slide');
-let currentSlide = 1;
+let currentSlide = 1; //eslint-disable-line
 
-function slideCheck(slide){
+function activeSlide(slide){
   slides.forEach(slide =>  {
-    slide.classList.remove('active')
+    slide.classList.remove('active');
   });
-
+  btnSlides.forEach(btn => {
+    btn.classList.remove('btn-slide-active');
+  })
   slides[slide].classList.add('active');
-  btnSlides[slide].classList.add('active');
+  btnSlides[slide].classList.add('active' ,'btn-slide-active');
+}
+
+function checkSlide(numSlide) {
+  activeSlide(numSlide);
+  currentSlide = numSlide;
 }
 
 btnSlides.forEach((btn, index) => {
   btn.addEventListener(('click'), () => {
-    slideCheck(index);
-    currentSlide = index;
-    console.log(currentSlide)
+  let checked = index;
+  checkSlide(checked)
   });
 });
+
+// Funcion para volver a la home page
+function showHomePage() {
+  containerSectionAthletes.style.display = 'none';
+  containerSport.style.display = 'none';
+  containerStatistics.style.display = 'none';
+  containerWomen.style.display = 'block';
+  containerFeatured.style.display = 'block';
+  containerIntro.style.display = 'block';
+  containerSlide.style.display = 'flex';
+}
+
 
 // Función que muestra los cards con la información previa de los ateltas de acuerdo a un array dado.
 function displayCards(array, parent) {
@@ -153,9 +172,10 @@ function showSport() {
   for (let i = 0; i < cardSport.length; i++) {
     cardSport[i].addEventListener('click', () => {
       containerSport.style.display = 'none';
+      containerSectionAthletes.style.display = 'block';
       const selectedSport = cardSport[i].querySelector(".sport p").dataset.sport;
       const inforSport = athletes.athletes.filter(athlete => athlete.sport == selectedSport);
-      displayCards(inforSport, informaSport)
+      displayCards(inforSport, containerAthletes)
     })
   }
 }
@@ -254,6 +274,8 @@ function showOrderedAthletes(newordered) {
 btnAthletes.addEventListener("click", showAthletes);
 btnSport.addEventListener("click", showSport);
 btnStatistics.addEventListener("click", showStatistics);
+btnHome.addEventListener("click", showHomePage);
+
 
 // Eventos a Página de Atletas
 //const navCategory = document.querySelectorAll('.nav-subcategory');
@@ -277,8 +299,9 @@ inputSearch.addEventListener('keyup', displayResultSearch)
 
 function displayResultSearch() {
   const search = inputSearch.value.toLowerCase();
-  const resultadobusqueda = filterData.searchResult(athletesWithoutDuplicates, search);
-  hideHomePage()
-  displayCards(resultadobusqueda, containerAthletes)
+  const resultSearch = filterData.searchResult(athletesWithoutDuplicates, search);
+  hideHomePage();
+  containerSectionAthletes.style.display = 'flex';
+  displayCards(resultSearch, containerAthletes)
 }
 
