@@ -3,8 +3,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-
 }
 img {
     width: 100%;
@@ -24,7 +22,7 @@ body {
     background-attachment: fixed;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 600px) {
     body {
         background-image: url(images/bkgd4.png);
     }
@@ -40,33 +38,34 @@ body {
 /**** Barra de navegación ****/
 .navigation{
     display: flex;
-    border: solid 1px green;
-    /* gap: 100px; */
 }
 .nav{
     display: none;
 }
 
 .menu-bar {
-    max-width: 25px;
-    margin: 5px 5px 0 5px;
+    min-width: .7rem;
+    max-width: 1rem;
+    margin: .5rem .2rem 0 .5rem;
 }
 
 .logo{
-    margin: 4px 5px 0 5px;
-    max-width: 50px;
+    margin: .5rem .1rem 0 .1rem;
+    min-width: 1.5rem;
+    max-width: 2.5rem;
 }
 .input-icono {
-    margin: 3px 2px 2px 108px;
+    margin: .1rem .1rem .1rem 8rem;
     background-image: url('images/search-gray.png');
     background-repeat: no-repeat;
     background-position: right;
-    background-size: 20px;
+    background-size: 1.3rem;
     display: flex;
     align-items: center;
-    width: 200px;
-    padding-right: 28px;
-    height: 30px;
+    width: 30rem;
+    max-width: 35rem;
+    padding-right: 6rem;
+    height: 1.8rem;
     border: 1px solid #BEBCBC;
     border-radius: 3px; 
     background-color: white;
@@ -82,38 +81,45 @@ body {
     outline: none;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 600px) {
     .nav{
-        width: 500px;
+        width: 20rem;
         display: flex;
         justify-content:space-between;
         /* margin-right: ; */
     }
     .navigation{
-        padding: .5rem 0 .5rem 0;
-        /* gap: 710px; */
-        border: solid 1px red;
+        padding: .2rem 0 .2rem 0;
+    }
+    .button {
+        font-size: .5rem;
     }
     .logo{
-        margin-left: 30px;
+        /* margin-left: 30px; */
         max-width: 70px;
     }
     .input-icono {
-        margin: 10px 2px 2px 108px;
-        width: 300px;
+        margin: .6rem .1rem .1rem 4rem;
+        width: 50rem;
     }
     .input-icono input {
-        font-size: 0.9em;
+        font-size: 0.6em;
     }
     .menu-bar {
         display: none;
+    }
+    .container-slider {
+        justify-content: center;
+    }
+
+    .slider .buttons-slides {
+        bottom: -32px;
     }
 }
 @media (min-width: 1000px) {
     .navigation{
         padding: .5rem 0 .5rem 0;
         gap: 120px;
-        border: solid 1px red;
     }
 }
 
@@ -130,8 +136,6 @@ body {
 .container-slider {
     height: 450px;
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
     background-color: transparent;
 }
 
@@ -166,7 +170,7 @@ body {
 
 .slider .slide p {
     color: rgb(71, 71, 71);
-    font-size: 12px;
+    font-size: 10px;
     text-align: center;
 }
 
@@ -176,7 +180,7 @@ body {
     position: absolute;
     display: flex;
     justify-content: space-between;
-    bottom: -60px;
+    bottom: -50px;
 }
 
 .slider .buttons-slides .btn-slide {
@@ -188,58 +192,36 @@ body {
     cursor: pointer;
 }
 
-@media (min-width: 800px) {
-    .container-slider {
-        justify-content: center;
-    }
-
-    .slider .buttons-slides {
-        bottom: -32px;
-    }
-    /* .slider {
-        width: 600px;
-        height: 350px;
-        background-color: #1D212B;
-        position: relative;
-    }
-    .slider .buttons-slides {
-        z-index: 2;
-        width: 100%;
-        position: absolute;
-        display: flex;
-        justify-content: space-between;
-        bottom: -140px;
-    } */
+.buttons-slides .btn-slide.btn-slide-active {
+    background: rgb(24, 23, 23); 
 }
+
 
 /**** Sección de INTRO ****/
 .image-intro {
     display: none;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1200px) {
     .intro {
         display: flex;
         justify-content: space-between;
         padding: 1rem;
     }
-    .image-intro {
-        max-width: 55%;
-        height: 400px;
-        border-radius: 5px;
+    .navigation{
+        padding: .5rem 0 .5rem 0;
+        justify-content: space-evenly;
     }
-}
-
-@media (min-width: 1000px) {
-    .image-intro {
-        display: block;
+    .input-icono {
+        margin: .6rem .1rem .1rem 4rem;
+        width: 30rem;
     }
-    .text-intro {
-        flex-basis: 44%;  
-        line-height: 2;
+    .input-icono input {
+        font-size: 0.8em;
     }
-    p {
-        font-size: 17px;
+    .nav{
+        width: 20rem;
+        margin-right: 0;
     }
 }
 
@@ -272,21 +254,56 @@ body {
     flex-direction: column;
     gap: 15px;
 }
-/*El first element es el boton de ordenar */
+/*El first element es el boton de ordenar  y el icono de filtrar*/
 .first-element {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
+
+.container-icon-filter {
+    width: 90px;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+.container-icon-filter svg {
+    transform: rotate(90deg);
+}
+
+.container-icon-filter span, 
+.container-list-order span {
+    margin-top: 7px;
+}
+
+.container-list-order {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#order {
+    font-size: 14px;
+    font-weight: 400;
+    color: #444;
+    margin-top: 0px;
+}
+
+
 /*Second element es la lista de categorías y seccion de atletas */
 .second-element {
     display: flex;
 }
 
+.second-element .container-nav-category {
+    display: none;
+}
+
 .containerAthletes {
+    width: 97%;
+    padding: 5px;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    flex-basis: 90%;
+    gap: 15px;
 }
 
 /****Card de atletas ****/
@@ -376,6 +393,7 @@ li {
     border: 1px solid #DFD9D9;
     box-sizing: border-box;
     filter: drop-shadow(8px 4px 4px rgba(0, 0, 0, 0.25));
+    background-color: white;
 }
 
 .nav-subcategory {
@@ -385,16 +403,12 @@ li {
     text-decoration: none;
     color: black;
 }
+.nav-category a:hover {
+    text-decoration: underline;
+}
 .list-sport {
     overflow: scroll;
     height: 200px;
-}
-
-/**** Select para ordenar ****/
-#order {
-    font-size: 14px;
-    font-weight: 400;
-    color: #444;
 }
 
 /**** Ventana de mostrar todos los DEPORTES****/
