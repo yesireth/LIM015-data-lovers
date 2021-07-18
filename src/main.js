@@ -15,8 +15,9 @@ const btnHome = document.getElementById("home");
 const btnAthletes = document.getElementById("athletes");
 const btnSport = document.getElementById("sport");
 const btnStatistics = document.getElementById("statistics");
-const informaSport= document.querySelector('.inforSport');
 const sortItem= document.getElementById("order");
+// const menuBar = document.querySelector('menu-bar');
+
 
 // Data completa
 const dataAthletes = athletes.athletes;
@@ -73,6 +74,12 @@ function showHomePage() {
   containerSlide.style.display = 'flex';
 }
 
+// Muestra la navegacion al hacer click en el icono
+// function displayNavigation() {
+//   const nav = document.querySelector('nav')
+//   nav.style.display = 'block'
+
+// }
 
 // Función que muestra los cards con la información previa de los ateltas de acuerdo a un array dado.
 function displayCards(array, parent) {
@@ -111,7 +118,7 @@ function completeAthleteInformation() {
   const cardAthlete = document.getElementsByClassName('athlete');
   for (let i = 0; i < cardAthlete.length; i++) {
     cardAthlete[i].addEventListener('click', () => {
-      informaSport.style.display = 'none';//ocultar todos los atletas
+      // informaSport.style.display = 'none';//ocultar todos los atletas
       document.querySelector('.one-athlethe').innerHTML = '';  // Elimina el contenido previo en el container
       containerSectionAthletes.style.display = 'none';
       document.querySelector('.one-athlethe').style.display = 'block';
@@ -204,6 +211,7 @@ function showStatistics() {
   </thead>
   `
   const totalMedalGold = statisticsData.sumMedalsCountries('Gold', dataAthletes);
+  console.log(totalMedalGold)
   const totalMedalSilver = statisticsData.sumMedalsCountries('Silver', dataAthletes);
   const totalMedalBronze = statisticsData.sumMedalsCountries('Bronze', dataAthletes);
   uniqueCountry.forEach(country => {
@@ -300,8 +308,11 @@ inputSearch.addEventListener('keyup', displayResultSearch)
 function displayResultSearch() {
   const search = inputSearch.value.toLowerCase();
   const resultSearch = filterData.searchResult(athletesWithoutDuplicates, search);
+  console.log(resultSearch);
   hideHomePage();
   containerSectionAthletes.style.display = 'flex';
   displayCards(resultSearch, containerAthletes)
 }
 
+// Evento al icono del menu
+// menuBar.addEventListener('click', displayNavigation)
