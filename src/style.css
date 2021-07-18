@@ -8,13 +8,12 @@ img {
 }
 
 p {
-    font-size: 17px;
-    line-height: 2;
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 body {
     background-image: url(images/bkgd-mobile.png);
-    /* transform: matrix(0, -1, 1, 0, 0, 0); */
     background-repeat: no-repeat;
     background-size: 100% auto;
     font-family: 'Roboto', sans-serif;
@@ -40,20 +39,20 @@ body {
 }
 
 .logo{
-    margin: .5rem .1rem 0 .1rem;
+    margin: .2rem -4rem 0 .1rem;
     min-width: 1.5rem;
-    max-width: 2.5rem;
+    max-width: 2.8rem;
 }
 .input-icono {
-    margin: .1rem .1rem .1rem 8rem;
+    margin: .1rem .1rem .1rem 10rem;
     background-image: url('images/search-gray.png');
     background-repeat: no-repeat;
     background-position: right;
-    background-size: 1.3rem;
+    background-size: 1.2rem;
     display: flex;
     align-items: center;
-    width: 30rem;
-    max-width: 35rem;
+    width: 20rem;
+    max-width: 22rem;
     padding-right: 6rem;
     height: 1.8rem;
     border: 1px solid #BEBCBC;
@@ -68,10 +67,6 @@ body {
 }
 .input-icono input:focus {
     outline: none;
-}
-/**** Banner y titulo ****/
-.banner {
-    margin: 0;
 }
 
 /**** Slide ****/
@@ -112,7 +107,7 @@ body {
 
 .slider .slide p {
     color: rgb(71, 71, 71);
-    font-size: 10px;
+    font-size: 9px;
     text-align: center;
 }
 
@@ -127,8 +122,8 @@ body {
 
 .slider .buttons-slides .btn-slide {
     width: 50px;
-    height: 5px;
-    border-radius: 3px;
+    height: 3px;
+    border-radius: 6px;
     background: rgb(150, 149, 149);
     margin: 6px;
     cursor: pointer;
@@ -144,7 +139,6 @@ body {
 .women {
     background: transparent;
     line-height: 2;
-    /* width: 80%; */
     margin: 0 auto;
 }
 
@@ -153,7 +147,7 @@ body {
     justify-content: center;
     gap: 10px;
 }
-.imgewomen1{
+.imgewomen1, .imgewomen3{
     display: none;
 }
 .images-women img {
@@ -210,7 +204,7 @@ body {
 }
 
 .containerAthletes {
-    width: 97%;
+    width: 98%;
     padding: 5px;
     margin: 0 auto;
     display: flex;
@@ -235,12 +229,13 @@ body {
 .athlete-detail {
     background: linear-gradient(180deg, #C5E67A 0%, rgba(197, 230, 122, 0) 100%);
     box-shadow: 0px 10px 20px 0px #29292A12;
-    height: 400px;
+    height: 450px;
     width: 280px;
     margin: 0 auto;
     text-align: center;
     border-radius: 10px;
 }
+
 .pic-athlete {
     width: 80px;
     height: 90px;
@@ -252,9 +247,20 @@ body {
     height: 35px;
     text-align: center;
     color: white;
-    font-weight: 900;
     display: flex;
     margin: -5px auto 0 auto;
+    position: relative;
+}
+.name-athlete p {
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1.2;
+    width: 160px; 
+    height: 40px;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    margin: 0 0 0 -35%;
 }
 .country-athlete {
     height: 32px;
@@ -268,20 +274,9 @@ body {
     display: block;
 }
 .name-athlete img {
-    height: 43xpx;
+    height: 43px;
     width: 40px;
     margin-top: -5px;
-}
-.file-athlete p {
-    padding: .2rem;
-    border-radius: 10px;
-}
-
-.file-athlete span {
-    display: inline-block;
-    padding: .2rem;
-    font-weight: 900;
-    width: 150px;
 }
 .file-athlete {
     margin: 1rem 0 .5rem 1rem;
@@ -290,6 +285,18 @@ body {
     grid-template-areas: 'span p';
     gap: 2px;
 }
+
+.file-athlete p {
+    margin: 0;
+    padding: .1rem;
+}
+
+.file-athlete span {
+    padding: .2rem;
+    font-weight: 900;
+    width: 150px;
+}
+
 
 
 /**** Barra de navegación desplegable ****/
@@ -328,7 +335,6 @@ li {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    /* flex-basis: 90%; */
     margin: 0 auto;
     width: 85%;
     align-items: flex-start;
@@ -395,8 +401,6 @@ li {
 tbody tr {
     border-bottom: 1px solid #ccc;
     height: 3rem;
-    /* border-bottom: solid 1px black; */
-    /* background-color: black; */
 }
 
 /**** Footer ****/
@@ -450,20 +454,21 @@ tbody tr {
 /* Responsive  */
 @media (min-width: 600px){
     .images-women img {
-        width: 50% !important;
-        height: 250px !important;
+        width: 33,2%;
+        height: 400px;
+        max-width: 60%;
         justify-content: center;
     }
-    .imgewomen1{
-         display: none;
+    .imgewomen3{
+         display: block;
     }
     .text-center {
         text-align: center;
         font-size: 25px;
     }
     p {
-        font-size: 18px;
-        margin: 0 auto;
+        font-size: 14px;
+        line-height: 2;
     }
     .women{
         width: 95%;
@@ -472,37 +477,36 @@ tbody tr {
         background-image: url(images/bkgd4.png);
     }
     .nav{
-    width: 20rem;
-    display: flex;
-    justify-content:space-between;
-    /* margin-right: ; */
+        width: 20rem;
+        display: flex;
+        justify-content:space-between;
     }
     .navigation{
-    padding: .2rem 0 .2rem 0;
+        justify-content: space-between;
+        padding: .2rem 0 .2rem 0;
     }
     .button {
-    font-size: .5rem;
+        font-size: .9rem;
+        color: black;
     }
     .logo{
     /* margin-left: 30px; */
-    max-width: 70px;
+        max-width: 70px;
     }
     .input-icono {
-    margin: .6rem .1rem .1rem 4rem;
-    width: 50rem;
+        margin: .6rem 0 .5rem 4rem;
     }
     .input-icono input {
-    font-size: 0.6em;
+        font-size: 0.8em;
     }
     .menu-bar {
-    display: none;
+        display: none;
     }
     .container-slider {
-    justify-content: center;
+        justify-content: center;
     }
-
     .slider .buttons-slides {
-    bottom: -32px;
+        bottom: -40px;
     }
 }
 @media (min-width: 1200px){
@@ -518,7 +522,7 @@ tbody tr {
     .image-intro {
         display: flex;
         max-width: 90% ;
-        height: 70% ;
+        height:  360px;
         justify-content: space-between;
     }
     .text-center {
@@ -526,35 +530,32 @@ tbody tr {
         font-size: 20px;
     }
     p {
-        font-size: 15px;
+        font-size: 14px;
     }
     .text-intro {
         flex-basis: 48%;  
-        /* line-height: 2; */
-    }
-    .images-women, .imgewomen1{
-    width: 100%;
-    justify-content: center;
     }
     .women{
         width: 95%;
+    }
+    .images-women img {
+        width: 20%;
     }
     .imgewomen1{
         display: block;
     }
     .navigation{
-    padding: .5rem 0 .5rem 0;
-    justify-content: space-evenly;
+        padding: .5rem 0 .5rem 0;
+        justify-content: space-evenly;
     }
     .input-icono {
-    margin: .6rem .1rem .1rem 4rem;
-    width: 30rem;
+        margin: .6rem -10rem .1rem 4rem;
+        width: 20rem;
     }
     .input-icono input {
-    font-size: 0.8em;
+        font-size: 0.9em;
     }
     .nav{
-    width: 20rem;
-    margin-right: 0;
+        width: 20rem;
     }
 }

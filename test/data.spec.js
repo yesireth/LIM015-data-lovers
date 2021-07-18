@@ -1,5 +1,5 @@
-import { filterData, orderData, statisticsData} from "../src/data.js";
 
+import { filterData, orderData, statisticsData} from "../src/data.js";
 
 const array_mock_data= [
   {
@@ -339,3 +339,4 @@ describe('statisticsData', ()  => {
     expect(filterData.removeDuplicateNamese).not.toBeNull();
   });
 })
+
