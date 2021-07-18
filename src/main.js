@@ -1,5 +1,5 @@
 // Importamos funciones desde data.js
-import { filterData, statisticsData, orderData } from "./data.js";
+import { filterData, statisticsData, orderData,  } from "./data.js";
 import athletes from "./data/athletes/athletes.js";
 
 // Elementos del HTML 
@@ -125,6 +125,7 @@ function completeAthleteInformation() {
       const selectedAthleteName = cardAthlete[i].querySelector('.athlete p').dataset.name;
       const infoAthlete = filterData.selectedAthleteInformation(selectedAthleteName, dataAthletes);
       const medalsAthlete = statisticsData.sumMedalsOfAthlethe(selectedAthleteName, dataAthletes);
+      console.log(statisticsData.sumMedalsOfAthlethe('Denis Mikhaylovich Ablyazin', dataAthletes))
       const divAthlete = document.createElement('div');
       divAthlete.classList.add("athlete-detail");
       divAthlete.innerHTML = `
@@ -261,6 +262,7 @@ function showStatistics() {
   // console.log(statisticsData.totalMedals(dataAthletes));
   // console.log(statisticsData.sumMedalsByGender('F', dataAthletes));
   // console.log(statisticsData.sumMedalsByGender('M', dataAthletes));
+  console.log(statisticsData.sumMedalsCountries('Silver', dataAthletes))
 }
 
 // Función para selecionar tipo de orden
@@ -308,7 +310,7 @@ inputSearch.addEventListener('keyup', displayResultSearch)
 function displayResultSearch() {
   const search = inputSearch.value.toLowerCase();
   const resultSearch = filterData.searchResult(athletesWithoutDuplicates, search);
-  console.log(resultSearch);
+
   hideHomePage();
   containerSectionAthletes.style.display = 'flex';
   displayCards(resultSearch, containerAthletes)

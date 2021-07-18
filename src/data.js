@@ -1,10 +1,9 @@
-//gitimport athletes from "./data/athletes/athletes.js";
-
 export const filterData = {
   removeDuplicateNames: (athletes) => {
     let objAthletes = {};
     const filterDuplicateAthletes = athletes
     .filter(athlete => objAthletes[athlete.name] ? false : objAthletes[athlete.name] = true);
+ 
     return filterDuplicateAthletes;
   },
   
@@ -57,8 +56,7 @@ export const orderData = {
           return -1;
         }
         return 0;
-      }
-      )
+      })
     }
     else if (sortItem == "Z-A") {
       orderedarray = athletes.sort(function (a, b) {
@@ -69,20 +67,17 @@ export const orderData = {
           return -1;
         }
         return 0;
-      }
-      )
+      })
     }
     else if (sortItem == "menos-edad") {
       orderedarray = athletes.sort(function (a, b) {
         return a.age - b.age;
-      }
-      )
+      })
     }
     else if (sortItem == "mas-edad") {
       orderedarray = athletes.sort(function (a, b) {
         return b.age - a.age;
-      }
-      )
+      })
     }
   return orderedarray; 
   }
@@ -118,8 +113,7 @@ export const statisticsData = {
     if ('Silver' in medalsByAthlete){
       counter += medalsByAthlete.Silver;
     }
-      return counter;
-
+    return counter;
   }, 
   // totalMedals: (athletes) => {
   //   const totalMedals = athletes
