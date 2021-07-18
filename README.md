@@ -59,8 +59,10 @@ a la siguiente (Cumple con Definición de Terminado + Criterios de Aceptación).
 *Yo como investigador quiero:* Un botón para filtrar por categorías y poder agrupar por género y medallas ganadas.
 
 ## 3. Diseño :sparkles: 
-<!-- ### Diseño de la Interfaz de Usuario
+
 #### Prototipo de baja fidelidad
+![sitemap](https://github.com/margaZM/LIM015-data-lovers/blob/main/src/images/prototipo-baja.png?raw=true);
+<!-- ### Diseño de la Interfaz de Usuario
 Durante tu trabajo deberás haber hecho e iterado bocetos (_sketches_) de tu
 solución usando papel y lápiz. Te recomendamos tomar fotos de todas las
 iteraciones que hagas, que las subas a tu repositorio y las menciones en tu
