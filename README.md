@@ -60,8 +60,6 @@ a la siguiente (Cumple con Definición de Terminado + Criterios de Aceptación).
 
 ## 3. Diseño :sparkles: 
 
-#### Prototipo de baja fidelidad
-![sitemap](https://github.com/margaZM/LIM015-data-lovers/blob/main/src/images/prototipo-baja.png?raw=true);
 <!-- ### Diseño de la Interfaz de Usuario
 Durante tu trabajo deberás haber hecho e iterado bocetos (_sketches_) de tu
 solución usando papel y lápiz. Te recomendamos tomar fotos de todas las
@@ -90,6 +88,7 @@ mejoraste en tu propuesta final.
 - Se presenta un botón de Estadísticas que muestra las medallas ganadas por cada país participante.
 
 ### Prototipo de baja fidelidad
+![sitemap](https://github.com/margaZM/LIM015-data-lovers/blob/main/src/images/prototipo-baja.png?raw=true)
 
 ### Prototipo en figma
 
