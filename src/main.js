@@ -17,8 +17,8 @@ const btnGoogleMaps = document.getElementById("btnGoogleMaps");
 const btnSport = document.getElementById("sport");
 const btnStatistics = document.getElementById("statistics");
 const sortItem= document.getElementById("order");
-// const menuBar = document.querySelector('menu-bar');
-
+const menuBar = document.querySelector('.menu-bar i');
+const iconFilter = document.querySelector('.container-icon-filter i');
 
 // Data completa
 const dataAthletes = athletes.athletes;
@@ -71,16 +71,60 @@ function showHomePage() {
   containerStatistics.style.display = 'none';
   containerWomen.style.display = 'block';
   containerFeatured.style.display = 'block';
-  containerIntro.style.display = 'block';
+  containerIntro.style.display = 'flex';
   containerSlide.style.display = 'flex';
 }
 
-// Muestra la navegacion al hacer click en el icono
-// function displayNavigation() {
-//   const nav = document.querySelector('nav')
-//   nav.style.display = 'block'
+// Google Chart Participacion de mujeres
+google.charts.load('current', {'packages':['corechart']}); //eslint-disable-line
+google.charts.setOnLoadCallback(drawChart); //eslint-disable-line
 
-// }
+function drawChart() {
+  let tabla = [];
+  tabla.unshift(['Medallas', 'Cantidad'])
+  const dataCorrecta = statisticsData.sumMedalsByGender('F', dataAthletes)
+  // console.log(Object.values(dataCorrecta))
+
+  for (const key in dataCorrecta) {
+    tabla.push([key, dataCorrecta[key]])
+  }
+ 
+  const data = google.visualization.arrayToDataTable(tabla ); //eslint-disable-line
+
+  const options = {
+    title: 'Medallas obtenidas por las Mujeres'
+  };
+
+  const chart = new google.visualization.PieChart(document.getElementById('piechart')); //eslint-disable-line
+
+  chart.draw(data, options);
+}
+
+// Muestra la navegacion al hacer click en el icono de menu
+function displayNavigation() {
+  if(menuBar.classList.contains('fa-bars')){
+    menuBar.classList.remove('fa-bars');
+    menuBar.classList.add('fa-times', 'nav-show')
+    document.querySelector('nav').classList.remove('nav-hide')
+  } else {
+    menuBar.classList.remove('fa-times');
+    menuBar.classList.add('fa-bars')
+    document.querySelector('nav').classList.add('nav-hide')
+  }
+}
+
+// Muestra la lista de categorias al hacer click en el icono de filtrar
+function displayListCategory() {
+  if(iconFilter.classList.contains('fa-filter')){
+    iconFilter.classList.remove('fa-filter');
+    iconFilter.classList.add('fa-times', 'list-category-show')
+    document.querySelector('container-nav-category').classList.remove('list-category-hide')
+  } else {
+    iconFilter.classList.remove('fa-times');
+    iconFilter.classList.add('fa-filter')
+    document.querySelector('container-nav-category').classList.add('list-category-hide')
+  }
+}
 
 // Función que muestra los cards con la información previa de los ateltas de acuerdo a un array dado.
 function displayCards(array, parent) {
@@ -126,7 +170,7 @@ function completeAthleteInformation() {
       const selectedAthleteName = cardAthlete[i].querySelector('.athlete p').dataset.name;
       const infoAthlete = filterData.selectedAthleteInformation(selectedAthleteName, dataAthletes);
       const medalsAthlete = statisticsData.sumMedalsOfAthlethe(selectedAthleteName, dataAthletes);
-      console.log(statisticsData.sumMedalsOfAthlethe('Denis Mikhaylovich Ablyazin', dataAthletes))
+      // console.log(statisticsData.sumMedalsOfAthlethe('Denis Mikhaylovich Ablyazin', dataAthletes))
       const divAthlete = document.createElement('div');
       divAthlete.classList.add("athlete-detail");
       divAthlete.innerHTML = `
@@ -264,7 +308,7 @@ function showStatistics() {
   // console.log(statisticsData.totalMedals(dataAthletes));
   // console.log(statisticsData.sumMedalsByGender('F', dataAthletes));
   // console.log(statisticsData.sumMedalsByGender('M', dataAthletes));
- // console.log(statisticsData.sumMedalsCountries('Silver', dataAthletes))
+
 }
 
 // Función para selecionar tipo de orden
@@ -366,4 +410,8 @@ function displayResultSearch() {
 }
 
 // Evento al icono del menu
-// menuBar.addEventListener('click', displayNavigation)
+
+menuBar.addEventListener('click', displayNavigation)
+
+iconFilter.addEventListener('click', displayListCategory)
+
