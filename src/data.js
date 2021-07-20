@@ -121,10 +121,27 @@ export const statisticsData = {
   //   //return totalMedals;
   //   console.log(totalMedals);
   // },
-  // sumMedalsByGender: (gender, athletes) => {
-  //   const medalsByGender= athletes
-  //   .filter(athlete => athlete.gender === gender)
-  //   .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
+  sumMedalsByGender: (gender, athletes) => {
+    const medalsByGender= athletes
+    .filter(athlete => athlete.gender === gender)
+    .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
+    return medalsByGender;
+  }
+  // sumMedalsByGender: (medal, athletes) => {
+  //   const medalsByGender = athletes
+  //   .filter(athlete => athlete.medal === medal )
+  //   // .reduce((count, athlete) => (count[athlete.team] ? count[athlete.team] += 1 : count[athlete.team] = 1, count), [])
+  //   .reduce((count, athlete) => {
+  //     if (count[athlete.noc]){
+  //       count[athlete.noc] += 1;
+  //     } 
+  //      else {
+  //       count[athlete.noc] = 1
+  //     }
+  //     return count;
+  //   }, [])
   //   return medalsByGender;
+  // },
+  
 }
 
