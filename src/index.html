@@ -26,7 +26,7 @@
       <div class="input-icono">
         <input type="text" name="input" id="search" placeholder="Buscar...">
       </div>
-      
+
       <nav class="nav">
         <input type="button" value="Inicio" class="button" id="home">
         <input type="button" value="Deportes" class="button" id="sport">
@@ -37,6 +37,8 @@
 
     <!-- Banner de la página -->
     <img id="banner" src="./images/banner.png" alt="banner">
+    <!-- sección de charts -->
+    <div id="regions_div"></div>
 
     <!-- Sección de slide -->
     <section class="container-slider">
@@ -54,8 +56,8 @@
           <p>Se conformó por primera vez un Equipo Olímpico de Atletas Refugiados que fue representado por 10 atletas.</p>
         </section>
         <section class="slide">
-          <img src="images/4.jpg" alt="Protestas mujeres iranies"> 
-           <p>Una Iraní alzó la voz para protestar en los Juegos Olímpicos de Río 2016 clamando que se permita a las mujeres iraníes entrar en los estadios en su pais.</p> 
+          <img src="images/4.jpg" alt="Protestas mujeres iranies">
+           <p>Una Iraní alzó la voz para protestar en los Juegos Olímpicos de Río 2016 clamando que se permita a las mujeres iraníes entrar en los estadios en su pais.</p>
          </section>
         <section class="buttons-slides">
           <section class="btn-slide active"> </section >
@@ -64,7 +66,7 @@
           <section class="btn-slide"> </section >
         </section>
       </section>
-    </section>   <!-- Cierre de Sección de Slide --> 
+    </section>   <!-- Cierre de Sección de Slide -->
   </header>
 
   <main>
@@ -91,7 +93,7 @@
 
     <!-- Sección de Mujeres Atletas en los Juegos Olimpicos 2016 -->
     <section class="women">
-      <h2 class="text-center">Participación Femenina</h2> 
+      <h2 class="text-center">Participación Femenina</h2>
       <section class="images-women">
         <img class="imgewomen1" src="./images/mujer1.jpg" alt="Simone Manuel en Río 2016">
         <img class="imgewomen2" src="./images/mujer2.jpg" alt="Katie Ledecky en Río 2016">
@@ -117,7 +119,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
         <span>FILTRAR</span>
         </section>
-        
+
 
         <section  class="container-list-order">
           <span>ORDENAR POR...  </span>
@@ -166,7 +168,7 @@
         </section>  <!-- Cierre de Sección de container del nav  -->
         <!-- Sección que contiene todos los atletas  -->
         <section class="containerAthletes"></section>
-      </section>    
+      </section>
 
     </section> <!-- Cierre de Sección de container atletas   -->
 
@@ -176,7 +178,7 @@
     <section class="containerStatistics"></section>
   </main>
   <!-- Sección de footer -->
-  <footer class="footer"> 
+  <footer class="footer">
     <nav class="nav-footer">
 
       <input type="button" value="Deportes" class="button">
@@ -189,6 +191,22 @@
   </footer>
 
   <script src="main.js" type="module"></script>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
+
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages':['geochart'],
+      // Note: you will need to get a mapsApiKey for your project.
+      // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+      'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    
+  </script>
+
+
+
 </body>
 
 </html>

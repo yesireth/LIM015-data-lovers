@@ -1,5 +1,5 @@
 // Importamos funciones desde data.js
-import { filterData, statisticsData, orderData,  } from "./data.js";
+import { filterData, statisticsData, orderData } from "./data.js";
 import athletes from "./data/athletes/athletes.js";
 
 // Elementos del HTML 
@@ -13,6 +13,7 @@ const containerSport = document.querySelector('.containerSport');
 const containerStatistics = document.querySelector('.containerStatistics');
 const btnHome = document.getElementById("home");
 const btnAthletes = document.getElementById("athletes");
+const btnGoogleMaps = document.getElementById("btnGoogleMaps");
 const btnSport = document.getElementById("sport");
 const btnStatistics = document.getElementById("statistics");
 const sortItem= document.getElementById("order");
@@ -188,7 +189,7 @@ function showSport() {
   }
 }
 
-// Función para mostrar los paises con las estadísticas 
+
 function showStatistics() {
   document.querySelector('.one-athlethe').style.display = 'none';
   containerSectionAthletes.style.display = 'none';
@@ -212,7 +213,6 @@ function showStatistics() {
   </thead>
   `
   const totalMedalGold = statisticsData.sumMedalsCountries('Gold', dataAthletes);
-  console.log(totalMedalGold)
   const totalMedalSilver = statisticsData.sumMedalsCountries('Silver', dataAthletes);
   const totalMedalBronze = statisticsData.sumMedalsCountries('Bronze', dataAthletes);
   uniqueCountry.forEach(country => {
@@ -255,6 +255,8 @@ function showStatistics() {
     trTable.innerHTML = trDinamico
     
     tbodyTable.appendChild(trTable);
+    console.log(totalMedalGold_temp +  totalMedalSilver_temp + totalMedalBronze_temp);
+    
   })
   tableStatistics.appendChild(tbodyTable)
   containerStatistics.appendChild(tableStatistics);
@@ -262,7 +264,7 @@ function showStatistics() {
   // console.log(statisticsData.totalMedals(dataAthletes));
   // console.log(statisticsData.sumMedalsByGender('F', dataAthletes));
   // console.log(statisticsData.sumMedalsByGender('M', dataAthletes));
-  console.log(statisticsData.sumMedalsCountries('Silver', dataAthletes))
+ // console.log(statisticsData.sumMedalsCountries('Silver', dataAthletes))
 }
 
 // Función para selecionar tipo de orden
@@ -280,12 +282,59 @@ function showOrderedAthletes(newordered) {
   displayCards(newordered, containerAthletes);
 }
 
+const showCharts1 = document.getElementById('regions_div');
+// Función. para mostrar los paises con las estadísticas 
+function showCharts() {
+
+  showStatistics()
+  hideHomePage()
+  // const showCharts = document.createElement('div');
+  // showCharts.classList.add("athlete-detail");
+  // showCharts.innerHTML = `
+  //     <p> Mapa de medallas de oro </p>
+  //     `
+
+  // showCharts1.appendChild('showCharts');
+
+  google.charts.setOnLoadCallback(drawRegionsMap);//eslint-disable-line
+}
+function drawRegionsMap() {
+
+  const totalMedalGold = statisticsData.sumMedalsCountries('Gold', dataAthletes);
+  //const totalMedalSilver = statisticsData.sumMedalsCountries('Silver', dataAthletes);
+  //const totalMedalBronze = statisticsData.sumMedalsCountries('Bronze', dataAthletes);
+
+  //let table = [];
+
+ // let oro= [];
+  let table=[];
+  for (var i in totalMedalGold) {
+    table.push([i.substring(0, 2), totalMedalGold[i]]);
+  }
+  // for( let a in totalMedalSilver){
+  //  plata.push([a.substring(0, 2),totalMedalSilver [a]]);
+ // }
+  //let table = Array(...oro,...plata);
+  table[0] = ['Country', 'Total medallas de Oro'];
+  //table[1] = ['Country', 'medallas de Plata'];
+
+ console.log(table);
+
+  var data = google.visualization.arrayToDataTable(table); //eslint-disable-line
+  var options = {};
+  
+  var chart = new google.visualization.GeoChart(document.getElementById('regions_div')); //eslint-disable-line
+
+  chart.draw(data, options);
+}
+
 // Eventos de la HomePage
+
 btnAthletes.addEventListener("click", showAthletes);
 btnSport.addEventListener("click", showSport);
-btnStatistics.addEventListener("click", showStatistics);
+//btnStatistics.addEventListener("click", showStatistics);
+btnStatistics.addEventListener("click", showCharts,showStatistics);
 btnHome.addEventListener("click", showHomePage);
-
 
 // Eventos a Página de Atletas
 //const navCategory = document.querySelectorAll('.nav-subcategory');

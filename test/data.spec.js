@@ -5,7 +5,7 @@ const array_mock_data= [
   {
     name: 'David Sagitovich Belyavsky',
     gender: 'M',
-    sprt: 'Gymnastics',
+    sport: 'Gymnastics',
     team: 'Russia',
     noc: 'RUS',
     age: 17,
@@ -260,11 +260,15 @@ describe('filterData.searchResult()',() =>  {
   it('Deberia ser una funcion', () => {
     expect(typeof filterData.searchResult).toBe('function');
   });
-  it('Deberia ser la longitud igual a 3 para la busqueda en input de "ro"', () =>  {
-    const array_result = filterData.searchResult(array_mock_removeduplicates, 'ro');
-    console.log(array_result.length);
-    expect(array_result.length).toBe(3);
-  })
+  it('Deberia ser la longitud igual a 1 para la busqueda en input de "Patimat"', () =>  {
+    const array_result = filterData.searchResult(array_mock_removeduplicates, 'Patimat');
+    expect(array_result.length).toBe(1);
+  });
+  it('Deberia ser la longitud igual a 1 para la busqueda en input de "Taekwondo"', () =>  {
+    const array_result = filterData.searchResult(array_mock_removeduplicates, 'Taekwondo');
+    expect(array_result.length).toBe(1);
+  });
+
   it('No deberia ser Null', () => {
     expect(filterData.removeDuplicateNamese).not.toBeNull();
   });
@@ -288,13 +292,14 @@ describe('orderData.orderedSelect()',() =>  {
     const array_mock_result= orderData.orderedSelect(array_mock_data, "ordenar Z-A" );
     expect(array_mock_data.name ).toEqual(array_mock_result);
   })
-  it ('Deberia retornar "17" , "21", "24","24" "26", "31" menos de edad', () => {
-    const array_mock_result= orderData.orderedSelect(array_mock_data, "menos-edad" );
-    expect(array_mock_data.age ).toEqual(array_mock_result);
-  });
+  // it ('Deberia retornar "17" , "21", "24","24" "26", "31" menos de edad', () => {
+  //   const array_mock_result= orderData.orderedSelect(array_mock_data, "menos-edad" );
+  //   expect(array_mock_result).toBeSorted({ ascending: true });
+  // });
   it ('Deberia retornar "31","26", "24","24", "21", 17"  mas edad', () => {
     const array_mock_result= orderData.orderedSelect(array_mock_data, "mas-edad" );
-    expect(array_mock_data.age ).toEqual(array_mock_result);
+    expect(array_mock_data.name).toEqual(array_mock_result);
+    
   });
   it('No deberia ser Null', () => {
     expect(filterData.removeDuplicateNamese).not.toBeNull();
