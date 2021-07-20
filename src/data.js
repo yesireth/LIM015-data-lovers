@@ -47,37 +47,30 @@ export const filterData = {
 export const orderData = {
   orderedSelect: (sortItem, athletes) => {
     let orderedarray;
+    let newAthletes = Array.from(athletes);
+
     if (sortItem == "A-Z") {
-      orderedarray = athletes.sort(function (a, b) {
-        if (a.name.toUpperCase() > b.name.toUpperCase()) {
-          return 1;
-        }
-        else if (a.name.toUpperCase() < b.name.toUpperCase()) {
-          return -1;
-        }
-        return 0;
+      orderedarray = newAthletes.sort(function (a, b) { return a.name.toUpperCase() == b.name.toUpperCase() ?  0 : a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1;
       })
     }
     else if (sortItem == "Z-A") {
-      orderedarray = athletes.sort(function (a, b) {
-        if (a.name.toUpperCase() < b.name.toUpperCase()) {
-          return 1;
-        }
-        else if (a.name.toUpperCase() > b.name.toUpperCase()) {
-          return -1;
-        }
-        return 0;
+      orderedarray = newAthletes.sort(function (a, b) {
+       return a.name.toUpperCase() == b.name.toUpperCase() ?  0 : a.name.toUpperCase() < b.name.toUpperCase() ? 1 : -1;
+        //a.name.toUpperCase() < b.name.toUpperCase() ? 1 : -1;
+        // if (a.name.toUpperCase() < b.name.toUpperCase()) {
+        //   return 1;
+        // }
+        // else if (a.name.toUpperCase() > b.name.toUpperCase()) {
+        //   return -1;
+        // }
+        // return 0;
       })
     }
-    else if (sortItem == "menos-edad") {
-      orderedarray = athletes.sort(function (a, b) {
-        return a.age - b.age;
-      })
+    else if (sortItem === "menos-edad") {
+      orderedarray = newAthletes.sort((a, b) => a.age - b.age);
     }
-    else if (sortItem == "mas-edad") {
-      orderedarray = athletes.sort(function (a, b) {
-        return b.age - a.age;
-      })
+    else if (sortItem ==="mas-edad") {
+      orderedarray = newAthletes.sort((a, b) => b.age - a.age);
     }
   return orderedarray; 
   }
