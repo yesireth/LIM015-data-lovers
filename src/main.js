@@ -6,14 +6,12 @@ import athletes from "./data/athletes/athletes.js";
 const containerSectionAthletes = document.querySelector('.containerSectionAthletes');
 const containerAthletes = document.querySelector('.containerAthletes');
 const containerWomen = document.querySelector('.women');
-const containerFeatured = document.querySelector('.featured');
 const containerIntro = document.querySelector('.intro');
 const containerSlide = document.querySelector('.container-slider');
 const containerSport = document.querySelector('.containerSport');
 const containerStatistics = document.querySelector('.containerStatistics');
 const btnHome = document.getElementById("home");
 const btnAthletes = document.getElementById("athletes");
-// const btnGoogleMaps = document.getElementById("btnGoogleMaps");
 const btnSport = document.getElementById("sport");
 const btnStatistics = document.getElementById("statistics");
 const sortItem= document.getElementById("order");
@@ -25,14 +23,24 @@ const dataAthletes = athletes.athletes;
 //Data filtrada
 const athletesWithoutDuplicates = filterData.removeDuplicateNames(dataAthletes);
 
-
 // Función que oculta información previa del Home Page
 function hideHomePage() {
   containerWomen.style.display = 'none';
-  containerFeatured.style.display = 'none';
   containerIntro.style.display = 'none';
   containerSlide.style.display = 'none';
 }
+
+// Funcion para volver a la home page
+function showHomePage() {
+  hideNavigation();
+  containerSectionAthletes.style.display = 'none';
+  containerSport.style.display = 'none';
+  containerStatistics.style.display = 'none';
+  containerWomen.style.display = 'block';
+  containerIntro.style.display = 'flex';
+  containerSlide.style.display = 'flex';
+}
+
 // Ocultamos la sección de atletas de la Home Page 
 containerSectionAthletes.style.display = 'none';
 
@@ -60,33 +68,28 @@ function checkSlide(numSlide) {
 btnSlides.forEach((btn, index) => {
   btn.addEventListener(('click'), () => {
   let checked = index;
-  checkSlide(checked)
+  checkSlide(checked);
   });
 });
 
-// Funcion para volver a la home page
-function showHomePage() {
-  containerSectionAthletes.style.display = 'none';
-  containerSport.style.display = 'none';
-  containerStatistics.style.display = 'none';
-  containerWomen.style.display = 'block';
-  containerFeatured.style.display = 'block';
-  containerIntro.style.display = 'flex';
-  containerSlide.style.display = 'flex';
-  hidechart.style.display='none'
-}
-
-// Muestra la navegacion al hacer click en el icono de menu
+// Muestra la navegacion al hacer click en el icono de menu de responsive
 function displayNavigation() {
   if(menuBar.classList.contains('fa-bars')){
     menuBar.classList.remove('fa-bars');
-    menuBar.classList.add('fa-times', 'nav-show')
-    document.querySelector('nav').classList.remove('nav-hide')
+    menuBar.classList.add('fa-times', 'nav-show');
+    document.querySelector('nav').classList.remove('nav-hide');
   } else {
     menuBar.classList.remove('fa-times');
-    menuBar.classList.add('fa-bars')
-    document.querySelector('nav').classList.add('nav-hide')
+    menuBar.classList.add('fa-bars');
+    document.querySelector('nav').classList.add('nav-hide');
   }
+}
+
+// Oculta la navegacion en responsive
+function hideNavigation() {
+  menuBar.classList.remove('fa-times'); // Elimina el icono de x
+  document.querySelector('nav').classList.add('nav-hide'); // Oculta la navegacion 
+  menuBar.classList.add('fa-bars'); // Muestra el icono de menu
 }
 
 // Muestra la lista de categorias al hacer click en el icono de filtrar
@@ -106,14 +109,12 @@ function drawChart() {
   let tabla = [];
   tabla.unshift(['Medallas', 'Cantidad'])
   const dataCorrecta = statisticsData.sumMedalsByGender('F', dataAthletes)
-  // console.log(Object.values(dataCorrecta))
 
   for (const key in dataCorrecta) {
     tabla.push([key, dataCorrecta[key]])
   }
  
   const data = google.visualization.arrayToDataTable(tabla ); //eslint-disable-line
-
   const options = {
     title: 'Medallas obtenidas por las Mujeres'
   };
@@ -128,13 +129,13 @@ function displayCards(array, parent) {
   parent.innerHTML = '';
   // Crea una card para cada atleta y los inserta al HTML
   array.forEach(element => {
-    const divAthlete = document.createElement('div');
+    const divAthlete = document.createElement('figure');
     divAthlete.classList.add("athlete")
     divAthlete.innerHTML = `
     <img class='country-athlete' src='./images/flags/${element.noc}.png'>
     <img class='pic-athlete' src='./images/${element.gender}.png'>
-    <div class='name-athlete'> <img class='sport-athlete'src='./images/images-sport/${element.sport}.svg' 
-    alt='${element.sport}'> <p data-name = '${element.name}'>${element.name}</p> </div>
+    <figure class='name-athlete'> <img class='sport-athlete'src='./images/images-sport/${element.sport}.svg' 
+    alt='${element.sport}'> <p data-name = '${element.name}'>${element.name}</p> </figure>
     <p data-sport = '${element.sport}'> Deporte: ${element.sport} </p>
     <p>Edad: ${element.age} </p>
    `
@@ -143,12 +144,9 @@ function displayCards(array, parent) {
   completeAthleteInformation();
 }
 
-// Función para mostrar todos los atletas
+// Función para mostrar todos los atletas y Ocultar las secciones previas.
 function showAthletes() {
-  // Ocultamos secciones previas y mostramos la actual
-  menuBar.classList.remove('fa-times');
-  document.querySelector('nav').classList.add('nav-hide')
-  menuBar.classList.add('fa-bars')
+  hideNavigation();
   hideHomePage();
   containerSport.style.display = 'none';
   containerStatistics.style.display = 'none';
@@ -158,19 +156,17 @@ function showAthletes() {
   displayCards(athletesWithoutDuplicates, containerAthletes);
 }
 
-// // Función que agrega evento a cada card de Atletas para mostrar información completa
+// Función que agrega evento a cada card de Atletas para mostrar información completa
 function completeAthleteInformation() {
-  const cardAthlete = document.getElementsByClassName('athlete');
+  const cardAthlete = document.getElementsByClassName('athlete'); // traemos todas las tarjetas del DOM;
   for (let i = 0; i < cardAthlete.length; i++) {
     cardAthlete[i].addEventListener('click', () => {
-      // informaSport.style.display = 'none';//ocultar todos los atletas
       document.querySelector('.one-athlethe').innerHTML = '';  // Elimina el contenido previo en el container
       containerSectionAthletes.style.display = 'none';
       document.querySelector('.one-athlethe').style.display = 'block';
       const selectedAthleteName = cardAthlete[i].querySelector('.athlete p').dataset.name;
       const infoAthlete = filterData.selectedAthleteInformation(selectedAthleteName, dataAthletes);
       const medalsAthlete = statisticsData.sumMedalsOfAthlethe(selectedAthleteName, dataAthletes);
-      // console.log(statisticsData.sumMedalsOfAthlethe('Denis Mikhaylovich Ablyazin', dataAthletes))
       const divAthlete = document.createElement('div');
       divAthlete.classList.add("athlete-detail");
       divAthlete.innerHTML = `
@@ -203,9 +199,7 @@ function completeAthleteInformation() {
 
 // // Funcion para mostrar todos los deportes
 function showSport() {
-  menuBar.classList.remove('fa-times');
-  document.querySelector('nav').classList.add('nav-hide')
-  menuBar.classList.add('fa-bars')
+  hideNavigation();
   hideHomePage();
   containerSectionAthletes.style.display = 'none';
   document.querySelector('.one-athlethe').style.display = 'none';
@@ -237,9 +231,7 @@ function showSport() {
 }
 
 function showStatistics() {
-  menuBar.classList.remove('fa-times');
-  document.querySelector('nav').classList.add('nav-hide');
-  menuBar.classList.add('fa-bars')
+  hideNavigation();
   document.querySelector('.one-athlethe').style.display = 'none';
   containerSectionAthletes.style.display = 'none';
   containerSport.style.display = 'none';
@@ -267,32 +259,29 @@ function showStatistics() {
   const totalMedalBronze = statisticsData.sumMedalsCountries('Bronze', dataAthletes);
   uniqueCountry.forEach(country => {
     let trTable = document.createElement('tr');
-
-
-    let trDinamico,totalMedalBronze_temp,totalMedalGold_temp,totalMedalSilver_temp;
-
-    trDinamico=`<td class='cell-flag'> <img class='flag' src='./images/flags/${country}.png' alt='flag-${country}'> </td>
+    let trDinamico, totalMedalBronze_temp, totalMedalGold_temp, totalMedalSilver_temp;
+    trDinamico = `<td class='cell-flag'> <img class='flag' src='./images/flags/${country}.png' alt='flag-${country}'> </td>
     <td> ${country} </td>`
 
-    if(totalMedalGold[country] ===undefined){
-      totalMedalGold_temp = 0
-      trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'>0</td>` 
+    if(totalMedalGold[country] === undefined){
+      totalMedalGold_temp = 0;
+      trDinamico += `<td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> 0 </td>` 
     }
     else{
       totalMedalGold_temp = totalMedalGold[country]
-      trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> ${totalMedalGold[country]} </td>` 
+      trDinamico += `<td class='text-center'> <img class='icon-medal' src='./images/Gold.png' alt='gold-medal'> ${totalMedalGold[country]} </td>` 
     }
 
-    if(totalMedalSilver[country] ===undefined){
-      totalMedalSilver_temp= 0
+    if(totalMedalSilver[country] === undefined){
+      totalMedalSilver_temp = 0;
       trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Silver.png' alt='silver-medal'>0</td>` 
     }
     else{
-      totalMedalSilver_temp= totalMedalSilver[country]
+      totalMedalSilver_temp = totalMedalSilver[country]
       trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Silver.png' alt='silver-medal'> ${totalMedalSilver[country]} </td>` 
     }
 
-    if(totalMedalBronze[country] ===undefined){
+    if(totalMedalBronze[country] === undefined){
       totalMedalBronze_temp = 0;
       trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'>0</td>` 
     }
@@ -300,20 +289,18 @@ function showStatistics() {
       totalMedalBronze_temp = totalMedalBronze[country]
       trDinamico+=`<td class='text-center'> <img class='icon-medal' src='./images/Bronze.png' alt='bronze-medal'>${totalMedalBronze[country]}</td>` 
     }
-    trDinamico+=`<td class='text-center'> ${totalMedalGold_temp +  totalMedalSilver_temp + totalMedalBronze_temp} </td>`
-    
-    trTable.innerHTML = trDinamico
-    
+    trDinamico += `<td class='text-center'> ${totalMedalGold_temp +  totalMedalSilver_temp + totalMedalBronze_temp} </td>`
+    trTable.innerHTML = trDinamico;
     tbodyTable.appendChild(trTable);
   })
-  tableStatistics.appendChild(tbodyTable)
+  tableStatistics.appendChild(tbodyTable);
   containerStatistics.appendChild(tableStatistics);
 }
 
 // Función para selecionar tipo de orden
 function showSelected() {
   const newordered = orderData.orderedSelect(sortItem.value, athletesWithoutDuplicates);
-  showOrderedAthletes(newordered); ///Volver a mostrar atletas ordenados (A-Z,Z-A,menor edad y mayor edad);
+  showOrderedAthletes(newordered); ///Volver a mostrar atletas ordenados (A-Z, Z-A, menor edad y mayor edad);
 }
 
 // Función que muestra los atletas con el orden seleccionado
@@ -340,9 +327,7 @@ function showCharts() {
   // showCharts.innerHTML = `
   //     <p> Mapa de medallas de oro </p>
   //     `
-
   // showCharts1.appendChild('showCharts');
-
   google.charts.setOnLoadCallback(drawRegionsMap);//eslint-disable-line
 }
 function drawRegionsMap() {
@@ -350,9 +335,7 @@ function drawRegionsMap() {
   const totalMedalGold = statisticsData.sumMedalsCountries('Gold', dataAthletes);
   //const totalMedalSilver = statisticsData.sumMedalsCountries('Silver', dataAthletes);
   //const totalMedalBronze = statisticsData.sumMedalsCountries('Bronze', dataAthletes);
-
   //let table = [];
-
  // let oro= [];
   let table=[];
   for (var i in totalMedalGold) {
@@ -364,21 +347,19 @@ function drawRegionsMap() {
   //let table = Array(...oro,...plata);
   table[0] = ['Country', 'Total medallas de Oro'];
   //table[1] = ['Country', 'medallas de Plata'];
-
 //  console.log(table);
 
-  var data = google.visualization.arrayToDataTable(table); //eslint-disable-line
-  var options = {};
-  
-  var chart = new google.visualization.GeoChart(document.getElementById('regions_div')); //eslint-disable-line
-
+  const data = google.visualization.arrayToDataTable(table); //eslint-disable-line
+  const options = {
+    title: 'Paises con Medallas de Oro'
+  };
+  const chart = new google.visualization.GeoChart(document.getElementById('regions_div')); //eslint-disable-line
   chart.draw(data, options);
 }
 
 // Eventos de la HomePage
 btnAthletes.addEventListener("click", showAthletes);
 btnSport.addEventListener("click", showSport);
-//btnStatistics.addEventListener("click", showStatistics);
 btnStatistics.addEventListener("click", showCharts,showStatistics);
 btnHome.addEventListener("click", showHomePage);
 
@@ -413,4 +394,3 @@ function displayResultSearch() {
 menuBar.addEventListener('click', displayNavigation)
 iconFilter.addEventListener('click', displayListCategory)
 document.querySelector('#icon-x').addEventListener('click', hideListCategories);
-

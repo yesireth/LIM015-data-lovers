@@ -131,7 +131,7 @@ body {
     border-radius: 5px;
 }
 
-.slider .slide p {
+.slider .slide figcaption {
     color: rgb(71, 71, 71);
     font-size: 9px;
     text-align: center;
@@ -207,12 +207,18 @@ body {
 
 .container-icon-filter span, 
 .container-list-order span {
-    margin-top: 7px;
+    margin-top: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
 }
 
 .container-list-order {
     display: flex;
     justify-content: space-evenly;
+}
+.container-list-order span {
+    margin-top: 3px;
+    font-weight: 900;
 }
 
 #order {
@@ -339,7 +345,7 @@ li {
     border: 1px solid #DFD9D9;
     box-sizing: border-box;
     filter: drop-shadow(8px 4px 4px rgba(0, 0, 0, 0.25));
-    background-color: rgba(255, 255, 255, .95);
+    background-color: rgba(255, 255, 255, .85);
     display: none;
 }
 
@@ -486,6 +492,7 @@ tbody tr {
     background-color: #048a6f;
     padding: .5rem;
     border-radius: 20px;
+    text-align: center;
 }
 
 #goBack:hover {

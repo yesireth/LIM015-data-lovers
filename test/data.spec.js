@@ -284,22 +284,21 @@ describe('orderData.orderedSelect()',() =>  {
   it ('Deberia ser una funcion', () =>{
     expect(typeof orderData.orderedSelect).toBe('function');
   });
-  it ('Deberia retornar "Denis Mikhaylovich Ablyazin", "Giovanni Abagnale", "Luc Abalo", de la A-Z', () => {
-    const array_mock_result= orderData.orderedSelect(array_mock_data, "ordenar A-Z" );
-    expect(array_mock_data.name).toEqual(array_mock_result);
+  it ('Deberia retornar "David Sagitovich Belyavsky, Denis Mikhaylovich Ablyazin", "Luc Abalo", "Patimat Abakarova", "Rachael Alexis Adams" de la A-Z', () => {
+    const array_mock_result= orderData.orderedSelect("A-Z", array_mock_data);
+    expect(array_mock_result[0].name).toEqual("David Sagitovich Belyavsky");
   })
-  it ('Deberia retornar "Luc Abalo", "Giovanni Abagnale","Denis Mikhaylovich Ablyazin" de la Z-A', () => {
-    const array_mock_result= orderData.orderedSelect(array_mock_data, "ordenar Z-A" );
-    expect(array_mock_data.name ).toEqual(array_mock_result);
+  it ('Deberia retornar "Rachael Alexis Adams", "Patimat Abakarova", "Luc Abalo","Denis Mikhaylovich Ablyazin" de la Z-A', () => {
+    const array_mock_result= orderData.orderedSelect("Z-A", array_mock_data);
+    expect(array_mock_result[0].name).toEqual("Rachael Alexis Adams");
   })
-  // it ('Deberia retornar "17" , "21", "24","24" "26", "31" menos de edad', () => {
-  //   const array_mock_result= orderData.orderedSelect(array_mock_data, "menos-edad" );
-  //   expect(array_mock_result).toBeSorted({ ascending: true });
-  // });
+  it ('Deberia retornar "17", "21", "24","24" "26", "31" menos de edad', () => {
+    const array_mock_result= orderData.orderedSelect("menos-edad", array_mock_removeduplicates );
+    expect(array_mock_result[0].age).toEqual(17);
+  });
   it ('Deberia retornar "31","26", "24","24", "21", 17"  mas edad', () => {
-    const array_mock_result= orderData.orderedSelect(array_mock_data, "mas-edad" );
-    expect(array_mock_data.name).toEqual(array_mock_result);
-    
+    const array_mock_result = orderData.orderedSelect("mas-edad", array_mock_removeduplicates);
+    expect(array_mock_result[0].age).toEqual(31);
   });
   it('No deberia ser Null', () => {
     expect(filterData.removeDuplicateNamese).not.toBeNull();
@@ -328,7 +327,7 @@ describe('statisticsData.sumMedalsCountries', ()  => {
   });
 })
 
-describe('statisticsData', ()  => {
+describe('statisticsData.sumMedalsOfAthlethe', ()  => {
   it ('Deberia ser una funcion', () =>{
     expect(typeof statisticsData.sumMedalsCountries).toBe('function');
   });
@@ -343,5 +342,20 @@ describe('statisticsData', ()  => {
   it('No deberia ser Null', () => {
     expect(filterData.removeDuplicateNamese).not.toBeNull();
   });
+});
+
+describe('statisticsData.sumMedalsByGender', () => {
+  it ('Deberia ser una funcion', () =>{
+    expect(typeof statisticsData.sumMedalsByGender).toBe('function');
+  });
+  it (' Deberia retornar 1 para medallas de oro de las mujeres', () => {
+    const array_mock_result = statisticsData.sumMedalsByGender('F', array_mock_data);
+    expect(array_mock_result.Gold).toEqual(1);
+  });
+  it (' Deberia retornar 1 para medallas de oro para los hombres', () => {
+    const array_mock_result = statisticsData.sumMedalsByGender('M', array_mock_data);
+    expect(array_mock_result.Silver).toEqual(3);
+  });
 })
+
 
