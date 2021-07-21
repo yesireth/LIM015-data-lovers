@@ -28,8 +28,6 @@
       </div>
       
       <nav class="nav nav-hide">
-        <!-- <img class="x-bar" src="./images/x-bar.png" alt="icon-x"> -->
-
         <input type="button" value="Inicio" class="button" id="home">
         <input type="button" value="Deportes" class="button" id="sport">
         <input type="button" value="Atletas" class="button" id="athletes">
@@ -45,22 +43,22 @@
     <!-- Sección de slide -->
     <section class="container-slider">
       <section class="slider">
-        <section class="slide active">
+        <figure class="slide active">
           <img src="images/slide1.jpg" alt="mascotas-rio2016">
-          <p>Las mascotas oficiales de las Olimpiadas de Río 2016 son Vinicius y Tom, en homenaje a los ídolos de la música brasileña Vinicius de Moraes y Tom Jobim.</p>
-        </section>
-        <section class="slide">
+          <figcaption>Las mascotas oficiales de las Olimpiadas de Río 2016 son Vinicius y Tom, en homenaje a los ídolos de la música brasileña Vinicius de Moraes y Tom Jobim.</figcaption>
+        </figure>
+        <figure class="slide">
           <img src="images/slide2.jpg" alt="Ayuda femenina">
-          <p>La estadounidense Abbey D'Agostino ayuda a la atleta neozelandesa Nikki Hamblin luego de su caída demostrando la nobleza de su espíritu olímpico.</p>
-        </section>
-        <section class="slide">
+          <figcaption>La estadounidense Abbey D'Agostino ayuda a la atleta neozelandesa Nikki Hamblin luego de su caída demostrando la nobleza de su espíritu olímpico.</figcaption>
+        </figure>
+        <figure class="slide">
           <img src="images/slide3.jpg" alt="refugiados-rio2016">
-          <p>Se conformó por primera vez un Equipo Olímpico de Atletas Refugiados que fue representado por 10 atletas.</p>
-        </section>
-        <section class="slide">
+          <figcaption>Se conformó por primera vez un Equipo Olímpico de Atletas Refugiados que fue representado por 10 atletas.</figcaption>
+        </figure>
+        <figure class="slide">
           <img src="images/4.jpg" alt="Protestas mujeres iranies">
-           <p>Una Iraní alzó la voz para protestar en los Juegos Olímpicos de Río 2016 clamando que se permita a las mujeres iraníes entrar en los estadios en su pais.</p>
-         </section>
+           <figcaption>Una Iraní alzó la voz para protestar en los Juegos Olímpicos de Río 2016 clamando que se permita a las mujeres iraníes entrar en los estadios en su pais.</figcaption>
+         </figure>
         <section class="buttons-slides">
           <section class="btn-slide active"> </section >
           <section class="btn-slide"> </section >
@@ -88,11 +86,6 @@
       </section>
     </section> <!-- Cierre de sección de información relevante sobre los Juegos Olimpicos 2016 -->
 
-    <!-- Sección de Atletas destacados en los Juegos Olimpicos 2016 -->
-    <section class="featured">
-      <!-- <h2 class="text-center">Atletas Destacados</h2> -->
-    </section>
-
     <!-- Sección de Mujeres Atletas en los Juegos Olimpicos 2016 -->
     <section class="women">
       <h2 class="text-center">Participación Femenina</h2>
@@ -119,10 +112,7 @@
       <section class="first-element">
 
         <figure class="container-icon-filter">
-          <i class="fas fa-filter"></i>
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg> -->
-        <span>FILTRAR</span>
-
+          <i class="fas fa-filter"><span>FILTRAR</span></i>
         </figure>
       
         <section  class="container-list-order">
@@ -139,7 +129,10 @@
       <section class="second-element">
         <!-- Sección que contiene la lista de categorías  -->
         <section class="container-nav-category .list-category-hide">
-          <i id="icon-x" class="fas fa-times"></i>
+          <figure>
+            <i id="icon-x" class="fas fa-times"></i>
+          </figure>
+
           <nav>
             <ul class="nav-category">
               <li class="category"><a href="#">CATEGORÍAS<i class="fas fa-angle-down"></i></a></li>
