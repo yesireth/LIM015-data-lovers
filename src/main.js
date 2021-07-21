@@ -17,7 +17,7 @@ const btnStatistics = document.getElementById("statistics");
 const sortItem= document.getElementById("order");
 const menuBar = document.querySelector('.menu-bar i');
 const iconFilter = document.querySelector('.container-icon-filter i');
-
+const hidechart=document.getElementById('regions_div');
 // Data completa
 const dataAthletes = athletes.athletes;
 //Data filtrada
@@ -236,6 +236,7 @@ function showStatistics() {
   containerSectionAthletes.style.display = 'none';
   containerSport.style.display = 'none';
   containerStatistics.style.display = 'block';
+  hidechart.style.display='block'
   hideHomePage();
   containerStatistics.innerHTML = "";
   const uniqueCountry = filterData.removeDuplicateDataArray('noc', dataAthletes);
@@ -310,6 +311,12 @@ function showOrderedAthletes(newordered) {
   containerAthletes.innerHTML = '';
   displayCards(newordered, containerAthletes);
 }
+google.charts.load('current', { //eslint-disable-line
+  'packages':['geochart'],
+  // Note: you will need to get a mapsApiKey for your project.
+  // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+  'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+});
 
 // Función. para mostrar los paises con las estadísticas 
 function showCharts() {
