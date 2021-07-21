@@ -69,7 +69,7 @@ export const orderData = {
     else if (sortItem === "menos-edad") {
       orderedarray = newAthletes.sort((a, b) => a.age - b.age);
     }
-    else if (sortItem ==="mas-edad") {
+    else if (sortItem === "mas-edad") {
       orderedarray = newAthletes.sort((a, b) => b.age - a.age);
     }
   return orderedarray; 
@@ -95,7 +95,7 @@ export const statisticsData = {
   sumMedalsOfAthlethe: (nameAthlete, athletes) => {
     const medalsByAthlete = athletes
     .filter(athlete => athlete.name === nameAthlete)
-    .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
+    .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), []);
     let counter= 0
     if('Bronze' in medalsByAthlete){
       counter += medalsByAthlete.Bronze;
@@ -119,22 +119,5 @@ export const statisticsData = {
     .filter(athlete => athlete.gender === gender)
     .reduce((count, athlete) => (count[athlete.medal] ? count[athlete.medal] += 1 : count[athlete.medal] = 1, count), [])
     return medalsByGender;
-  }
-  // sumMedalsByGender: (medal, athletes) => {
-  //   const medalsByGender = athletes
-  //   .filter(athlete => athlete.medal === medal )
-  //   // .reduce((count, athlete) => (count[athlete.team] ? count[athlete.team] += 1 : count[athlete.team] = 1, count), [])
-  //   .reduce((count, athlete) => {
-  //     if (count[athlete.noc]){
-  //       count[athlete.noc] += 1;
-  //     } 
-  //      else {
-  //       count[athlete.noc] = 1
-  //     }
-  //     return count;
-  //   }, [])
-  //   return medalsByGender;
-  // },
-  
+  }  
 }
-
