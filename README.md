@@ -57,7 +57,10 @@ a la siguiente (Cumple con Definición de Terminado + Criterios de Aceptación).
 
 > **Historia 4**  
 *Yo como investigador quiero:* Un botón para filtrar por categorías y poder agrupar por género y medallas ganadas.
-
+> **Historia 5**  
+*Yo como investigador quiero:* Un botón para filtrar por estadisticas y  poder ver los paises con el total de medallas ganadas. 
+> **Historia 6**  
+*Yo como investigador quiero:* Quiero poder ver el porcentaje de medallas ganadas por mujeres.
 ## 3. Diseño :sparkles: 
 
 <!-- ### Diseño de la Interfaz de Usuario
@@ -92,6 +95,8 @@ mejoraste en tu propuesta final.
 
 ### Prototipo en figma
 
+
+
 ## 4. Tecnologías empleadas :hammer:
 
 - [ ] [HTML:](https://developer.mozilla.org/es/docs/Web/HTML) Siguiendo las reglas del HTML semántico se estructuró con un `header` que contiene el logo y barra de navegación y el input de busqueda, el `main` para englobar el contenido principal y en el `footer` se detalla los derechos de autor y barra de navegación.
@@ -112,7 +117,13 @@ mejoraste en tu propuesta final.
 
 - [ ]  [Eslint:](https://jestjs.io/docs/es-ES/getting-started) Herramienta de linting para analizar el codigo en busca de errores.
 
+## Link del plan de acción:
+
+ Trello:  https://trello.com/b/RwY7grMN/sprint-4
+
 ## 6.Testing :wrench: 
+Errores de sintaxis en el HTML, y no nos permitia correr los test.
+Errores de parametros (le estabamos enviando los parametros de manera incorrecta).
 
 ## 7. Checklist
 * [ ] Usa VanillaJS.

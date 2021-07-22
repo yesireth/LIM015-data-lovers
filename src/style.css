@@ -235,11 +235,11 @@ body {
 
 .containerAthletes {
     width: 98%;
-    padding: 5px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    justify-content: center;
 }
 
 /****Card de atletas ****/

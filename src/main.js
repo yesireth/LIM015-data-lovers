@@ -39,6 +39,7 @@ function showHomePage() {
   containerWomen.style.display = 'block';
   containerIntro.style.display = 'flex';
   containerSlide.style.display = 'flex';
+  hidechart.style.display='none';
 }
 
 // Ocultamos la sección de atletas de la Home Page 
@@ -148,6 +149,7 @@ function displayCards(array, parent) {
 function showAthletes() {
   hideNavigation();
   hideHomePage();
+  hidechart.style.display='none';
   containerSport.style.display = 'none';
   containerStatistics.style.display = 'none';
   document.querySelector('.one-athlethe').style.display = 'none';
@@ -205,6 +207,7 @@ function showSport() {
   document.querySelector('.one-athlethe').style.display = 'none';
   containerStatistics.style.display = 'none';
   containerSport.style.display = 'flex';
+  hidechart.style.display='none'
   containerSport.innerHTML = "";
   const uniqueSport = filterData.removeDuplicateDataArray('sport', dataAthletes);
   uniqueSport.forEach(element => {
