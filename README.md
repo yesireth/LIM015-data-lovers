@@ -95,7 +95,7 @@ mejoraste en tu propuesta final.
 
 ### Prototipo en figma
 
-
+![sitemap](https://github.com/yesireth/LIM015-data-lovers/blob/main/src/images/Prototipo%20de%20alta%20fidelidad.JPG?raw=true)
 
 ## 4. Tecnologías empleadas :hammer:
 
