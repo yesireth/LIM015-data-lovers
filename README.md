@@ -122,8 +122,9 @@ mejoraste en tu propuesta final.
  Trello:  https://trello.com/b/RwY7grMN/sprint-4
 
 ## 6.Testing :wrench: 
-Errores de sintaxis en el HTML, y no nos permitia correr los test.
-Errores de parametros (le estabamos enviando los parametros de manera incorrecta).
+* [ ] Errores de sintaxis en el HTML, no nos permitia correr los test.
+
+* [ ] Errores de parametros (le estabamos enviando los parametros de manera incorrecta).
 
 ## 7. Checklist
 * [ ] Usa VanillaJS.
